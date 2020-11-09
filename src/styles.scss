@@ -37,11 +37,24 @@ $dailyjourney-theme: mat-light-theme(
 
 /* You can add global styles to this file, and also import other style files */
 
+/* Reset */
+
 html,
 body {
   height: 100%;
+  //that defines what rem is
+  font-size: 62.5%; //  1rem = 10px; percentage over default browser, typically 16px
 }
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
