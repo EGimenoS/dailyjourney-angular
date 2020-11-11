@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -36,11 +37,22 @@ $dailyjourney-theme: mat-light-theme(
 
 /* You can add global styles to this file, and also import other style files */
 
+/* Reset */
+
 html,
 body {
   height: 100%;
-}
-body {
+  //that defines what rem is
+  font-size: 62.5%; //  1rem = 10px; percentage over default browser, typically 16px
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
