@@ -1,4 +1,9 @@
 @import '~@angular/material/theming';
+@import '~material-design-icons/iconfont/material-icons.css';
+$custom-typography: mat-typography-config(
+  $font-family: 'inherit',
+);
+@include mat-core($custom-typography);
 
 body {
   --primary-color: #002a4d;

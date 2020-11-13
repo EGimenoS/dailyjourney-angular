@@ -1,18 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 @import './theming.scss';
+/* You can add global styles to this file, and also import other style files */
+
 //colors
 $primary: #002a4d;
 $accent: #ff6430;
 $grey-background: #f5f7fd;
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-
-/* You can add global styles to this file, and also import other style files */
-
 /* Reset */
-
 html,
 body {
   height: 100%;
