@@ -39,11 +39,10 @@ a {
 }
 
 .item {
-  width: 100%;
   text-align: center;
 }
 
-.icon {
+.bg-icon {
   font-size: 2rem;
 }
 
@@ -79,4 +78,12 @@ a {
 
 .non-visible-menu {
   display: none;
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 1px;
+  }
 }

@@ -1,14 +1,18 @@
 <nav (window:resize)="onResize()">
   <span class="logo">DailyJourney</span>
   <span (click)="toggleMenuVisibility()" #toggleMenuButton class="toggle">
-    <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon">{{
-      toggleButtonIcon
-    }}</mat-icon>
+    <mat-icon class="bg-icon">{{ toggleButtonIcon }}</mat-icon>
   </span>
   <ul [ngStyle]="{ display: showMenu ? 'flex' : 'none' }" class="menu">
     <li class="item"><a href="">Registrarse</a></li>
     <li class="item"><a href="">Entrar</a></li>
-    <li class="item"><a href="">Buscar Viaje</a></li>
-    <li class="item"><a href="">Nuevo Viaje</a></li>
+    <li class="item">
+      <a href="" class="with-icon"><mat-icon>search</mat-icon> <span>Buscar Viaje</span> </a>
+    </li>
+    <li class="item">
+      <a href="" class="with-icon"
+        ><mat-icon>add_circle_outline</mat-icon> <span>Nuevo Viaje</span></a
+      >
+    </li>
   </ul>
 </nav>
