@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   onResize(): void {
     this.width = window.innerWidth;
     this.showMenu = this.width <= 768 ? false : true;
+    this.toggleButtonIcon = this.width >= 768 ? 'menu' : this.toggleButtonIcon;
   }
 
   toggleMenuVisibility(): void {

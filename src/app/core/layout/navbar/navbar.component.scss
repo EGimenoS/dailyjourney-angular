@@ -23,7 +23,7 @@ ul {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 50vh;
+  height: 30vh;
   width: 100%;
   order: 3;
 }
@@ -36,10 +36,6 @@ a {
   &:hover {
     color: var(--accent-lighter-color);
   }
-}
-
-.item {
-  text-align: center;
 }
 
 .bg-icon {
