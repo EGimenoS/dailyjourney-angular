@@ -1,0 +1,112 @@
+.container {
+  height: 50vh;
+  position: relative;
+
+  &:after {
+    content: '';
+    background-image: url(../../../assets/images/splash.jpg);
+    background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+.centered-wrapper {
+  height: 100%;
+  width: 90%;
+  margin: auto;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.main-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  span:first-child {
+    color: var(--accent);
+  }
+  span:last-child {
+    color: white;
+  }
+}
+
+.search-form {
+  background-color: white;
+  padding: 1rem 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px 5px 0 0;
+
+  .input-icon {
+    color: var(--accent);
+    margin-right: 0.5rem;
+  }
+
+  .button-icon {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  button {
+    background: var(--primary);
+    border-radius: 1000rem;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    border: none;
+  }
+}
+:host ::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: var(--primary);
+}
+
+input.mat-input-element {
+  color: var(--primary);
+}
+
+.add-travel > button {
+  background-color: var(--primary);
+  color: var(--accent);
+}
+
+@media (min-width: 768px) {
+  .container {
+    height: 70vh;
+  }
+
+  .centered-wrapper {
+    width: 60%;
+    padding-top: 5rem;
+  }
+
+  .main-title {
+    font-size: 2.7rem;
+    font-weight: 800;
+  }
+
+  .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .input-address {
+      flex: 1 1 20%;
+    }
+
+    .rounded-button-wrapper {
+      flex: 0 0 10%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
