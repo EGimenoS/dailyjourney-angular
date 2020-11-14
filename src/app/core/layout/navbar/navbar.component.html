@@ -1,7 +1,9 @@
 <nav (window:resize)="onResize()">
   <span class="logo">DailyJourney</span>
   <span (click)="toggleMenuVisibility()" #toggleMenuButton class="toggle">
-    <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
+    <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon">{{
+      toggleButtonIcon
+    }}</mat-icon>
   </span>
   <ul [ngStyle]="{ display: showMenu ? 'flex' : 'none' }" class="menu">
     <li class="item"><a href="">Registrarse</a></li>

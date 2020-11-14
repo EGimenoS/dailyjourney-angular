@@ -8,6 +8,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 export class NavbarComponent implements OnInit {
   showMenu: boolean;
   width: number;
+  toggleButtonIcon = 'menu';
   constructor() {}
 
   onResize(): void {
@@ -17,6 +18,7 @@ export class NavbarComponent implements OnInit {
 
   toggleMenuVisibility(): void {
     this.showMenu = !this.showMenu;
+    this.toggleButtonIcon = this.toggleButtonIcon === 'menu' ? 'clear' : 'menu';
   }
 
   ngOnInit(): void {
