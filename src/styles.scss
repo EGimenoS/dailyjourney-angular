@@ -2,17 +2,18 @@
 @import './theming.scss';
 /* You can add global styles to this file, and also import other style files */
 
-//colors
-$primary: #002a4d;
-$accent: #ff6430;
-$grey-background: #f5f7fd;
+//css global variables
+:root {
+  --primary: #002a4d;
+  --accent: #ff6430;
+  --grey-background: #f5f7fd;
+}
 
 /* Reset */
 html,
 body {
   height: 100%;
-  //that defines what rem is
-  font-size: 62.5%; //  1rem = 10px; percentage over default browser, typically 16px
+  font-size: 100%;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;

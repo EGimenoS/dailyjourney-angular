@@ -1,5 +1,12 @@
-<mat-toolbar color="primary">
-  DailyJourney
-  <button mat-flat-button color="accent" routerLink="/home">Home</button>
-  <button mat-flat-button color="warn" routerLink="/search-results">Search</button>
-</mat-toolbar>
+<nav (window:resize)="onResize()">
+  <span class="logo">DailyJourney</span>
+  <span (click)="toggleMenuVisibility()" #toggleMenuButton class="toggle">
+    <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
+  </span>
+  <ul [ngStyle]="{ display: showMenu ? 'flex' : 'none' }" class="menu">
+    <li class="item"><a href="">Registrarse</a></li>
+    <li class="item"><a href="">Entrar</a></li>
+    <li class="item"><a href="">Buscar Viaje</a></li>
+    <li class="item"><a href="">Nuevo Viaje</a></li>
+  </ul>
+</nav>
