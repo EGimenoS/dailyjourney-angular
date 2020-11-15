@@ -1,0 +1,15 @@
+<form class="search-form" [formGroup]="searchGroupForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="input-address" appearance="outline">
+    <mat-label>Dirección de origen</mat-label>
+    <input matInput formControlName="originAddress" />
+    <mat-icon class="input-icon" matPrefix>add_location</mat-icon>
+  </mat-form-field>
+  <mat-form-field class="input-address" appearance="outline">
+    <mat-label>Dirección de destino</mat-label>
+    <input matInput formControlName="originAddress" />
+    <mat-icon class="input-icon" matPrefix>directions_car</mat-icon>
+  </mat-form-field>
+  <div class="rounded-button-wrapper">
+    <button type="submit"><mat-icon class="button-icon">search</mat-icon></button>
+  </div>
+</form>

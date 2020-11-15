@@ -5,21 +5,7 @@
         <span>Comparte </span>
         <span>vehículo en los viajes del día a día</span>
       </div>
-      <form class="search-form" [formGroup]="searchGroupForm" (ngSubmit)="onSubmit()">
-        <mat-form-field class="input-address" appearance="outline">
-          <mat-label>Dirección de origen</mat-label>
-          <input matInput formControlName="originAddress" />
-          <mat-icon class="input-icon" matPrefix>add_location</mat-icon>
-        </mat-form-field>
-        <mat-form-field class="input-address" appearance="outline">
-          <mat-label>Dirección de destino</mat-label>
-          <input matInput formControlName="originAddress" />
-          <mat-icon class="input-icon" matPrefix>directions_car</mat-icon>
-        </mat-form-field>
-        <div class="rounded-button-wrapper">
-          <button type="submit"><mat-icon class="button-icon">search</mat-icon></button>
-        </div>
-      </form>
+      <app-search-addreses-form></app-search-addreses-form>
       <button class="add-travel">¡O añade tu propio viaje!</button>
     </div>
   </div>
