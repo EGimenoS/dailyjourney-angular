@@ -1,14 +1,24 @@
 <form class="search-form" [formGroup]="searchGroupForm" (ngSubmit)="onSubmit()">
   <mat-form-field class="input-address" appearance="outline">
     <mat-label>Dirección de origen</mat-label>
-    <input matInput formControlName="originAddress" />
+    <input matInput [matAutocomplete]="origin" formControlName="originInput" />
     <mat-icon class="input-icon" matPrefix>add_location</mat-icon>
   </mat-form-field>
+  <mat-autocomplete #origin="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let address of validOriginAddreses | async" [value]="address">
+      <span>{{ address.address }}</span>
+    </mat-option>
+  </mat-autocomplete>
   <mat-form-field class="input-address" appearance="outline">
     <mat-label>Dirección de destino</mat-label>
-    <input matInput formControlName="originAddress" />
+    <input matInput [matAutocomplete]="destination" formControlName="destinationInput" />
     <mat-icon class="input-icon" matPrefix>directions_car</mat-icon>
   </mat-form-field>
+  <mat-autocomplete #destination="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let address of validDestinationAddreses | async" [value]="address">
+      <span>{{ address.address }}</span>
+    </mat-option>
+  </mat-autocomplete>
   <div class="rounded-button-wrapper">
     <button type="submit"><mat-icon class="button-icon">search</mat-icon></button>
   </div>

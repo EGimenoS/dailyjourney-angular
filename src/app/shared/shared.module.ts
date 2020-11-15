@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchAddresesFormComponent } from './components/search-addreses-form/search-addreses-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatAutocompleteModule,
     ReactiveFormsModule,
   ],
   exports: [
@@ -23,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatAutocompleteModule,
     SearchAddresesFormComponent,
   ],
 })
