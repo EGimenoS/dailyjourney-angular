@@ -38,49 +38,6 @@
   }
 }
 
-.search-form {
-  background-color: white;
-  padding: 1rem 0.5rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 5px 5px 0 0;
-
-  .input-icon {
-    color: var(--accent);
-    margin-right: 0.5rem;
-  }
-
-  .button-icon {
-    color: var(--accent);
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-
-  button {
-    background: var(--primary);
-    border-radius: 1000rem;
-    padding: 0.5rem;
-    margin-left: 1rem;
-    margin-top: 0.5rem;
-    border: none;
-
-    &:hover {
-      opacity: 70%;
-      cursor: pointer;
-    }
-  }
-}
-:host ::ng-deep .mat-form-field-wrapper {
-  margin: 0 !important;
-  padding: 0;
-}
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: var(--primary);
-}
-
-input.mat-input-element {
-  color: var(--primary);
-}
-
 .add-travel {
   background-color: var(--accent);
   color: white;
@@ -89,6 +46,11 @@ input.mat-input-element {
   border-radius: 100px;
   padding: 1rem 2rem;
   border: none;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    background-color: var(--accent-lighter-color);
+  }
 }
 
 .search-form {
@@ -102,6 +64,7 @@ input.mat-input-element {
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   align-items: center;
 
   &-icon {

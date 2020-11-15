@@ -11,10 +11,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 // component imports
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [MainLayoutComponent, NavbarComponent, FooterComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, RouterModule, MatIconModule],
+  imports: [BrowserModule, BrowserAnimationsModule, RouterModule, MatIconModule, HttpClientModule],
   exports: [MainLayoutComponent],
 })
 export class CoreModule {}
