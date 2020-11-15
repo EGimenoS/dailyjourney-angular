@@ -1,1 +1,46 @@
-<h1>home works!</h1>
+<section class="call-to-action">
+  <div class="container">
+    <div class="centered-wrapper">
+      <div class="main-title">
+        <span>Comparte </span>
+        <span>vehículo en los viajes del día a día</span>
+      </div>
+      <form class="search-form" [formGroup]="searchGroupForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="input-address" appearance="outline">
+          <mat-label>Dirección de origen</mat-label>
+          <input matInput formControlName="originAddress" />
+          <mat-icon class="input-icon" matPrefix>add_location</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="input-address" appearance="outline">
+          <mat-label>Dirección de destino</mat-label>
+          <input matInput formControlName="originAddress" />
+          <mat-icon class="input-icon" matPrefix>directions_car</mat-icon>
+        </mat-form-field>
+        <div class="rounded-button-wrapper">
+          <button type="submit"><mat-icon class="button-icon">search</mat-icon></button>
+        </div>
+      </form>
+      <button class="add-travel">¡O añade tu propio viaje!</button>
+    </div>
+  </div>
+</section>
+<section class="marketing">
+  <div class="marketing-item">
+    <div class="marketing-icon">
+      <img src="../../../assets/svg/savemoney.svg" />
+    </div>
+    <p>Ahorra Dinero</p>
+  </div>
+  <div class="marketing-item">
+    <div class="marketing-icon">
+      <img src="../../../assets/svg/car.svg" />
+    </div>
+    <p>Comparte vehículo con otras personas</p>
+  </div>
+  <div class="marketing-item">
+    <div class="marketing-icon">
+      <img src="../../../assets/svg/ecologic.svg" />
+    </div>
+    <p>Ayuda al medioambiente</p>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 nav {
   background-color: white;
-  color: var(--accent);
+  color: var(--primary);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -11,10 +11,12 @@ nav {
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
+  color: var(--accent);
 }
 
 .toggle {
   order: 1;
+  cursor: pointer;
 }
 
 ul {
