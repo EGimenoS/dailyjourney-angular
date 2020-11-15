@@ -1,12 +1,12 @@
 .container {
-  height: 50vh;
+  height: 60vh;
   position: relative;
 
-  &:after {
+  &:before {
     content: '';
     background-image: url(../../../assets/images/splash.jpg);
     background-size: cover;
-    opacity: 0.7;
+    opacity: 0.8;
     top: 0;
     left: 0;
     bottom: 0;
@@ -27,6 +27,7 @@
 }
 
 .main-title {
+  z-index: 1;
   font-size: 1.7rem;
   font-weight: 800;
   span:first-child {
@@ -59,7 +60,13 @@
     border-radius: 1000rem;
     padding: 0.5rem;
     margin-left: 1rem;
+    margin-top: 0.5rem;
     border: none;
+
+    &:hover {
+      opacity: 70%;
+      cursor: pointer;
+    }
   }
 }
 :host ::ng-deep .mat-form-field-wrapper {
@@ -74,9 +81,45 @@ input.mat-input-element {
   color: var(--primary);
 }
 
-.add-travel > button {
-  background-color: var(--primary);
-  color: var(--accent);
+.add-travel {
+  background-color: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+  border: none;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.marketing {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  align-items: center;
+
+  &-icon {
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 50%;
+    }
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+  }
 }
 
 @media (min-width: 768px) {
@@ -96,8 +139,10 @@ input.mat-input-element {
 
   .search-form {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 
     .input-address {
       flex: 1 1 20%;
@@ -107,6 +152,27 @@ input.mat-input-element {
       flex: 0 0 10%;
       display: flex;
       justify-content: center;
+    }
+  }
+
+  .add-travel {
+    align-self: center;
+  }
+
+  .marketing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 2rem;
+    &-icon {
+      min-height: 250px;
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 80%;
+      }
     }
   }
 }
