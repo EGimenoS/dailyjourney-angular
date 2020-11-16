@@ -12,10 +12,29 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [MainLayoutComponent, NavbarComponent, FooterComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, RouterModule, MatIconModule, HttpClientModule],
+  declarations: [
+    MainLayoutComponent,
+    NavbarComponent,
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule,
+    MatIconModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   exports: [MainLayoutComponent],
 })
 export class CoreModule {}
