@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AutocompleteAddress } from 'src/app/core/interfaces/autocomplete-address';
 import { AutocompleteAddresesService } from 'src/app/core/services/autocomplete-addreses.service';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -29,10 +29,12 @@ export class SearchAddresesFormComponent implements OnInit {
     this.searchGroupForm = this.createSearchGroupForm();
     this.validOriginAddreses = this.searchGroupForm.get('originInput').valueChanges.pipe(
       debounceTime(300),
+      filter((value) => value.length > 0),
       switchMap((value) => this.validAddreses.getValidAddreses(value))
     );
     this.validDestinationAddreses = this.searchGroupForm.get('destinationInput').valueChanges.pipe(
       debounceTime(300),
+      filter((value) => value.length > 0),
       switchMap((value) => this.validAddreses.getValidAddreses(value))
     );
   }
