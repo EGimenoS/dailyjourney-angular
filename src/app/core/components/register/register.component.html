@@ -1,5 +1,5 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
-  <h1>Registrarme</h1>
+  <h2>Registrarme</h2>
   <mat-form-field class="input" appearance="outline">
     <mat-label>Email</mat-label>
     <input type="email" matInput formControlName="email" />
@@ -12,6 +12,9 @@
     <input type="string" matInput formControlName="name" />
     <mat-error *ngIf="registerForm.controls['name'].hasError('required')">
       Nombre de usuario requerido
+    </mat-error>
+    <mat-error *ngIf="registerForm.controls['name'].hasError('minlength')">
+      El nombre de usuario es demasiado corto
     </mat-error>
   </mat-form-field>
   <mat-form-field class="input" appearance="outline">
