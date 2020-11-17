@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { getFormValidationErrors } from 'src/app/shared/utilities/get-form-validation-errors';
 import { UsersService } from '../../services/users.service';
 import { mustMatch } from '../../validators/must-match';
 
@@ -16,8 +17,8 @@ export class RegisterComponent implements OnInit {
   createRegisterFormGroup(): FormGroup {
     return this.fb.group(
       {
-        email: [{ value: '' }, [Validators.required, Validators.maxLength(20)]],
-        name: [{ value: '' }, [Validators.required, Validators.maxLength(20)]],
+        email: ['', [Validators.required, Validators.maxLength(20)]],
+        name: ['', [Validators.required, Validators.minLength(10)]],
         password: [''],
         passwordConfirmation: [''],
       },
@@ -28,10 +29,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log('onsubmit');
     console.log(this.registerForm.value);
   }
   cancelForm(): void {
     console.log('cancelado');
+    console.log(getFormValidationErrors(this.registerForm));
   }
 
   ngOnInit(): void {

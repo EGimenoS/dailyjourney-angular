@@ -1,0 +1,13 @@
+form {
+  box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  h1 {
+    text-align: center;
+  }
+}
