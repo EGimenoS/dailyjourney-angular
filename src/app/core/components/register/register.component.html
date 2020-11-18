@@ -52,8 +52,8 @@
     <button type="submit" [disabled]="registerForm.invalid" class="button-regular">
       Registrarme
     </button>
-    <button type="button" (click)="cancelForm()">Cancel</button>
+    <button class="cross-cancel-button" type="button" (click)="cancelForm()">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
 </form>
-
-{{ registerForm.valid | json }}
