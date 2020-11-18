@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openRegisterDialog(): void {
-    const dialogRef = this.dialog.open(RegisterComponent, { minWidth: '30%' });
+    this.dialog.open(RegisterComponent, { minWidth: '30%' });
   }
 
   ngOnInit(): void {

@@ -29,12 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('onsubmit');
-    console.log(this.registerForm.value);
-  }
-  cancelForm(): void {
-    console.log('cancelado');
-    console.log(getFormValidationErrors(this.registerForm));
+    this.usersService.createNewUser(this.registerForm.value).subscribe();
   }
 
   ngOnInit(): void {

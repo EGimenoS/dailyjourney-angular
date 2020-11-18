@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -10,7 +11,7 @@ import { UserCredentials } from '../interfaces/user-credentials';
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dialog: MatDialog) {}
   headers = new HttpHeaders({
     'Content-type': 'application/json',
   });
@@ -20,6 +21,6 @@ export class UsersService {
       .post<UserCredentials>(`${authEndpoint}/sign_up`, credentials, {
         headers: this.headers,
       })
-      .pipe(tap((res) => alert(res.message)));
+      .pipe(tap(() => this.dialog.closeAll()));
   }
 }
