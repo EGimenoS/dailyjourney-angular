@@ -17,6 +17,16 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
+
+export function token(): string {
+  if (localStorage.getItem('currentUser')) {
+    return JSON.parse(localStorage.getItem('currentUser')).token;
+  } else {
+    return 'notoken';
+  }
+}
 
 @NgModule({
   declarations: [
@@ -37,6 +47,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatDialogModule,
     MatIconModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: token,
+        allowedDomains: [`${environment.baseDom}`],
+        disallowedRoutes: [`${environment.authUrl}/sign_in`, `${environment.authUrl}/sign_up`],
+      },
+    }),
   ],
   exports: [MainLayoutComponent],
 })
