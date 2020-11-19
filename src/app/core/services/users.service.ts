@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { authEndpoint } from '../../../../config';
+import { ApiResponse } from '../interfaces/api-response';
 import { UserCredentials } from '../interfaces/user-credentials';
 
 @Injectable({
@@ -16,9 +17,9 @@ export class UsersService {
     'Content-type': 'application/json',
   });
 
-  createNewUser(credentials: UserCredentials): Observable<any> {
+  createNewUser(credentials: UserCredentials): Observable<ApiResponse> {
     return this.http
-      .post<UserCredentials>(`${authEndpoint}/sign_up`, credentials, {
+      .post<ApiResponse>(`${authEndpoint}/sign_up`, credentials, {
         headers: this.headers,
       })
       .pipe(tap(() => this.dialog.closeAll()));

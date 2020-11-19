@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../../components/login/login.component';
 import { RegisterComponent } from '../../components/register/register.component';
 
 @Component({
@@ -26,6 +27,10 @@ export class NavbarComponent implements OnInit {
 
   openRegisterDialog(): void {
     this.dialog.open(RegisterComponent, { minWidth: '30%' });
+  }
+
+  openLoginDialog(): void {
+    this.dialog.open(LoginComponent, { minWidth: '30%' });
   }
 
   ngOnInit(): void {

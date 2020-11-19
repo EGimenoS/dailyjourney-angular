@@ -5,7 +5,7 @@
   </span>
   <ul [ngStyle]="{ display: showMenu ? 'flex' : 'none' }" class="menu">
     <li class="item"><a (click)="openRegisterDialog()">Registrarse</a></li>
-    <li class="item"><a>Entrar</a></li>
+    <li class="item"><a (click)="openLoginDialog()">Acceder</a></li>
     <li class="item">
       <a href="" class="with-icon"><mat-icon>search</mat-icon> <span>Buscar Viaje</span> </a>
     </li>
