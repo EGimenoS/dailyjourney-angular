@@ -1,0 +1,16 @@
+form {
+  background-color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  background-color: white;
+  h2 {
+    text-align: center;
+    margin: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+}

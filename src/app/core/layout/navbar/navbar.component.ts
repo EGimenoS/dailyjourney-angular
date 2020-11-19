@@ -1,4 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../../components/login/login.component';
+import { RegisterComponent } from '../../components/register/register.component';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +12,7 @@ export class NavbarComponent implements OnInit {
   showMenu: boolean;
   width: number;
   toggleButtonIcon = 'menu';
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   onResize(): void {
     this.width = window.innerWidth;
@@ -20,6 +23,14 @@ export class NavbarComponent implements OnInit {
   toggleMenuVisibility(): void {
     this.showMenu = !this.showMenu;
     this.toggleButtonIcon = this.toggleButtonIcon === 'menu' ? 'clear' : 'menu';
+  }
+
+  openRegisterDialog(): void {
+    this.dialog.open(RegisterComponent, { minWidth: '30%' });
+  }
+
+  openLoginDialog(): void {
+    this.dialog.open(LoginComponent, { minWidth: '30%' });
   }
 
   ngOnInit(): void {

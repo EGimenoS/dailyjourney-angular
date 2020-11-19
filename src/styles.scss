@@ -6,6 +6,7 @@
 :root {
   --primary: #002a4d;
   --accent: #ff6430;
+  --warn: #ff0000;
   --grey-background: #f5f7fd;
 }
 
@@ -18,6 +19,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   color: var(--primary);
+  background-color: var(--grey-background);
 }
 
 *,
@@ -26,4 +28,28 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+}
+
+.button-regular {
+  background-color: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    background-color: var(--accent-lighter-color);
+  }
+}
+
+.cross-cancel-button {
+  position: absolute;
+  top: 0%;
+  left: 100%;
+  cursor: pointer;
+  border: none;
+  background: none;
 }

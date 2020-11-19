@@ -6,6 +6,11 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1rem;
+  box-shadow: 0 2px 2px -2px var(--primary-lighter-color);
+
+  li > a {
+    cursor: pointer;
+  }
 }
 
 .logo {
