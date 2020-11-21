@@ -1,1 +1,59 @@
-<p>add-travel works!</p>
+<div class="container">
+  <h2>Crea tu propio viaje</h2>
+  <form [formGroup]="newTravelGroupForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Dirección de origen</mat-label>
+        <input matInput [matAutocomplete]="origin" formControlName="originInput" />
+        <mat-icon class="input-icon" matPrefix>add_location</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Dirección de destino</mat-label>
+        <input matInput [matAutocomplete]="destination" formControlName="destinationInput" />
+        <mat-icon class="input-icon" matPrefix>directions_car</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Hora de salida</mat-label>
+        <input matInput formControlName="departure_time" />
+        <mat-icon class="input-icon" matPrefix>schedule</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Nº de pasajeros</mat-label>
+        <input matInput type="number" formControlName="capacity" />
+        <mat-icon class="input-icon" matPrefix>supervisor_account</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Periodicidad</mat-label>
+        <mat-select formControlName="periodicity">
+          <mat-option *ngFor="let option of periodicityOptions" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+        <mat-icon class="input-icon" matPrefix>date_range</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Comentario</mat-label>
+        <textarea rows="6" matInput formControlName="departure_time"></textarea>
+        <mat-icon class="input-icon" matPrefix>description</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <button class="button-regular" type="submit">Crear Viaje</button>
+    </div>
+  </form>
+</div>
+<mat-autocomplete #origin="matAutocomplete" [displayWith]="displayFn">
+  <mat-option *ngFor="let address of validOriginAddreses | async" [value]="address">
+    <span>{{ address.address }}</span>
+  </mat-option>
+</mat-autocomplete>
+<mat-autocomplete #destination="matAutocomplete" [displayWith]="displayFn">
+  <mat-option *ngFor="let address of validDestinationAddreses | async" [value]="address">
+    <span>{{ address.address }}</span>
+  </mat-option>
+</mat-autocomplete>

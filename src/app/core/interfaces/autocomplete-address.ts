@@ -1,5 +1,5 @@
 export interface AutocompleteAddress {
   address: string;
-  lat: number;
-  long: number;
+  latitude: number;
+  longitude: number;
 }
