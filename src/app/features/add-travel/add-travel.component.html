@@ -4,13 +4,13 @@
     <div class="row">
       <mat-form-field class="input" appearance="outline">
         <mat-label>Dirección de origen</mat-label>
-        <input matInput [matAutocomplete]="origin" formControlName="originInput" />
+        <input matInput [matAutocomplete]="origin" formControlName="origin_attributes" />
         <mat-icon class="input-icon" matPrefix>add_location</mat-icon>
       </mat-form-field>
 
       <mat-form-field class="input" appearance="outline">
         <mat-label>Dirección de destino</mat-label>
-        <input matInput [matAutocomplete]="destination" formControlName="destinationInput" />
+        <input matInput [matAutocomplete]="destination" formControlName="destination_attributes" />
         <mat-icon class="input-icon" matPrefix>directions_car</mat-icon>
       </mat-form-field>
     </div>
@@ -38,7 +38,7 @@
     <div class="row">
       <mat-form-field class="input" appearance="outline">
         <mat-label>Comentario</mat-label>
-        <textarea rows="6" matInput formControlName="departure_time"></textarea>
+        <textarea rows="6" matInput formControlName="owner_comment"></textarea>
         <mat-icon class="input-icon" matPrefix>description</mat-icon>
       </mat-form-field>
     </div>

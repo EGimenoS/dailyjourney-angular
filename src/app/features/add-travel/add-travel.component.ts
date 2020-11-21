@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { AutocompleteAddress } from 'src/app/core/interfaces/autocomplete-address';
 import { AutocompleteAddresesService } from 'src/app/core/services/autocomplete-addreses.service';
+import { TravelsService } from 'src/app/core/services/travels.service';
 
 @Component({
   selector: 'app-add-travel',
@@ -13,39 +14,44 @@ import { AutocompleteAddresesService } from 'src/app/core/services/autocomplete-
 export class AddTravelComponent implements OnInit {
   periodicityOptions = ['Diario', 'Semanal', 'Entre semana', 'Fin de semana'];
   newTravelGroupForm: FormGroup;
-  constructor(private fb: FormBuilder, private validAddreses: AutocompleteAddresesService) {}
   validOriginAddreses: Observable<AutocompleteAddress[]>;
   validDestinationAddreses: Observable<AutocompleteAddress[]>;
+
+  constructor(
+    private fb: FormBuilder,
+    private validAddreses: AutocompleteAddresesService,
+    private travelsService: TravelsService
+  ) {}
+
   onSubmit(): void {
     console.log(this.newTravelGroupForm.value);
+    this.travelsService.createNewTravel(this.newTravelGroupForm.value).subscribe();
   }
   createNewTravelGroupForm(): FormGroup {
     return this.fb.group({
-      originInput: '',
-      destinationInput: '',
+      origin_attributes: '',
+      destination_attributes: '',
       departure_time: '',
       capacity: '',
       periodicity: '',
       owner_comment: '',
     });
   }
-
   ngOnInit(): void {
     this.newTravelGroupForm = this.createNewTravelGroupForm();
-    this.validOriginAddreses = this.newTravelGroupForm.get('originInput').valueChanges.pipe(
+    this.validOriginAddreses = this.newTravelGroupForm.get('origin_attributes').valueChanges.pipe(
       debounceTime(300),
       filter((value) => value.length > 0),
       switchMap((value) => this.validAddreses.getValidAddreses(value))
     );
     this.validDestinationAddreses = this.newTravelGroupForm
-      .get('destinationInput')
+      .get('destination_attributes')
       .valueChanges.pipe(
         debounceTime(300),
         filter((value) => value.length > 0),
         switchMap((value) => this.validAddreses.getValidAddreses(value))
       );
   }
-
   displayFn(address: AutocompleteAddress): string {
     if (address) {
       return address.address;
