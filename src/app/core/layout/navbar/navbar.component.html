@@ -1,5 +1,5 @@
 <nav (window:resize)="onResize()">
-  <span class="logo">DailyJourney</span>
+  <span routerLink="home" class="logo">DailyJourney</span>
   <span (click)="toggleMenuVisibility()" #toggleMenuButton class="toggle">
     <mat-icon class="bg-icon">{{ toggleButtonIcon }}</mat-icon>
   </span>

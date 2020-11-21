@@ -30,6 +30,20 @@ body {
   box-sizing: inherit;
 }
 
+a {
+  text-decoration: none;
+}
+
+a,
+button {
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+
 .button-regular {
   background-color: var(--accent);
   color: white;
