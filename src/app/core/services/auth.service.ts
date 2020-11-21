@@ -35,6 +35,10 @@ export class AuthService {
       : null;
   }
 
+  public isAuthenticated(): boolean {
+    return this.currentUserSubject.value ? true : false;
+  }
+
   public login(credentials: UserCredentials): Observable<HttpResponse<ApiResponse>> {
     const { email, password } = credentials;
     return this.http
