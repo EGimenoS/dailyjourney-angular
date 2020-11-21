@@ -4,8 +4,10 @@
     <mat-icon class="bg-icon">{{ toggleButtonIcon }}</mat-icon>
   </span>
   <ul [ngStyle]="{ display: showMenu ? 'flex' : 'none' }" class="menu">
-    <li class="item"><a (click)="openRegisterDialog()">Registrarse</a></li>
-    <li class="item"><a (click)="openLoginDialog()">Acceder</a></li>
+    <li *ngIf="!(currentUser | async)" class="item">
+      <a (click)="openRegisterDialog()">Registrarse</a>
+    </li>
+    <li *ngIf="!(currentUser | async)" class="item"><a (click)="openLoginDialog()">Acceder</a></li>
     <li class="item">
       <a href="" class="with-icon"><mat-icon>search</mat-icon> <span>Buscar Viaje</span> </a>
     </li>
@@ -14,5 +16,13 @@
         ><mat-icon>add_circle_outline</mat-icon> <span>Nuevo Viaje</span></a
       >
     </li>
+    <li class="item" *ngIf="currentUser | async">
+      <button [matMenuTriggerFor]="menu" class="with-icon">
+        <mat-icon>account_circle</mat-icon><span>{{ (currentUser | async).name }}</span>
+      </button>
+    </li>
+    <mat-menu #menu="matMenu">
+      <button (click)="onClickLogout()" mat-menu-item>Salir</button>
+    </mat-menu>
   </ul>
 </nav>

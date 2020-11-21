@@ -11,6 +11,20 @@ nav {
   li > a {
     cursor: pointer;
   }
+
+  button {
+    border: none;
+    background: none;
+    font-size: inherit;
+    color: inherit;
+    &:hover {
+      cursor: pointer;
+      color: var(--primary-lighter-color);
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
 }
 
 .logo {

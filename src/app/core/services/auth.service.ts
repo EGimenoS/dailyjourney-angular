@@ -5,7 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { authEndpoint } from 'config';
-import { catchError, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { ApiResponse } from '../interfaces/api-response';
 import { UserCredentials } from '../interfaces/user-credentials';
 import { MatDialog } from '@angular/material/dialog';
@@ -25,13 +25,17 @@ export class AuthService {
     private router: Router,
     private dialog: MatDialog
   ) {
-    this.currentUserSubject = new BehaviorSubject<UserSession>(
-      JSON.parse(localStorage.getItem('currentUser'))
-    );
+    this.currentUserSubject = new BehaviorSubject<UserSession>(this.initializeUser());
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  login(credentials: UserCredentials): Observable<HttpResponse<ApiResponse>> {
+  private initializeUser(): UserSession {
+    return localStorage.getItem('currentUser')
+      ? JSON.parse(localStorage.getItem('currentUser'))
+      : null;
+  }
+
+  public login(credentials: UserCredentials): Observable<HttpResponse<ApiResponse>> {
     const { email, password } = credentials;
     return this.http
       .post<ApiResponse>(
@@ -48,14 +52,10 @@ export class AuthService {
       );
   }
 
-  logout(): void {
+  public logout(): void {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.router.navigate(['/home']);
-  }
-
-  public get currentUserValue(): UserSession {
-    return this.currentUserSubject.value;
   }
 
   public setUser(token): void {
