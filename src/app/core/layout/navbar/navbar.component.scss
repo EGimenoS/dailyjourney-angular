@@ -21,10 +21,6 @@ nav {
       cursor: pointer;
       color: var(--primary-lighter-color);
     }
-    &:active,
-    &:focus {
-      outline: 0;
-    }
   }
 }
 
@@ -34,9 +30,6 @@ nav {
   color: var(--accent);
   &:hover {
     cursor: pointer;
-  }
-  &:focus {
-    outline: 0;
   }
 }
 
