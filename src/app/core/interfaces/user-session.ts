@@ -1,6 +1,7 @@
-export interface apiResponse {
+export interface UserSession {
   id: number;
-  email: string;
+  email?: string;
   name: string;
   avatar?: string;
+  token: string;
 }

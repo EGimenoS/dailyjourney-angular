@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { UsersService } from '../../services/users.service';
-import { mustMatch } from '../../validators/must-match';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { mustMatch } from '../../validators/must-match';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
-  constructor(private fb: FormBuilder, private usersService: UsersService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   createLoginFormGroup(): FormGroup {
     return this.fb.group({
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.usersService.createNewUser(this.loginForm.value).subscribe();
+    this.authService.login(this.loginForm.value).subscribe();
   }
 
   ngOnInit(): void {
