@@ -1,1 +1,19 @@
-
+<div class="container">
+  <h2>Viajes cerca de tu destino</h2>
+  <div *ngFor="let travel of travels$ | async" class="card-container">
+    <div class="owner-info">
+      <div><img class="avatar" [src]="travel.owner.avatar" [alt]="travel.owner.avatar" /></div>
+      <div class="name">{{ travel.owner.name }}</div>
+    </div>
+    <div class="travel-info">
+      <div class="icons">
+        <span><mat-icon>location_on</mat-icon>{{ travel.distance | number }} km</span
+        ><span><mat-icon>schedule</mat-icon>{{ travel.departure_time | date: 'shortTime' }}</span>
+      </div>
+      <div class="destination-address">{{ travel.destination.address }}</div>
+    </div>
+    <div class="capacity-info">
+      <span><mat-icon>supervisor_account</mat-icon>4/5</span>
+    </div>
+  </div>
+</div>

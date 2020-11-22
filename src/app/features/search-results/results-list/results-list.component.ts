@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Travel } from 'src/app/core/interfaces/travel';
 
 @Component({
   selector: 'app-results-list',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results-list.component.scss'],
 })
 export class ResultsListComponent implements OnInit {
+  @Input() travels$: Observable<Travel[]>;
   constructor() {}
 
   ngOnInit(): void {}
