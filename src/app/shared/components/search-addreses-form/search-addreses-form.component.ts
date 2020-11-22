@@ -4,6 +4,7 @@ import { AutocompleteAddress } from 'src/app/core/interfaces/autocomplete-addres
 import { AutocompleteAddresesService } from 'src/app/core/services/autocomplete-addreses.service';
 import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-addreses-form',
@@ -12,11 +13,24 @@ import { Observable } from 'rxjs';
 })
 export class SearchAddresesFormComponent implements OnInit {
   searchGroupForm: FormGroup;
-  constructor(private fb: FormBuilder, private validAddreses: AutocompleteAddresesService) {}
+  constructor(
+    private fb: FormBuilder,
+    private validAddreses: AutocompleteAddresesService,
+    private router: Router
+  ) {}
   validOriginAddreses: Observable<AutocompleteAddress[]>;
   validDestinationAddreses: Observable<AutocompleteAddress[]>;
   onSubmit(): void {
-    console.log(this.searchGroupForm.value);
+    const destinationParams = this.searchGroupForm.controls.destinationInput.value;
+    const originParams = this.searchGroupForm.controls.originInput.value;
+    this.router.navigate(['/search-results'], {
+      queryParams: {
+        destination_latitude: destinationParams.latitude,
+        destination_longitude: destinationParams.longitude,
+        origin_latitude: originParams.latitude,
+        origin_longitude: originParams.longitude,
+      },
+    });
   }
   createSearchGroupForm(): FormGroup {
     return this.fb.group({

@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { TravelPayload } from '../interfaces/travel-payload';
 import { ApiResponse } from '../interfaces/api-response';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/internal/operators/tap';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
