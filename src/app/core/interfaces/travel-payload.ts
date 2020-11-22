@@ -7,8 +7,8 @@ export interface TravelPayload {
   destination_attributes: GeoPosition;
 }
 
-interface GeoPosition {
-  addres: string;
+export interface GeoPosition {
+  address: string;
   latitude: number;
   logitude: number;
 }

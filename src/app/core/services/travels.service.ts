@@ -6,6 +6,7 @@ import { TravelPayload } from '../interfaces/travel-payload';
 import { ApiResponse } from '../interfaces/api-response';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { Travel } from '../interfaces/travel';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,11 @@ export class TravelsService {
         headers: this.headers,
       })
       .pipe(tap(() => this.router.navigateByUrl('home')));
+  }
+
+  getTravelsNearOfDestination(lat, long): Observable<Travel[]> {
+    return this.http.get<Travel[]>(this.url, {
+      params: { destination_latitude: lat, destination_longitude: long },
+    });
   }
 }
