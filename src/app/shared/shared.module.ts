@@ -7,9 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchAddresesFormComponent } from './components/search-addreses-form/search-addreses-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ResultsMapComponent } from './components/results-map/results-map.component';
 
 @NgModule({
-  declarations: [SearchAddresesFormComponent],
+  declarations: [SearchAddresesFormComponent, ResultsMapComponent],
   imports: [
     CommonModule,
     RouterModule,
