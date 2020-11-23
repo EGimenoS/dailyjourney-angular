@@ -8,6 +8,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SearchAddresesFormComponent } from './components/search-addreses-form/search-addreses-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResultsMapComponent } from './components/results-map/results-map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [SearchAddresesFormComponent, ResultsMapComponent],
@@ -19,6 +20,7 @@ import { ResultsMapComponent } from './components/results-map/results-map.compon
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    LeafletModule,
   ],
   exports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { ResultsMapComponent } from './components/results-map/results-map.compon
     MatInputModule,
     MatAutocompleteModule,
     SearchAddresesFormComponent,
+    ResultsMapComponent,
   ],
 })
 export class SharedModule {}

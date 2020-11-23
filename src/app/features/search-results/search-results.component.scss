@@ -1,4 +1,5 @@
 .container {
+  padding-top: 1rem;
   .right-side {
     display: none;
   }
@@ -9,6 +10,9 @@
     display: flex;
     > div {
       flex-basis: 50%;
+    }
+    .right-side {
+      display: block;
     }
   }
 }
