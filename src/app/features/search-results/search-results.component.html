@@ -4,6 +4,10 @@
     <app-results-list [travels$]="travels$"></app-results-list>
   </div>
   <div class="right-side">
-    <app-results-map></app-results-map>
+    <app-results-map
+      [userOrigin]="userOrigin"
+      [userDestination]="userDestination"
+      [travels$]="travels$"
+    ></app-results-map>
   </div>
 </div>

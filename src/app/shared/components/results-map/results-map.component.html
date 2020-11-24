@@ -1,1 +1,7 @@
-<div id="map" leaflet [leafletOptions]="mapOptions"></div>
+<div
+  id="map"
+  leaflet
+  (leafletMapReady)="onMapReady($event)"
+  [leafletOptions]="mapOptions"
+  [leafletLayers]="originMarkers$ | async"
+></div>
