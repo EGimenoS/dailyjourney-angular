@@ -1,7 +1,7 @@
 <div
   id="map"
   leaflet
-  (leafletMapReady)="onMapReady($event)"
   [leafletOptions]="mapOptions"
-  [leafletLayers]="originMarkers$ | async"
+  [leafletLayers]="markers"
+  [leafletFitBounds]="mapFitToBounds"
 ></div>
