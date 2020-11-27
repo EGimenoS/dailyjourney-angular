@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, OnChanges, OnInit, Output } from '@angular/core';
 import {
   latLng,
   MapOptions,
@@ -30,7 +30,7 @@ export class ResultsMapComponent implements OnInit, OnChanges {
   mapFitToBounds: LatLngBounds;
   map: Map;
   @Output() propagateTravelId = new EventEmitter<number>();
-  constructor() {}
+  constructor(private zone: NgZone) {}
 
   ngOnInit(): void {
     this.initializeMapOptions();
@@ -66,7 +66,9 @@ export class ResultsMapComponent implements OnInit, OnChanges {
         })
       )
       .bindPopup(`<h3>Salida desde: ${address}</h3>`)
-      .addEventListener('click', () => this.propagateTravelId.emit(id));
+      .on('click', () => {
+        this.zone.run(() => this.propagateTravelId.emit(id));
+      });
   }
 
   addUserMarker(lat, long): Marker {
