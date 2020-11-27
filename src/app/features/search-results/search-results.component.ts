@@ -14,6 +14,7 @@ export class SearchResultsComponent implements OnInit {
   travels$: Observable<Travel[]>;
   userOrigin: GeoPosition;
   userDestination: GeoPosition;
+  travelToAnimate: number;
   constructor(private travelsService: TravelsService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -33,5 +34,9 @@ export class SearchResultsComponent implements OnInit {
         params.destination_longitude
       );
     });
+  }
+  handleClickedMarker(id): void {
+    this.travelToAnimate = id;
+    console.log('doing click', this.travelToAnimate); // "doing click 421"
   }
 }

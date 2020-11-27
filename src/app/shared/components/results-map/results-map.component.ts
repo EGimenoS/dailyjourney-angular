@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import {
   latLng,
   MapOptions,
@@ -29,6 +29,7 @@ export class ResultsMapComponent implements OnInit, OnChanges {
   mapOptions: MapOptions;
   mapFitToBounds: LatLngBounds;
   map: Map;
+  @Output() propagateTravelId = new EventEmitter<number>();
   constructor() {}
 
   ngOnInit(): void {
@@ -40,7 +41,12 @@ export class ResultsMapComponent implements OnInit, OnChanges {
       .pipe(
         map((travels) => {
           return travels.map((travel) =>
-            this.addMarker(travel.destination.latitude, travel.destination.longitude)
+            this.addDestinationMarker(
+              travel.destination.latitude,
+              travel.destination.longitude,
+              travel.origin.address,
+              travel.id
+            )
           );
         })
       )
@@ -50,7 +56,20 @@ export class ResultsMapComponent implements OnInit, OnChanges {
       });
   }
 
-  addMarker(lat, long): Marker {
+  addDestinationMarker(lat, long, address, id): Marker {
+    return new Marker([lat, long])
+      .setIcon(
+        icon({
+          iconSize: [25, 41],
+          iconAnchor: [13, 41],
+          iconUrl: 'assets/marker-icon.png',
+        })
+      )
+      .bindPopup(`<h3>Salida desde: ${address}</h3>`)
+      .addEventListener('click', () => this.propagateTravelId.emit(id));
+  }
+
+  addUserMarker(lat, long): Marker {
     return new Marker([lat, long]).setIcon(
       icon({
         iconSize: [25, 41],
