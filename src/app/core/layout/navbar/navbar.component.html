@@ -9,7 +9,9 @@
     </li>
     <li *ngIf="!(currentUser | async)" class="item"><a (click)="openLoginDialog()">Acceder</a></li>
     <li class="item">
-      <a href="" class="with-icon"><mat-icon>search</mat-icon> <span>Buscar Viaje</span> </a>
+      <a routerLink="search-results" class="with-icon"
+        ><mat-icon>search</mat-icon> <span>Buscar Viaje</span>
+      </a>
     </li>
     <li class="item">
       <a routerLink="add-travel" class="with-icon"

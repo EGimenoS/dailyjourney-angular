@@ -10,5 +10,5 @@ export interface TravelPayload {
 export interface GeoPosition {
   address: string;
   latitude: number;
-  logitude: number;
+  longitude: number;
 }

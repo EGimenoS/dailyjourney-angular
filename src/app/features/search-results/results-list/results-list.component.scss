@@ -1,6 +1,12 @@
 .container {
   padding: 1rem;
   text-align: center;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.animated-travel {
+  background-color: red;
 }
 
 h2 {

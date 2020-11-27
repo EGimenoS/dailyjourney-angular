@@ -1,2 +1,14 @@
-<app-search-addreses-form></app-search-addreses-form>
-<app-results-list [travels$]="travels$"></app-results-list>
+<div class="container">
+  <div class="left-side">
+    <app-search-addreses-form></app-search-addreses-form>
+    <app-results-list [travelToAnimate]="travelToAnimate" [travels$]="travels$"></app-results-list>
+  </div>
+  <div class="right-side">
+    <app-results-map
+      (propagateTravelId)="handleClickedMarker($event)"
+      [userOrigin]="userOrigin"
+      [userDestination]="userDestination"
+      [travels$]="travels$"
+    ></app-results-map>
+  </div>
+</div>
