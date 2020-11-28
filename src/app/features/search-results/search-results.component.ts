@@ -37,6 +37,5 @@ export class SearchResultsComponent implements OnInit {
   }
   handleClickedMarker(id): void {
     this.travelToAnimate = id;
-    console.log('doing click', this.travelToAnimate); // "doing click 421"
   }
 }
