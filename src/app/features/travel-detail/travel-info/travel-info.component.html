@@ -1,0 +1,29 @@
+<div class="container" *ngIf="travel$ | async as travel">
+  <div class="main-info">
+    <div class="name">{{ travel.owner.name }}</div>
+    <div class="avatar">
+      <img [src]="travel.owner.avatar" [alt]="travel.owner.avatar" />
+    </div>
+    <div class="departure-time">
+      <mat-icon>schedule</mat-icon>{{ travel.departure_time | date: 'shortTime' }}
+    </div>
+    <div class="capacity-info">
+      <span><mat-icon>supervisor_account</mat-icon>4/5</span>
+    </div>
+    <div class="timestamp">Participantes</div>
+  </div>
+  <div class="travel-axis">
+    <mat-icon>place</mat-icon>
+    <div class="arrow">
+      <div class="line"></div>
+      <div class="end"></div>
+    </div>
+    <mat-icon>directions_car</mat-icon>
+    <div class="origin-address">
+      {{ travel.origin.address }}
+    </div>
+    <div class="destination-address">
+      {{ travel.destination.address }}
+    </div>
+  </div>
+</div>

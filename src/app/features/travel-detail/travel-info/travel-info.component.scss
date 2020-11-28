@@ -1,0 +1,117 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  .main-info {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    font-weight: bold;
+    .avatar {
+      margin: 1.1rem;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      > img {
+        vertical-align: middle;
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+  .departure-time {
+    display: flex;
+    align-items: center;
+  }
+  .capacity-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent);
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    .main-info {
+      font-size: 1.4rem;
+      font-weight: bolder;
+      justify-content: flex-start;
+      .avatar {
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 1rem;
+        > img {
+          vertical-align: middle;
+          width: 100px;
+          height: 100px;
+        }
+      }
+
+      .capacity-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+
+        color: var(--accent);
+        span {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    .travel-axis {
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+      .arrow {
+        display: flex;
+        flex-basis: 100%;
+        align-items: center;
+        .line {
+          flex-basis: 95%;
+          height: 3px;
+          background: var(--accent);
+        }
+
+        .end {
+          border: solid var(--accent);
+          border-width: 0 3px 3px 0;
+          padding: 3px;
+          transform: rotate(-45deg);
+        }
+      }
+      .origin-address,
+      .destination-address {
+        max-width: 40%;
+        position: absolute;
+        top: 35px;
+        background: white;
+        border-radius: 3px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        text-align: left;
+      }
+
+      .origin-address {
+        left: 10px;
+      }
+      .destination-address {
+        right: 10px;
+      }
+      .mat-icon {
+        color: var(--accent);
+        font-size: 1.8rem;
+      }
+    }
+  }
+  .mat-icon {
+    margin-right: 0.5rem;
+  }
+}

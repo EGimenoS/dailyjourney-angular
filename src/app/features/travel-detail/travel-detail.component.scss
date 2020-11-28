@@ -1,0 +1,20 @@
+.container {
+  .right-side {
+    display: none;
+  }
+  .left-side {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    > div {
+      flex-basis: 50%;
+    }
+    .right-side {
+      display: block;
+    }
+  }
+}
