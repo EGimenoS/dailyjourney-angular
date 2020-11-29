@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChatMessage } from 'src/app/core/interfaces/chat-message';
 import { ChatMessagesService } from 'src/app/core/services/chat-messages.service';

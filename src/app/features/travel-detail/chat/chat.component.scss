@@ -1,13 +1,14 @@
 .container {
+  h2 {
+    margin: 1rem;
+  }
   .messages {
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
     height: 43vh;
-    h1 {
-      margin: 1rem;
-    }
+
     .message {
       padding: 1rem;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

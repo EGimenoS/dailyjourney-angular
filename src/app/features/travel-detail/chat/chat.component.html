@@ -1,6 +1,6 @@
 <div *ngIf="messages$ | async as messages" class="container">
+  <h2>Mensajes</h2>
   <div class="messages">
-    <h2>Mensajes</h2>
     <div *ngFor="let message of messages" class="message">
       <div class="message-info">
         <span class="user-name">{{ message.user.name }}</span
