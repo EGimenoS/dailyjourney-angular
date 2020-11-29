@@ -1,21 +1,24 @@
-<div class="container">
-  <h2>Mensajes</h2>
+<div *ngIf="messages$ | async as messages" class="container">
   <div class="messages">
-    <div class="message">
+    <h2>Mensajes</h2>
+    <div *ngFor="let message of messages" class="message">
       <div class="message-info">
-        <span class="user-name">Ernesto Gimeno</span><span class="time-ago">Hace 7 minutos</span>
+        <span class="user-name">{{ message.user.name }}</span
+        ><span class="time-ago">{{ message.created_at | date }}</span>
       </div>
       <div class="message-content">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero, sequi numquam iusto, ipsam
-        voluptas officia officiis ducimus dolor placeat rem dolorem illum totam facilis praesentium
-        voluptatum quisquam delectus accusantium quae.
+        {{ message.message }}
       </div>
     </div>
   </div>
   <div class="add-message">
     <mat-form-field class="input-add-message" appearance="outline">
       <mat-label>Añade tu comentario</mat-label>
-      <input matInput />
+      <input
+        #addMessage
+        (keydown.enter)="onEnterAddMessage($event.target.value, addMessage)"
+        matInput
+      />
       <mat-icon matSuffix>chat</mat-icon>
     </mat-form-field>
   </div>
