@@ -1,0 +1,31 @@
+.container {
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
+  height: 43vh;
+  .message {
+    padding: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: whitesmoke;
+    .message-info {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      .user-name {
+        margin-right: 1rem;
+        font-style: italic;
+      }
+      .time-ago {
+        font-weight: bold;
+      }
+    }
+    .message-content {
+      font-size: 0.8rem;
+    }
+  }
+  .add-message {
+    margin-top: 1rem;
+    .input-add-message {
+      width: 100%;
+    }
+  }
+}
