@@ -1,4 +1,15 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ContentChild,
+  ElementRef,
+  Input,
+  OnChanges,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ChatMessage } from 'src/app/core/interfaces/chat-message';
@@ -9,8 +20,9 @@ import { ChatMessagesService } from 'src/app/core/services/chat-messages.service
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnChanges {
+export class ChatComponent implements OnChanges, AfterViewChecked {
   @Input() travelID: string;
+  @ViewChildren('chatContainer') chatContainer: QueryList<ElementRef>;
   messages$: Observable<ChatMessage[]>;
   constructor(private chatMessagesService: ChatMessagesService) {}
 
@@ -23,11 +35,17 @@ export class ChatComponent implements OnChanges {
         )
       )
       .subscribe(() => (input.value = ''));
-
-    this.messages$ = this.chatMessagesService.getChatMessagesByTravel(this.travelID);
   }
 
   ngOnChanges(): void {
     this.messages$ = this.chatMessagesService.getChatMessagesByTravel(this.travelID);
+  }
+
+  ngAfterViewChecked(): void {
+    this.chatContainer.changes.subscribe((el: QueryList<ElementRef>) => {
+      if (el.first) {
+        el.first.nativeElement.scrollTop = el.first.nativeElement.scrollHeight;
+      }
+    });
   }
 }
