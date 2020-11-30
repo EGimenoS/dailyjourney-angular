@@ -1,6 +1,6 @@
 export const environment = {
-  production: false,
-  baseUrl: 'http://localhost:3000/api/v1',
-  authUrl: 'http://localhost:3000/users',
-  baseDom: 'localhost:3000',
+  production: true,
+  baseUrl: 'https://dailyjourney-api.herokuapp.com/api/v1',
+  authUrl: 'https://dailyjourney-api.herokuapp.com/users',
+  baseDom: 'dailyjourney-api.herokuapp.com',
 };
