@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ChatMessage } from 'src/app/core/interfaces/chat-message';
 import { ChatMessagesService } from 'src/app/core/services/chat-messages.service';
 
@@ -14,8 +15,16 @@ export class ChatComponent implements OnChanges {
   constructor(private chatMessagesService: ChatMessagesService) {}
 
   onEnterAddMessage(message, input): void {
-    this.chatMessagesService.createNewChatMessage(this.travelID, message).subscribe();
-    input.value = '';
+    this.chatMessagesService
+      .createNewChatMessage(this.travelID, message)
+      .pipe(
+        tap(
+          () => (this.messages$ = this.chatMessagesService.getChatMessagesByTravel(this.travelID))
+        )
+      )
+      .subscribe(() => (input.value = ''));
+
+    this.messages$ = this.chatMessagesService.getChatMessagesByTravel(this.travelID);
   }
 
   ngOnChanges(): void {
