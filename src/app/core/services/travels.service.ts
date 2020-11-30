@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { TravelPayload } from '../interfaces/travel-payload';
 import { ApiResponse } from '../interfaces/api-response';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Travel } from '../interfaces/travel';
 
 @Injectable({
@@ -30,5 +30,10 @@ export class TravelsService {
     return this.http.get<Travel[]>(this.url, {
       params: { destination_latitude: lat, destination_longitude: long },
     });
+  }
+
+  // returns an array of a single travel to make easier the map component to reuse.
+  getTravelDetail(id: string): Observable<Travel[]> {
+    return this.http.get<Travel>(`${this.url}/${id}`).pipe(map((result) => [result]));
   }
 }

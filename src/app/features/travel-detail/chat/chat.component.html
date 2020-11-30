@@ -1,0 +1,25 @@
+<div class="container">
+  <h3>Mensajes</h3>
+  <div *ngIf="messages$ | async as messages" #chatContainer class="messages">
+    <div *ngFor="let message of messages" class="message">
+      <div class="message-info">
+        <span class="user-name">{{ message.user.name }}</span
+        ><span class="time-ago">{{ message.created_at | date }}</span>
+      </div>
+      <div class="message-content">
+        {{ message.message }}
+      </div>
+    </div>
+  </div>
+  <div class="add-message">
+    <mat-form-field class="input-add-message" appearance="outline">
+      <mat-label>Añade tu comentario</mat-label>
+      <input
+        #addMessage
+        (keydown.enter)="onEnterAddMessage($event.target.value, addMessage)"
+        matInput
+      />
+      <mat-icon matSuffix>chat</mat-icon>
+    </mat-form-field>
+  </div>
+</div>

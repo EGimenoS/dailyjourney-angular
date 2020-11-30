@@ -13,4 +13,5 @@ export interface Travel {
   origin: GeoPosition;
   destination: GeoPosition;
   owner: Owner;
+  created_at: Date;
 }

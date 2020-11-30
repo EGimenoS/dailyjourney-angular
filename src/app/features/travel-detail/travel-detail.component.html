@@ -1,1 +1,16 @@
-<p>travel-detail works!</p>
+<div class="container">
+  <div class="left-side">
+    <app-travel-info
+      [userOrigin]="userOrigin"
+      [userDestination]="userDestination"
+      [travels$]="travel$"
+    ></app-travel-info>
+  </div>
+  <div class="right-side">
+    <app-results-map
+      [userOrigin]="userOrigin"
+      [userDestination]="userDestination"
+      [travels$]="travel$"
+    ></app-results-map>
+  </div>
+</div>
