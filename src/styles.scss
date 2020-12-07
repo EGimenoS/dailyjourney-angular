@@ -58,6 +58,11 @@ button {
   &:hover {
     background-color: var(--accent-lighter-color);
   }
+  &:disabled,
+  [disabled] {
+    background-color: var(--accent-lighter-color);
+    cursor: not-allowed;
+  }
 }
 
 .cross-cancel-button {

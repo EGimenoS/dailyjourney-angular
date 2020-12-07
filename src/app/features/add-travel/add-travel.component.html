@@ -6,12 +6,26 @@
         <mat-label>Dirección de origen</mat-label>
         <input matInput [matAutocomplete]="origin" formControlName="origin_attributes" />
         <mat-icon class="input-icon" matPrefix>add_location</mat-icon>
+        <mat-error *ngIf="newTravelGroupForm.controls['origin_attributes'].hasError('notPosition')">
+          Dirección de salida no valida
+        </mat-error>
+        <mat-error *ngIf="newTravelGroupForm.controls['origin_attributes'].hasError('required')">
+          Escribe una dirección de salida
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="input" appearance="outline">
         <mat-label>Dirección de destino</mat-label>
         <input matInput [matAutocomplete]="destination" formControlName="destination_attributes" />
         <mat-icon class="input-icon" matPrefix>directions_car</mat-icon>
+        <mat-error *ngIf="newTravelGroupForm.controls['origin_attributes'].hasError('notPosition')">
+          Dirección de destino no valida
+        </mat-error>
+        <mat-error
+          *ngIf="newTravelGroupForm.controls['destination_attributes'].hasError('required')"
+        >
+          Esribe una dirección de destino
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="row">
@@ -19,11 +33,17 @@
         <mat-label>Hora de salida</mat-label>
         <input matInput formControlName="departure_time" />
         <mat-icon class="input-icon" matPrefix>schedule</mat-icon>
+        <mat-error *ngIf="newTravelGroupForm.controls['departure_time'].hasError('required')">
+          Hora de salida requerida
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="input" appearance="outline">
         <mat-label>Nº de pasajeros</mat-label>
         <input matInput type="number" formControlName="capacity" />
         <mat-icon class="input-icon" matPrefix>supervisor_account</mat-icon>
+        <mat-error *ngIf="newTravelGroupForm.controls['capacity'].hasError('required')">
+          Nº de pasajeros requerido
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="input" appearance="outline">
         <mat-label>Periodicidad</mat-label>
@@ -33,6 +53,9 @@
           </mat-option>
         </mat-select>
         <mat-icon class="input-icon" matPrefix>date_range</mat-icon>
+        <mat-error *ngIf="newTravelGroupForm.controls['capacity'].hasError('required')">
+          Periodicidad del viaje requerido
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="row">
@@ -40,10 +63,15 @@
         <mat-label>Comentario</mat-label>
         <textarea rows="6" matInput formControlName="owner_comment"></textarea>
         <mat-icon class="input-icon" matPrefix>description</mat-icon>
+        <mat-error *ngIf="newTravelGroupForm.controls['owner_comment'].hasError('required')">
+          Incluye tus indicaciones
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="row">
-      <button class="button-regular" type="submit">Crear Viaje</button>
+      <button [disabled]="newTravelGroupForm.invalid" class="button-regular" type="submit">
+        Crear Viaje
+      </button>
     </div>
   </form>
 </div>

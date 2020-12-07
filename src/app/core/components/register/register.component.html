@@ -6,6 +6,9 @@
     <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
       Email requerido
     </mat-error>
+    <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
+      Introduce un email válido
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="input" appearance="outline">
     <mat-label>Nombre</mat-label>
@@ -52,7 +55,12 @@
     <button type="submit" [disabled]="registerForm.invalid" class="button-regular">
       Registrarme
     </button>
-    <button mat-dialog-close class="cross-cancel-button" type="button">
+    <button
+      [disabled]="registerForm.invalid"
+      mat-dialog-close
+      class="cross-cancel-button"
+      type="button"
+    >
       <mat-icon>close</mat-icon>
     </button>
   </div>

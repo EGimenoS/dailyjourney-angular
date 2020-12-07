@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { AutocompleteAddress } from 'src/app/core/interfaces/autocomplete-address';
 import { AutocompleteAddresesService } from 'src/app/core/services/autocomplete-addreses.service';
 import { TravelsService } from 'src/app/core/services/travels.service';
+import { longlatPresence } from 'src/app/core/validators/longlat-presence';
 
 @Component({
   selector: 'app-add-travel',
@@ -29,12 +30,12 @@ export class AddTravelComponent implements OnInit {
   }
   createNewTravelGroupForm(): FormGroup {
     return this.fb.group({
-      origin_attributes: '',
+      origin_attributes: ['', [longlatPresence()]],
       destination_attributes: '',
-      departure_time: '',
-      capacity: '',
-      periodicity: '',
-      owner_comment: '',
+      departure_time: ['', Validators.required],
+      capacity: ['', Validators.required],
+      periodicity: ['', Validators.required],
+      owner_comment: ['', Validators.required],
     });
   }
   ngOnInit(): void {
