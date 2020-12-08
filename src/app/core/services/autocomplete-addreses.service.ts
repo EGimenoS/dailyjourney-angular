@@ -19,7 +19,7 @@ export class AutocompleteAddresesService {
       .get<AutocompleteAddress[]>(this.url, { params: { q: query, at } })
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          this.errorsService.handleError(error, 'Obtener direcciones');
+          this.errorsService.handleError(error, 'Obteniendo direcciones');
           return of(null);
         })
       );

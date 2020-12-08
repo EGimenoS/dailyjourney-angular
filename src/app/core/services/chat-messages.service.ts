@@ -1,9 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { endpoint } from 'config';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ApiResponse } from '../interfaces/api-response';
 import { ChatMessage } from '../interfaces/chat-message';
+import { ErrorsService } from './errors.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,21 +15,35 @@ export class ChatMessagesService {
   headers = new HttpHeaders({
     'Content-type': 'application/json',
   });
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private errorsService: ErrorsService) {}
 
-  getChatMessagesByTravel(travelID: string): Observable<ChatMessage[]> {
-    return this.http.get<ChatMessage[]>(this.url, {
-      params: { travel_id: travelID },
-    });
+  public getChatMessagesByTravel(travelID: string): Observable<ChatMessage[]> {
+    return this.http
+      .get<ChatMessage[]>(this.url, {
+        params: { travel_id: travelID },
+      })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.errorsService.handleError(error, 'Obteniendo mensajes de chat');
+          return of(null);
+        })
+      );
   }
 
-  createNewChatMessage(travelID: string, message: string): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(
-      this.url,
-      { travel_id: travelID, message },
-      {
-        headers: this.headers,
-      }
-    );
+  public createNewChatMessage(travelID: string, message: string): Observable<ApiResponse> {
+    return this.http
+      .post<ApiResponse>(
+        this.url,
+        { travel_id: travelID, message },
+        {
+          headers: this.headers,
+        }
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.errorsService.handleError(error, 'Creando mensaje');
+          return of(null);
+        })
+      );
   }
 }

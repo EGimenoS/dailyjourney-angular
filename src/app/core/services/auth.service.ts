@@ -56,7 +56,7 @@ export class AuthService {
           this.dialog.closeAll();
         }),
         catchError((error: HttpErrorResponse) => {
-          this.errorsService.handleError(error, 'login');
+          this.errorsService.handleError(error, 'Login de usuario');
           return of(null);
         })
       );

@@ -1,8 +1,10 @@
-<h1 mat-dialog-title>{{ data.title }}</h1>
-<div mat-dialog-content>
+<div class="alert-title">
+  <span>{{ data.title }} </span>
+  <mat-icon>error</mat-icon>
+</div>
+<div class="alert-content">
   <p>{{ data.message }}</p>
 </div>
-<div mat-dialog-actions>
+<div class="alert-actions">
   <button class="button-regular" (click)="okClick()">Ok</button>
-  <button *ngIf="data.showCancel" (click)="cancelClick()">Cancel</button>
 </div>

@@ -16,8 +16,4 @@ export class AlertComponent {
   okClick(): void {
     this.dialogRef.close(true);
   }
-
-  cancelClick(): void {
-    this.dialogRef.close(false);
-  }
 }

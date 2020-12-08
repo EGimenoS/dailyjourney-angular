@@ -26,7 +26,7 @@ export class ErrorsService {
       this.openDialog(data);
     } else {
       const data = {
-        title: `Error en la operación ${action}`,
+        title: `Error ${action}`,
         message: error.error.error,
       };
       this.openDialog(data);
