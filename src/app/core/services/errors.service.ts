@@ -17,7 +17,6 @@ export class ErrorsService {
   }
 
   public handleError(error, action): void {
-    console.log(error);
     if (error.status === 0 || error.status === 500) {
       const data = {
         title: `Error de servidor en la operación ${action}`,
