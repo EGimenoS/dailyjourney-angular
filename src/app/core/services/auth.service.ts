@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { UserSession } from '../interfaces/user-session';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { authEndpoint } from 'config';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { ApiResponse } from '../interfaces/api-response';
 import { UserCredentials } from '../interfaces/user-credentials';
 import { MatDialog } from '@angular/material/dialog';
+import { ErrorsService } from './errors.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,8 @@ export class AuthService {
     private http: HttpClient,
     public jwtHelper: JwtHelperService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private errorsService: ErrorsService
   ) {
     this.currentUserSubject = new BehaviorSubject<UserSession>(this.initializeUser());
     this.currentUser = this.currentUserSubject.asObservable();
@@ -39,7 +41,7 @@ export class AuthService {
     return this.currentUserSubject.value ? true : false;
   }
 
-  public login(credentials: UserCredentials): Observable<HttpResponse<ApiResponse>> {
+  public login(credentials: UserCredentials): Observable<HttpResponse<ApiResponse>> | null {
     const { email, password } = credentials;
     return this.http
       .post<ApiResponse>(
@@ -52,6 +54,10 @@ export class AuthService {
           const token = response.headers.get('Access-Token');
           this.setUser(token);
           this.dialog.closeAll();
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.errorsService.handleError(error, 'Login de usuario');
+          return of(null);
         })
       );
   }
