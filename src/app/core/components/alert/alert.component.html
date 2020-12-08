@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <p>{{ data.message }}</p>
+</div>
+<div mat-dialog-actions>
+  <button color="primary" mat-raised-button (click)="okClick()">Ok</button>
+  <button *ngIf="data.showCancel" mat-raised-button color="warn" (click)="cancelClick()">
+    Cancel
+  </button>
+</div>

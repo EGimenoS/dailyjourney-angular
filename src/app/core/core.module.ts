@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { ScrollToBottomDirective } from './directives/scroll-tobottom.directive';
+import { AlertComponent } from './components/alert/alert.component';
 
 export function token(): string {
   if (localStorage.getItem('currentUser')) {
@@ -39,6 +40,7 @@ export function token(): string {
     LoginComponent,
     RegisterComponent,
     ScrollToBottomDirective,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
