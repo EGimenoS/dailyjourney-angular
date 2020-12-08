@@ -3,8 +3,6 @@
   <p>{{ data.message }}</p>
 </div>
 <div mat-dialog-actions>
-  <button color="primary" mat-raised-button (click)="okClick()">Ok</button>
-  <button *ngIf="data.showCancel" mat-raised-button color="warn" (click)="cancelClick()">
-    Cancel
-  </button>
+  <button class="button-regular" (click)="okClick()">Ok</button>
+  <button *ngIf="data.showCancel" (click)="cancelClick()">Cancel</button>
 </div>

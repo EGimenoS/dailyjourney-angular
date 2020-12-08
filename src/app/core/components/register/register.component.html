@@ -27,11 +27,11 @@
       hide ? 'visibility_off' : 'visibility'
     }}</mat-icon>
     <mat-error *ngIf="registerForm.controls['password'].hasError('required')"
-      >Password required</mat-error
+      >Password requerido</mat-error
     >
   </mat-form-field>
   <mat-form-field appearance="outline" class="input">
-    <mat-label>Password confirmation</mat-label>
+    <mat-label>Confirmación de password</mat-label>
     <input
       type="text"
       matInput
@@ -42,7 +42,7 @@
       hide ? 'visibility_off' : 'visibility'
     }}</mat-icon>
     <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
-      Password required
+      Password requerido
     </mat-error>
     <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">
       Este campo debe contener mínimo 5 carácteres
