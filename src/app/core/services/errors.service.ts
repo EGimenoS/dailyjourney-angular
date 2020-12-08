@@ -16,7 +16,7 @@ export class ErrorsService {
     });
   }
 
-  handleError(error, action): void {
+  public handleError(error, action): void {
     console.log(error);
     if (error.status === 0 || error.status === 500) {
       const data = {

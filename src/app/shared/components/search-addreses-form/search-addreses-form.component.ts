@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutocompleteAddress } from 'src/app/core/interfaces/autocomplete-address';
 import { AutocompleteAddresesService } from 'src/app/core/services/autocomplete-addreses.service';
 import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { longlatPresence } from 'src/app/core/validators/longlat-presence';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/core/components/alert/alert.component';
 
 @Component({
   selector: 'app-search-addreses-form',
@@ -16,26 +19,38 @@ export class SearchAddresesFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private validAddreses: AutocompleteAddresesService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
   validOriginAddreses: Observable<AutocompleteAddress[]>;
   validDestinationAddreses: Observable<AutocompleteAddress[]>;
   onSubmit(): void {
-    const destinationParams = this.searchGroupForm.controls.destinationInput.value;
-    const originParams = this.searchGroupForm.controls.originInput.value;
-    this.router.navigate(['/search-results'], {
-      queryParams: {
-        destination_latitude: destinationParams.latitude,
-        destination_longitude: destinationParams.longitude,
-        origin_latitude: originParams.latitude,
-        origin_longitude: originParams.longitude,
-      },
-    });
+    if (this.searchGroupForm.valid) {
+      const destinationParams = this.searchGroupForm.controls.destinationInput.value;
+      const originParams = this.searchGroupForm.controls.originInput.value;
+      this.router.navigate(['/search-results'], {
+        queryParams: {
+          destination_latitude: destinationParams.latitude,
+          destination_longitude: destinationParams.longitude,
+          origin_latitude: originParams.latitude,
+          origin_longitude: originParams.longitude,
+        },
+      });
+    } else {
+      console.log('valid');
+      this.dialog.open(AlertComponent, {
+        minWidth: '30%',
+        data: {
+          title: 'Direcciones inválidas',
+          message: 'Por favor, seleccione una dirección válidas',
+        },
+      });
+    }
   }
   createSearchGroupForm(): FormGroup {
     return this.fb.group({
-      originInput: '',
-      destinationInput: '',
+      originInput: ['', [longlatPresence()]],
+      destinationInput: ['', [longlatPresence()]],
     });
   }
 
