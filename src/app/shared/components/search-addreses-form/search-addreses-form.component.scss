@@ -1,6 +1,6 @@
 .search-form {
   background-color: white;
-  padding: 1rem 0.5rem;
+  padding: 0.75rem 0.5rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   display: flex;
@@ -41,6 +41,7 @@ input.mat-input-element {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    padding: 1rem 0.5rem;
 
     .input-address {
       flex: 1 1 20%;
