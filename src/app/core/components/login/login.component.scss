@@ -1,7 +1,10 @@
+.container {
+  position: relative;
+}
+
 form {
   padding-bottom: 1rem;
   background-color: white;
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 90%;
