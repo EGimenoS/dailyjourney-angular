@@ -74,3 +74,23 @@ button {
   border: none;
   background: none;
 }
+
+// snackbar material styles
+.success {
+  background: rgb(66, 167, 66) !important;
+  color: white !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.accent {
+  background-color: var(--accent) !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.warn {
+  background-color: #ff0000 !important;
+  color: white !important;
+  font-weight: bold;
+}

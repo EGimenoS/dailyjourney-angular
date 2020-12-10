@@ -7,6 +7,7 @@ import { ApiResponse } from '../interfaces/api-response';
 import { Router } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { Travel } from '../interfaces/travel';
+import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,14 +17,22 @@ export class TravelsService {
   headers = new HttpHeaders({
     'Content-type': 'application/json',
   });
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private uiService: UiService) {}
 
   createNewTravel(payload: TravelPayload): Observable<any> {
     return this.http
       .post<ApiResponse>(this.url, payload, {
         headers: this.headers,
       })
-      .pipe(tap(() => this.router.navigateByUrl('home')));
+      .pipe(
+        tap(() => this.router.navigateByUrl('home')),
+        tap(() => {
+          this.uiService.openSnackBar({
+            message: 'Viaje creado con éxito! 🚗',
+            class: 'accent',
+          });
+        })
+      );
   }
 
   getTravelsNearOfDestination(lat, long): Observable<Travel[]> {

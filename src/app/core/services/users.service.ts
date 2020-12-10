@@ -10,6 +10,7 @@ import { ApiResponse } from '../interfaces/api-response';
 import { UserCredentials } from '../interfaces/user-credentials';
 import { AuthService } from './auth.service';
 import { ErrorsService } from './errors.service';
+import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,8 @@ export class UsersService {
     private http: HttpClient,
     private dialog: MatDialog,
     private authService: AuthService,
-    private errorsService: ErrorsService
+    private errorsService: ErrorsService,
+    private uiService: UiService
   ) {}
   headers = new HttpHeaders({
     'Content-type': 'application/json',
@@ -37,6 +39,12 @@ export class UsersService {
           this.authService.setUser(token);
         }),
         tap(() => this.dialog.closeAll()),
+        tap(() =>
+          this.uiService.openSnackBar({
+            message: `${credentials.name} registrado con éxito 😃`,
+            class: 'success',
+          })
+        ),
         catchError((error: HttpErrorResponse) => {
           this.errorsService.handleError(error, 'Registro de usuario');
           return of(null);

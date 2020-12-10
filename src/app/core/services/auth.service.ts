@@ -10,6 +10,7 @@ import { ApiResponse } from '../interfaces/api-response';
 import { UserCredentials } from '../interfaces/user-credentials';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorsService } from './errors.service';
+import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,8 @@ export class AuthService {
     public jwtHelper: JwtHelperService,
     private router: Router,
     private dialog: MatDialog,
-    private errorsService: ErrorsService
+    private errorsService: ErrorsService,
+    private uiService: UiService
   ) {
     this.currentUserSubject = new BehaviorSubject<UserSession>(this.initializeUser());
     this.currentUser = this.currentUserSubject.asObservable();
@@ -55,6 +57,12 @@ export class AuthService {
           this.setUser(token);
           this.dialog.closeAll();
         }),
+        tap(() => {
+          this.uiService.openSnackBar({
+            message: 'Bienvenido de nuevo! 😀',
+            class: 'success',
+          });
+        }),
         catchError((error: HttpErrorResponse) => {
           this.errorsService.handleError(error, 'Login de usuario');
           return of(null);
@@ -66,6 +74,10 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.router.navigate(['/home']);
+    this.uiService.openSnackBar({
+      message: 'Hasta pronto! 👋',
+      class: 'success',
+    });
   }
 
   public setUser(token): void {

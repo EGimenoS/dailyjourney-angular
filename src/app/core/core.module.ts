@@ -10,19 +10,21 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 // Angular Material imports
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 // component imports
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatMenuModule } from '@angular/material/menu';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { ScrollToBottomDirective } from './directives/scroll-tobottom.directive';
 import { AlertComponent } from './components/alert/alert.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 export function token(): string {
   if (localStorage.getItem('currentUser')) {
@@ -41,6 +43,7 @@ export function token(): string {
     RegisterComponent,
     ScrollToBottomDirective,
     AlertComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ export function token(): string {
     MatDialogModule,
     MatIconModule,
     MatMenuModule,
+    MatSnackBarModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: token,
