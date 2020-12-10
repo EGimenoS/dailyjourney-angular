@@ -27,6 +27,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "leaflet": "^1.7.1",
     "material-design-icons": "^3.0.1",
+    "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "url-polyfill": "^1.1.12",
