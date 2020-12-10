@@ -6,6 +6,7 @@ export interface Travel {
   id: number;
   departure_time: string;
   owner_comment: string;
+  periodicity: string;
   capacity: number;
   distance: number;
   bearing: string;

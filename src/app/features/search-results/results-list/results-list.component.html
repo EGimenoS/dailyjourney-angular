@@ -7,7 +7,9 @@
     class="card-container"
   >
     <div class="owner-info">
-      <div><img class="avatar" [src]="travel.owner.avatar" [alt]="travel.owner.avatar" /></div>
+      <div *ngIf="travel.owner.avatar">
+        <img class="avatar" [src]="travel.owner.avatar" [alt]="travel.owner.avatar" />
+      </div>
       <div class="name">{{ travel.owner.name }}</div>
     </div>
     <div class="travel-info">

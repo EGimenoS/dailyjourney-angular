@@ -92,6 +92,7 @@ export class AuthService {
       id: decodedToken.id,
       token,
       name: decodedToken.name,
+      avatar: decodedToken.avatar,
     };
   }
 }
