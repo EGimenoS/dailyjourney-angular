@@ -1,13 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { endpoint } from '../../../../config';
 import { Observable, of } from 'rxjs';
 import { TravelPayload } from '../interfaces/travel-payload';
 import { ApiResponse } from '../interfaces/api-response';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Travel } from '../interfaces/travel';
 import { UiService } from './ui.service';
+import { ErrorsService } from './errors.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,20 +18,29 @@ export class TravelsService {
   headers = new HttpHeaders({
     'Content-type': 'application/json',
   });
-  constructor(private http: HttpClient, private router: Router, private uiService: UiService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private uiService: UiService,
+    private errorsService: ErrorsService
+  ) {}
 
   createNewTravel(payload: TravelPayload): Observable<any> {
     return this.http
-      .post<ApiResponse>(this.url, payload, {
+      .post<any>(this.url, payload, {
         headers: this.headers,
       })
       .pipe(
-        tap(() => this.router.navigateByUrl('home')),
+        tap((res) => this.router.navigateByUrl(`/travel-detail/${res.id}`)),
         tap(() => {
           this.uiService.openSnackBar({
             message: 'Viaje creado con éxito! 🚗',
             class: 'accent',
           });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.errorsService.handleError(error, 'Creación de viaje');
+          return of(null);
         })
       );
   }
