@@ -31,11 +31,25 @@
     <div class="row">
       <mat-form-field class="input" appearance="outline">
         <mat-label>Hora de salida</mat-label>
-        <input matInput formControlName="departure_time" />
+        <input
+          placeholder="Selecciona hora de salida"
+          [ngxTimepicker]="picker"
+          matInput
+          formControlName="departure_time"
+        />
+        <ng-template #dialHint>
+          <p>Selecciona hora de salida</p>
+        </ng-template>
         <mat-icon class="input-icon" matPrefix>schedule</mat-icon>
         <mat-error *ngIf="newTravelGroupForm.controls['departure_time'].hasError('required')">
           Hora de salida requerida
         </mat-error>
+        <ngx-material-timepicker
+          [editableHintTmpl]="dialHint"
+          #darkPicker
+          [theme]="theme"
+          #picker
+        ></ngx-material-timepicker>
       </mat-form-field>
       <mat-form-field class="input" appearance="outline">
         <mat-label>Nº de pasajeros</mat-label>
