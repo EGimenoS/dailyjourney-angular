@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Observable } from 'rxjs';
 import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { AutocompleteAddress } from 'src/app/core/interfaces/autocomplete-address';
@@ -17,6 +18,21 @@ export class AddTravelComponent implements OnInit {
   newTravelGroupForm: FormGroup;
   validOriginAddreses: Observable<AutocompleteAddress[]>;
   validDestinationAddreses: Observable<AutocompleteAddress[]>;
+
+  theme: NgxMaterialTimepickerTheme = {
+    container: {
+      bodyBackgroundColor: 'white',
+      buttonColor: '#002a4d',
+    },
+    dial: {
+      dialBackgroundColor: '#ff6430',
+    },
+    clockFace: {
+      clockFaceBackgroundColor: '#ff6430',
+      clockHandColor: '#002a4d',
+      clockFaceTimeInactiveColor: '#fff',
+    },
+  };
 
   constructor(
     private fb: FormBuilder,

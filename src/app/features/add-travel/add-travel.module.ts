@@ -22,7 +22,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     MatAutocompleteModule,
     MatSelectModule,
     ReactiveFormsModule,
-    NgxMaterialTimepickerModule,
+    NgxMaterialTimepickerModule.setLocale('es-ES'),
   ],
 })
 export class AddTravelModule {}

@@ -36,7 +36,7 @@
         <mat-error *ngIf="newTravelGroupForm.controls['departure_time'].hasError('required')">
           Hora de salida requerida
         </mat-error>
-        <ngx-material-timepicker #picker></ngx-material-timepicker>
+        <ngx-material-timepicker #darkPicker [theme]="theme" #picker></ngx-material-timepicker>
       </mat-form-field>
       <mat-form-field class="input" appearance="outline">
         <mat-label>Nº de pasajeros</mat-label>
