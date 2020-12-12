@@ -17,10 +17,7 @@ body {
   height: 100%;
   font-size: 100%;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
-  color: var(--primary);
-  background-color: var(--grey-background);
 }
 
 *,
@@ -29,6 +26,14 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+}
+
+// body settings
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--primary);
+  background-color: var(--grey-background);
 }
 
 // common elements
@@ -68,6 +73,8 @@ button {
     cursor: not-allowed;
   }
 }
+
+// cancel button as cross icon for modals
 
 .cross-cancel-button {
   position: absolute;
