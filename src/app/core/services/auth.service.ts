@@ -89,7 +89,7 @@ export class AuthService {
   private buildUserFromToken(token): UserSession {
     const decodedToken = this.jwtHelper.decodeToken(token);
     return {
-      id: decodedToken.id,
+      id: decodedToken.user_id,
       token,
       name: decodedToken.name,
       avatar: decodedToken.avatar,

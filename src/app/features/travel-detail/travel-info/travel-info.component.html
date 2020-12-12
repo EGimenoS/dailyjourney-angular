@@ -32,7 +32,17 @@
     <h2>Comentario del conductor</h2>
     <p>{{ travel.owner_comment }}</p>
   </section>
-  <section class="chat">
-    <app-chat [travelID]="travel.id"></app-chat>
-  </section>
+  <div class="row">
+    <section class="chat">
+      <app-chat [travelID]="travel.id"></app-chat>
+    </section>
+    <section class="participants">
+      <div *ngIf="checkIfOwner(travel.owner.id); else regularUser" class="owner"></div>
+      <ng-template #regularUser>
+        <div class="participant">
+          <button class="button-regular">Apúntame al viaje</button>
+        </div>
+      </ng-template>
+    </section>
+  </div>
 </div>
