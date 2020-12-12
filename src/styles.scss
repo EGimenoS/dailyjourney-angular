@@ -39,6 +39,7 @@ a {
 
 a,
 button {
+  font-family: inherit;
   &:hover {
     cursor: pointer;
   }
@@ -52,7 +53,6 @@ button {
   color: white;
   font-size: 1rem;
   font-weight: bold;
-  font-family: inherit;
   border-radius: 100px;
   padding: 1rem 2rem;
   border: none;
