@@ -25,7 +25,7 @@ export class TravelsService {
     private errorsService: ErrorsService
   ) {}
 
-  createNewTravel(payload: TravelPayload): Observable<any> {
+  createNewTravel(payload: TravelPayload): Observable<Travel> | Observable<null> {
     return this.http
       .post<any>(this.url, payload, {
         headers: this.headers,
@@ -45,14 +45,27 @@ export class TravelsService {
       );
   }
 
-  getTravelsNearOfDestination(lat, long): Observable<Travel[]> {
-    return this.http.get<Travel[]>(this.url, {
-      params: { destination_latitude: lat, destination_longitude: long },
-    });
+  getTravelsNearOfDestination(lat, long): Observable<Travel[]> | Observable<null> {
+    return this.http
+      .get<Travel[]>(this.url, {
+        params: { destination_latitude: lat, destination_longitude: long },
+      })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.errorsService.handleError(error, 'Recuperando información de viaje');
+          return of(null);
+        })
+      );
   }
 
   // returns an array of a single travel to make easier the map component to reuse.
-  getTravelDetail(id: string): Observable<Travel[]> {
-    return this.http.get<Travel>(`${this.url}/${id}`).pipe(map((result) => [result]));
+  getTravelDetail(id: string): Observable<Travel[]> | Observable<null> {
+    return this.http.get<Travel>(`${this.url}/${id}`).pipe(
+      map((result) => [result]),
+      catchError((error: HttpErrorResponse) => {
+        this.errorsService.handleError(error, 'Obteniendo viajes');
+        return of(null);
+      })
+    );
   }
 }
