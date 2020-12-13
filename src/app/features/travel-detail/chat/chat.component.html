@@ -4,7 +4,7 @@
     <div *ngFor="let message of messages" class="message">
       <div class="message-info">
         <span class="user-name">{{ message.user.name }}</span
-        ><span class="time-ago">{{ message.created_at | date }}</span>
+        ><span class="time-ago">{{ message.created_at | date: 'medium' }}</span>
       </div>
       <div class="message-content">
         {{ message.message }}
