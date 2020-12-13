@@ -135,6 +135,10 @@
       flex-wrap: wrap;
     }
 
+    .participants {
+      flex-basis: 40%;
+    }
+
     .participant {
       display: flex;
       flex-direction: column;
