@@ -1,0 +1,22 @@
+<div *ngIf="participants.length; else noParticipantsYet" class="container">
+  <h3>Pasajeros</h3>
+  <section *ngIf="participantsToApprove.length">
+    <h6>Pendientes de tu aprobación</h6>
+    <div *ngFor="let participant of participantsToApprove" class="participant">
+      <div class="participant-name">{{ participant.user_name }}</div>
+      <button class="button-approve"><mat-icon>thumb_up_alt</mat-icon></button>
+      <button class="button-reject"><mat-icon>thumb_down_alt</mat-icon></button>
+    </div>
+  </section>
+  <mat-divider></mat-divider>
+  <section *ngIf="participantsApproved.length">
+    <h6>Aprobados</h6>
+    <div *ngFor="let participant of participantsToApprove" class="participant">
+      <div class="participant-name">{{ participant.user_name }}</div>
+      <button class="button-approve"><mat-icon>thumb_up_alt</mat-icon></button>
+      <button class="button-reject"><mat-icon>thumb_down_alt</mat-icon></button>
+    </div>
+  </section>
+</div>
+
+<ng-template #noParticipantsYet><h2>Sin viajeros</h2></ng-template>

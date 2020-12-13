@@ -1,0 +1,55 @@
+.container {
+  padding-bottom: 0.7rem;
+  padding-top: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 1rem;
+
+  seection {
+    margin-bottom: 0.7rem;
+  }
+
+  h3 {
+    margin-bottom: 0.7rem;
+  }
+
+  h6 {
+    margin-bottom: 0.7rem;
+  }
+
+  .participant {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    .participant-name {
+      margin-right: 2rem;
+      flex-basis: 50%;
+    }
+  }
+}
+
+.button-approve,
+.button-reject {
+  color: white;
+  border-radius: 50%;
+  padding: 0.5rem;
+  transition: all 0.5s;
+  margin-right: 0.7rem;
+}
+
+.button-approve {
+  background-color: rgb(107, 197, 107);
+  &:hover {
+    background-color: rgb(162, 223, 162);
+  }
+}
+
+.button-reject {
+  background-color: var(--warn);
+  &:hover {
+    background-color: rgb(162, 223, 162);
+  }
+}

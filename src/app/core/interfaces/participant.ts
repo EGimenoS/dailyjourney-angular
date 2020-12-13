@@ -1,7 +1,7 @@
 export interface Participant {
   id: number;
   user_id: number;
-  name: string;
+  user_name: string;
   avatar: string;
-  approved: boolean;
+  status: string;
 }

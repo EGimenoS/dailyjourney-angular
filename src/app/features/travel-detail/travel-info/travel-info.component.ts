@@ -50,10 +50,10 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   }
 
   isUserRegisteredToTravel(participants: Participant[]): boolean {
-    return participants.some((participant) => participant.user_id === this.currentUser.id);
+    return participants.some((participant) => participant.user_id === this.currentUser?.id);
   }
 
   isOwner(ownerID: number): boolean {
-    return this.currentUser.id === ownerID ? true : false;
+    return this.currentUser?.id === ownerID ? true : false;
   }
 }
