@@ -37,7 +37,7 @@ export class ParticipantsService {
 
   updateParticipantStatus(participantID: number, status: number): Observable<any> {
     return this.http
-      .put<any>(`this.url/${participantID}`, { status }, { headers: this.headers })
+      .put<any>(`${this.url}/${participantID}`, { status }, { headers: this.headers })
       .pipe(
         tap(() => {
           this.uiService.openSnackBar({
@@ -53,7 +53,7 @@ export class ParticipantsService {
   }
 
   deleteParticipant(participantID): Observable<any> {
-    return this.http.delete<any>(`this.url/${participantID}`).pipe(
+    return this.http.delete<any>(`${this.url}/${participantID}`).pipe(
       tap(() => {
         this.uiService.openSnackBar({
           message: 'Desapuntado del viaje con éxito',

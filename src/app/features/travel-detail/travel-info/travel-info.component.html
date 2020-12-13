@@ -11,7 +11,11 @@
       {{ travel.periodicity }}
     </div>
     <div class="capacity-info">
-      <span><mat-icon>supervisor_account</mat-icon>4/5</span>
+      <span
+        ><mat-icon>supervisor_account</mat-icon>{{ travel.participants.length }}/{{
+          travel.capacity
+        }}</span
+      >
     </div>
   </section>
   <section class="travel-axis">
@@ -37,10 +41,24 @@
       <app-chat [travelID]="travel.id"></app-chat>
     </section>
     <section class="participants">
-      <div *ngIf="checkIfOwner(travel.owner.id); else regularUser" class="owner"></div>
+      <div *ngIf="isOwner(travel.owner.id); else regularUser" class="owner"></div>
       <ng-template #regularUser>
         <div class="participant">
-          <button class="button-regular">Apúntame al viaje</button>
+          <button
+            *ngIf="
+              !isUserRegisteredToTravel(travel.participants);
+              else userAlreadyRegisteredToTravel
+            "
+            (click)="onRegisterToTravelClick(travel.id)"
+            class="button-regular"
+          >
+            Apúntame al viaje
+          </button>
+          <ng-template #userAlreadyRegisteredToTravel
+            ><button (click)="onDeleteRegisterFromTravelClick(travel)" class="button-regular">
+              Cancelar registro
+            </button></ng-template
+          >
         </div>
       </ng-template>
     </section>

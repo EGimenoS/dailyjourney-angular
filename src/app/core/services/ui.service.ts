@@ -10,7 +10,6 @@ export class UiService {
   constructor(private snackbar: MatSnackBar) {}
 
   openSnackBar(notif: SnackBarData): void {
-    console.log(notif.class);
     this.snackbar.openFromComponent(SnackbarComponent, {
       duration: 5000,
       panelClass: notif.class,
