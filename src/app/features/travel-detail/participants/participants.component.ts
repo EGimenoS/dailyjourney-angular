@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Participant } from 'src/app/core/interfaces/participant';
 import { ParticipantsService } from 'src/app/core/services/participants.service';
 
@@ -12,6 +12,7 @@ export class ParticipantsComponent implements OnInit, OnChanges {
   participantsToApprove: Participant[];
   participantsRejected: Participant[];
   participantsApproved: Participant[];
+  @Output() fetchDataFromServer = new EventEmitter();
   constructor(private participantsService: ParticipantsService) {}
 
   ngOnInit(): void {
@@ -22,11 +23,15 @@ export class ParticipantsComponent implements OnInit, OnChanges {
   }
 
   approveParticipant(participantID: number): void {
-    this.participantsService.updateParticipantStatus(participantID, 1).subscribe();
+    this.participantsService
+      .updateParticipantStatus(participantID, 1)
+      .subscribe(() => this.fetchDataFromServer.emit());
   }
 
   rejectParticipant(participantID: number): void {
-    this.participantsService.updateParticipantStatus(participantID, 2).subscribe();
+    this.participantsService
+      .updateParticipantStatus(participantID, 2)
+      .subscribe(() => this.fetchDataFromServer.emit());
   }
 
   private setParticipantsStatus(): void {

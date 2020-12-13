@@ -42,7 +42,10 @@
     </section>
     <section class="participants">
       <div *ngIf="isOwner(travel.owner.id); else regularUser" class="owner">
-        <app-participants [participants]="travel.participants"></app-participants>
+        <app-participants
+          (fetchDataFromServer)="fetchDataFromServer.emit()"
+          [participants]="travel.participants"
+        ></app-participants>
       </div>
       <ng-template #regularUser>
         <div class="participant">
