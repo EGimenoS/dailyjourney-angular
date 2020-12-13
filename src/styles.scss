@@ -8,6 +8,8 @@
   --primary: #002a4d;
   --accent: #ff6430;
   --warn: #ff0000;
+  --success: #6bc56b;
+  --success-lighter-color: #a2dfa2;
   --grey-background: #f5f7fd;
 }
 
@@ -91,7 +93,7 @@ button {
 
 // snackbar material styles
 .success {
-  background: rgb(66, 167, 66) !important;
+  background: var(--success) !important;
   color: white !important;
   font-weight: bold;
   text-align: center;

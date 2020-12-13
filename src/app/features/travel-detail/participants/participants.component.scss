@@ -6,8 +6,9 @@
   justify-content: flex-start;
   margin-left: 1rem;
 
-  seection {
+  section {
     margin-bottom: 0.7rem;
+    margin-top: 0.7rem;
   }
 
   h3 {
@@ -41,15 +42,15 @@
 }
 
 .button-approve {
-  background-color: rgb(107, 197, 107);
+  background-color: var(--success);
   &:hover {
-    background-color: rgb(162, 223, 162);
+    background-color: var(--success-lighter-color);
   }
 }
 
 .button-reject {
   background-color: var(--warn);
   &:hover {
-    background-color: rgb(162, 223, 162);
+    background-color: var(--warn-lighter-color);
   }
 }

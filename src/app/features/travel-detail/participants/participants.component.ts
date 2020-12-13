@@ -21,8 +21,12 @@ export class ParticipantsComponent implements OnInit, OnChanges {
     this.setParticipantsStatus();
   }
 
-  approveParticipant(participantID): void {
+  approveParticipant(participantID: number): void {
     this.participantsService.updateParticipantStatus(participantID, 1).subscribe();
+  }
+
+  rejectParticipant(participantID: number): void {
+    this.participantsService.updateParticipantStatus(participantID, 2).subscribe();
   }
 
   private setParticipantsStatus(): void {

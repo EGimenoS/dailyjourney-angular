@@ -25,7 +25,7 @@ export class ParticipantsService {
       tap(() => {
         this.uiService.openSnackBar({
           message: 'Apuntado, esperando a confrmación del conductor',
-          class: 'accent',
+          class: 'success',
         });
       }),
       catchError((error: HttpErrorResponse) => {
@@ -41,8 +41,8 @@ export class ParticipantsService {
       .pipe(
         tap(() => {
           this.uiService.openSnackBar({
-            message: 'Actualizado status',
-            class: 'accent',
+            message: 'Actualizado status del viajero con éxito',
+            class: 'success',
           });
         }),
         catchError((error: HttpErrorResponse) => {
