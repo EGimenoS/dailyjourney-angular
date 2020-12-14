@@ -1,4 +1,5 @@
-<div class="container">
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div class="container" [class.blurred]="loading">
   <app-navbar></app-navbar>
   <main>
     <router-outlet></router-outlet>

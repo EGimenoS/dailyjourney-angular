@@ -106,7 +106,12 @@ button {
 }
 
 .warn {
-  background-color: #ff0000 !important;
+  background-color: var(--warn) !important;
   color: white !important;
   font-weight: bold;
+}
+
+.blurred {
+  filter: blur(8px);
+  pointer-events: none;
 }
