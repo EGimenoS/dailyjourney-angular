@@ -3,7 +3,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // component imports
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -25,6 +26,8 @@ import { environment } from 'src/environments/environment';
 import { ScrollToBottomDirective } from './directives/scroll-tobottom.directive';
 import { AlertComponent } from './components/alert/alert.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 export function token(): string {
   if (localStorage.getItem('currentUser')) {
@@ -44,6 +47,7 @@ export function token(): string {
     ScrollToBottomDirective,
     AlertComponent,
     SnackbarComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ export function token(): string {
     MatIconModule,
     MatMenuModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
+
     JwtModule.forRoot({
       config: {
         tokenGetter: token,
@@ -67,5 +73,6 @@ export function token(): string {
     }),
   ],
   exports: [MainLayoutComponent],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }],
 })
 export class CoreModule {}
