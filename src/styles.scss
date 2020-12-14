@@ -110,3 +110,8 @@ button {
   color: white !important;
   font-weight: bold;
 }
+
+.blurred {
+  filter: blur(8px);
+  pointer-events: none;
+}
