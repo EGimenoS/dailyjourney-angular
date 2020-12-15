@@ -1,4 +1,5 @@
 <div class="container" *ngIf="travel$ | async as travel">
+  <span *ngIf="userOrigin">{{ calculateDistance(userOrigin, travel.origin) }}</span>
   <section class="main-info">
     <div class="name">{{ travel.owner.name }}</div>
     <div *ngIf="travel.owner.avatar" class="avatar">

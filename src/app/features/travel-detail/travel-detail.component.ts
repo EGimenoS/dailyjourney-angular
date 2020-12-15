@@ -12,8 +12,6 @@ import { TravelsService } from 'src/app/core/services/travels.service';
 })
 export class TravelDetailComponent implements OnInit {
   travel$: Observable<Travel[]>;
-  userOrigin: GeoPosition;
-  userDestination: GeoPosition;
   travelID: string;
   toggle = false;
   constructor(private travelsService: TravelsService, private route: ActivatedRoute) {}

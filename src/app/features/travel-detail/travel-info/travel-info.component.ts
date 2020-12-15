@@ -7,6 +7,8 @@ import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 import { UserSession } from 'src/app/core/interfaces/user-session';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ParticipantsService } from 'src/app/core/services/participants.service';
+import { UserLocationService } from 'src/app/core/services/user-location.service';
+import { calculateDistance } from 'src/app/shared/utilities/calculate-distance';
 
 @Component({
   selector: 'app-travel-info',
@@ -15,19 +17,23 @@ import { ParticipantsService } from 'src/app/core/services/participants.service'
 })
 export class TravelInfoComponent implements OnInit, OnChanges {
   currentUser: UserSession;
+  userOrigin: GeoPosition;
+  userDestination: GeoPosition;
   @Input() travels$: Observable<Travel[]>;
-  @Input() userOrigin: GeoPosition;
-  @Input() userDestination: GeoPosition;
   @Output() fetchDataFromServer = new EventEmitter();
 
   change: boolean;
 
   travel$: Observable<Travel>;
-  constructor(private authService: AuthService, private participantsService: ParticipantsService) {}
+  constructor(
+    private authService: AuthService,
+    private participantsService: ParticipantsService,
+    private userLocationService: UserLocationService
+  ) {}
 
   ngOnInit(): void {
-    console.log('origen del user', this.userOrigin);
     this.authService.currentUser.subscribe((user) => (this.currentUser = user));
+    this.userLocationService.userOrigin.subscribe((location) => (this.userOrigin = location));
     this.travel$ = this.travels$.pipe(map((travel) => travel[0]));
   }
 
@@ -56,5 +62,11 @@ export class TravelInfoComponent implements OnInit, OnChanges {
 
   isOwner(ownerID: number): boolean {
     return this.currentUser?.id === ownerID ? true : false;
+  }
+
+  calculateDistance(userPoint, travelPoint): number {
+    console.log('user', JSON.stringify(userPoint, null, 2));
+    console.log('travel', JSON.stringify(travelPoint, null, 2));
+    return calculateDistance(userPoint, travelPoint);
   }
 }

@@ -6,13 +6,15 @@ import { GeoPosition } from '../interfaces/travel-payload';
   providedIn: 'root',
 })
 export class UserLocationService {
-  private userLocationSubject: BehaviorSubject<GeoPosition>;
+  private userOriginSubject: BehaviorSubject<GeoPosition>;
+  public userOrigin: Observable<GeoPosition>;
 
   constructor() {
-    this.userLocationSubject = new BehaviorSubject<GeoPosition>(null);
+    this.userOriginSubject = new BehaviorSubject<GeoPosition>(null);
+    this.userOrigin = this.userOriginSubject.asObservable();
   }
 
-  public setUserLocation(position: GeoPosition): void {
-    this.userLocationSubject.next(position);
+  public setUserOrigin(position: GeoPosition): void {
+    this.userOriginSubject.next(position);
   }
 }

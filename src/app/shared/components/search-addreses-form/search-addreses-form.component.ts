@@ -30,7 +30,7 @@ export class SearchAddresesFormComponent implements OnInit {
     if (this.searchGroupForm.valid) {
       const destinationParams = this.searchGroupForm.controls.destinationInput.value;
       const originParams = this.searchGroupForm.controls.originInput.value;
-      this.userLocationService.setUserLocation({
+      this.userLocationService.setUserOrigin({
         latitude: originParams.latitude,
         longitude: originParams.longitude,
         address: originParams.address,
