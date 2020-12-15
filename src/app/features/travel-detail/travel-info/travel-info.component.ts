@@ -26,6 +26,7 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   constructor(private authService: AuthService, private participantsService: ParticipantsService) {}
 
   ngOnInit(): void {
+    console.log('origen del user', this.userOrigin);
     this.authService.currentUser.subscribe((user) => (this.currentUser = user));
     this.travel$ = this.travels$.pipe(map((travel) => travel[0]));
   }
