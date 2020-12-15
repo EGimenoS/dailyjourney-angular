@@ -1,7 +1,9 @@
-<div
-  id="map"
-  leaflet
-  [leafletOptions]="mapOptions"
-  [leafletLayers]="markers"
-  [leafletFitBounds]="mapFitToBounds"
-></div>
+<div *ngIf="markers" class="container">
+  <div
+    id="map"
+    leaflet
+    [leafletOptions]="mapOptions"
+    [leafletLayers]="markers"
+    [leafletFitBounds]="mapFitToBounds"
+  ></div>
+</div>

@@ -52,7 +52,9 @@ export class ResultsMapComponent implements OnInit, OnChanges {
       )
       .subscribe((markers) => {
         this.markers = markers;
-        this.mapFitToBounds = featureGroup(this.markers).getBounds();
+        if (markers.length > 0) {
+          this.mapFitToBounds = featureGroup(this.markers).getBounds();
+        }
       });
   }
 
