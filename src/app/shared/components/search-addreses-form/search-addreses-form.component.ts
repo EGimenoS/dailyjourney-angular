@@ -35,6 +35,11 @@ export class SearchAddresesFormComponent implements OnInit {
         longitude: originParams.longitude,
         address: originParams.address,
       });
+      this.userLocationService.setUserDestination({
+        latitude: destinationParams.latitude,
+        longitude: destinationParams.longitude,
+        address: destinationParams.address,
+      });
       this.router.navigate(['/search-results'], {
         queryParams: {
           destination_latitude: destinationParams.latitude,

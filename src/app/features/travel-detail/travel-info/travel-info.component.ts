@@ -34,6 +34,9 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.authService.currentUser.subscribe((user) => (this.currentUser = user));
     this.userLocationService.userOrigin.subscribe((location) => (this.userOrigin = location));
+    this.userLocationService.userDestination.subscribe(
+      (location) => (this.userDestination = location)
+    );
     this.travel$ = this.travels$.pipe(map((travel) => travel[0]));
   }
 
@@ -65,8 +68,6 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   }
 
   calculateDistance(userPoint, travelPoint): number {
-    console.log('user', JSON.stringify(userPoint, null, 2));
-    console.log('travel', JSON.stringify(travelPoint, null, 2));
     return calculateDistance(userPoint, travelPoint);
   }
 }
