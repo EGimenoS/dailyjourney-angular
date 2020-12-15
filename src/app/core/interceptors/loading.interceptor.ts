@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { UiService } from '../services/ui.service';
 
@@ -20,15 +20,15 @@ export class LoadingInterceptor implements HttpInterceptor {
     }
     this.uiService.setLoading(true, request.url);
     return next.handle(request).pipe(
-      catchError((err) => {
-        this.uiService.setLoading(false, request.url);
-        return err;
-      }),
       tap((evt: HttpEvent<any>) => {
         if (evt instanceof HttpResponse) {
           this.uiService.setLoading(false, request.url);
         }
         return evt;
+      }),
+      catchError((err) => {
+        this.uiService.setLoading(false, request.url);
+        return throwError(err);
       })
     );
   }

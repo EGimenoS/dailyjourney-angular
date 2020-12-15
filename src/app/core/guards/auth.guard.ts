@@ -10,7 +10,6 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private dialog: MatDialog, private authService: AuthService) {}
   canActivate(): boolean {
-    console.log('check authenticated here', this.authService.isAuthenticated());
     if (this.authService.isAuthenticated()) {
       return true;
     } else {
