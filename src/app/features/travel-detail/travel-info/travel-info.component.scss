@@ -117,10 +117,24 @@
         text-align: left;
       }
 
-      .origin-address {
+      .origin-distance,
+      .destination-distance {
+        max-width: 40%;
+        position: absolute;
+        top: 35px;
+        background: white;
+        border-radius: 3px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        text-align: left;
+      }
+
+      .origin-address,
+      .origin-distance {
         left: 10px;
       }
-      .destination-address {
+      .destination-address,
+      .destination-distance {
         right: 10px;
       }
       .mat-icon {

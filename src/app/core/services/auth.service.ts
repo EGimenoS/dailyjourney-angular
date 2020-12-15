@@ -24,7 +24,6 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     public jwtHelper: JwtHelperService,
-    private router: Router,
     private dialog: MatDialog,
     private errorsService: ErrorsService,
     private uiService: UiService

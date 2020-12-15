@@ -1,7 +1,12 @@
 <div class="container">
   <div class="left-side">
     <app-search-addreses-form></app-search-addreses-form>
-    <app-results-list [travelToAnimate]="travelToAnimate" [travels$]="travels$"></app-results-list>
+    <app-results-list
+      [userOrigin]="userOrigin"
+      [userDestination]="userDestination"
+      [travelToAnimate]="travelToAnimate"
+      [travels$]="travels$"
+    ></app-results-list>
   </div>
   <div class="right-side">
     <app-results-map

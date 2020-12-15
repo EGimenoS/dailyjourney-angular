@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { longlatPresence } from 'src/app/core/validators/longlat-presence';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertComponent } from 'src/app/core/components/alert/alert.component';
+import { UserLocationService } from 'src/app/core/services/user-location.service';
 
 @Component({
   selector: 'app-search-addreses-form',
@@ -20,7 +21,8 @@ export class SearchAddresesFormComponent implements OnInit {
     private fb: FormBuilder,
     private validAddreses: AutocompleteAddresesService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userLocationService: UserLocationService
   ) {}
   validOriginAddreses: Observable<AutocompleteAddress[]>;
   validDestinationAddreses: Observable<AutocompleteAddress[]>;
@@ -28,6 +30,16 @@ export class SearchAddresesFormComponent implements OnInit {
     if (this.searchGroupForm.valid) {
       const destinationParams = this.searchGroupForm.controls.destinationInput.value;
       const originParams = this.searchGroupForm.controls.originInput.value;
+      this.userLocationService.setUserOrigin({
+        latitude: originParams.latitude,
+        longitude: originParams.longitude,
+        address: originParams.address,
+      });
+      this.userLocationService.setUserDestination({
+        latitude: destinationParams.latitude,
+        longitude: destinationParams.longitude,
+        address: destinationParams.address,
+      });
       this.router.navigate(['/search-results'], {
         queryParams: {
           destination_latitude: destinationParams.latitude,
