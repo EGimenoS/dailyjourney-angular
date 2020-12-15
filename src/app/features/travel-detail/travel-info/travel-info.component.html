@@ -1,6 +1,6 @@
 <div class="container" *ngIf="travel$ | async as travel">
   <section class="main-info">
-    <div class="name">{{ travel.owner.name }}</div>
+    <p class="name">{{ travel.owner.name }}</p>
     <div *ngIf="travel.owner.avatar" class="avatar">
       <img [src]="travel.owner.avatar" [alt]="travel.owner.avatar" />
     </div>
@@ -19,12 +19,12 @@
     </div>
   </section>
   <section class="travel-axis">
-    <mat-icon>place</mat-icon>
+    <mat-icon class="place-icon">place</mat-icon>
     <div class="arrow">
       <div class="line"></div>
       <div class="end"></div>
     </div>
-    <mat-icon>directions_car</mat-icon>
+    <mat-icon class="car-icon">directions_car</mat-icon>
     <div *ngIf="userOrigin; else originAddress" class="origin-distance">
       {{ calculateDistance(userOrigin, travel.origin) / 1000 }} km
     </div>
@@ -43,7 +43,7 @@
     >
   </section>
   <section class="owner-comment">
-    <h2>Comentario del conductor</h2>
+    <h3>Comentario del conductor</h3>
     <p>{{ travel.owner_comment }}</p>
   </section>
   <div class="row">

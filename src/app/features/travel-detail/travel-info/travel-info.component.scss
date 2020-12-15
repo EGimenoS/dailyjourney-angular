@@ -5,17 +5,22 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
+    font-size: 0.7rem;
     font-weight: bold;
+    margin-bottom: 1rem;
+    .name {
+      text-align: left;
+    }
     .avatar {
-      margin: 1.1rem;
+      order: -1;
+      margin: 0 0.5rem 0 0;
       background: white;
       border-radius: 50%;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       > img {
         vertical-align: middle;
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
       }
     }
   }
@@ -34,18 +39,76 @@
     }
   }
 
+  .travel-axis {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    .arrow {
+      display: flex;
+      flex-basis: 100%;
+      align-items: center;
+      .line {
+        flex-basis: 95%;
+        height: 3px;
+        background: var(--accent);
+      }
+
+      .end {
+        border: solid var(--accent);
+        border-width: 0 3px 3px 0;
+        padding: 3px;
+        transform: rotate(-45deg);
+      }
+    }
+    .origin-address,
+    .destination-address {
+      font-size: 0.8rem;
+      max-width: 40%;
+      position: absolute;
+      top: 35px;
+      background: white;
+      border-radius: 3px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    .origin-distance,
+    .destination-distance {
+      max-width: 40%;
+      position: absolute;
+      top: 35px;
+      background: white;
+      border-radius: 3px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    .origin-address,
+    .origin-distance {
+      left: 10px;
+    }
+    .destination-address,
+    .destination-distance {
+      right: 10px;
+    }
+    .mat-icon {
+      color: var(--accent);
+      font-size: 1.8rem;
+    }
+  }
+
   .owner-comment {
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin-top: 6rem;
+    margin-top: 8rem;
     padding: 1rem;
     p {
       min-height: 100px;
       margin-top: 1rem;
     }
-  }
-  .row {
-    margin-top: 1rem;
   }
   .chat {
     flex: 1;
@@ -86,8 +149,12 @@
     }
     .travel-axis {
       display: flex;
+      flex-direction: row;
       justify-content: space-around;
       position: relative;
+      * {
+        flex-basis: 1;
+      }
       .arrow {
         display: flex;
         flex-basis: 100%;
@@ -107,6 +174,7 @@
       }
       .origin-address,
       .destination-address {
+        font-size: 0.9rem;
         max-width: 40%;
         position: absolute;
         top: 35px;
@@ -140,6 +208,17 @@
       .mat-icon {
         color: var(--accent);
         font-size: 1.8rem;
+      }
+    }
+
+    .owner-comment {
+      background-color: white;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin-top: 6rem;
+      padding: 1rem;
+      p {
+        min-height: 100px;
+        margin-top: 1rem;
       }
     }
     .row {
