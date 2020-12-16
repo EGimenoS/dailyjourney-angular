@@ -1,10 +1,10 @@
-<div class="container">
-  <h2>Viajes cerca de tu destino</h2>
-
+<div *ngIf="travels$ | async as travels" class="container">
+  <h2 *ngIf="travels.length; else notTravels">Viajes cerca de tu destino</h2>
+  <ng-template #notTravels> <h2>No hay viajes cerca de tu destino</h2> </ng-template>
   <div
     [routerLink]="['/travel-detail', travel.id]"
     routerLinkActive="router-link-active"
-    *ngFor="let travel of travels$ | async"
+    *ngFor="let travel of travels"
     class="card-container"
   >
     <div class="owner-info">
