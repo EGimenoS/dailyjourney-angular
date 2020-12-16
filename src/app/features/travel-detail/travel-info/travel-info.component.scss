@@ -112,7 +112,6 @@
   }
   .chat {
     flex: 1;
-    margin-right: 1rem;
   }
   .participant {
     display: flex;
@@ -242,6 +241,10 @@
 
     .participants {
       flex-basis: 40%;
+    }
+
+    .chat {
+      margin-right: 1rem;
     }
   }
   .mat-icon {
