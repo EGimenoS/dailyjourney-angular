@@ -114,6 +114,18 @@
     flex: 1;
     margin-right: 1rem;
   }
+  .participant {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    .status {
+      margin-bottom: 1rem;
+      font-weight: bolder;
+      font-size: 1.1rem;
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -230,14 +242,6 @@
 
     .participants {
       flex-basis: 40%;
-    }
-
-    .participant {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
     }
   }
   .mat-icon {

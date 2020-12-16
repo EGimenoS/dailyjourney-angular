@@ -22,6 +22,12 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   @Input() travels$: Observable<Travel[]>;
   @Output() fetchDataFromServer = new EventEmitter();
 
+  statusTranslations = {
+    approved: 'Registrado al viaje',
+    pending_approval: 'Pendiente de aprobación del conductor',
+    rejected: 'Solicitud no aprobada por el conductor',
+  };
+
   change: boolean;
 
   travel$: Observable<Travel>;
@@ -59,8 +65,8 @@ export class TravelInfoComponent implements OnInit, OnChanges {
       .subscribe(() => this.fetchDataFromServer.emit());
   }
 
-  isUserRegisteredToTravel(participants: Participant[]): boolean {
-    return participants.some((participant) => participant.user_id === this.currentUser?.id);
+  userTravelStatus(participants: Participant[]): string {
+    return participants.find((participant) => participant.user_id === this.currentUser?.id)?.status;
   }
 
   isOwner(ownerID: number): boolean {
@@ -69,5 +75,9 @@ export class TravelInfoComponent implements OnInit, OnChanges {
 
   calculateDistance(userPoint, travelPoint): number {
     return calculateDistance(userPoint, travelPoint);
+  }
+
+  getApprovedParticipants(participants: Participant[]): number {
+    return participants.filter((participant) => participant.status === 'approved').length;
   }
 }
