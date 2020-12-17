@@ -1,6 +1,9 @@
 <div class="container">
   <div class="left-side">
-    <app-search-addreses-form></app-search-addreses-form>
+    <app-search-addreses-form
+      [userOrigin]="userOrigin"
+      [userDestination]="userDestination"
+    ></app-search-addreses-form>
     <app-results-list
       [userOrigin]="userOrigin"
       [userDestination]="userDestination"

@@ -20,12 +20,12 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.userOrigin = {
-        address: '',
+        address: params.origin_address,
         latitude: params.origin_latitude,
         longitude: params.origin_longitude,
       };
       this.userDestination = {
-        address: '',
+        address: params.destination_address,
         latitude: params.destination_latitude,
         longitude: params.destination_longitude,
       };

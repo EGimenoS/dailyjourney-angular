@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutocompleteAddress } from 'src/app/core/interfaces/autocomplete-address';
 import { AutocompleteAddresesService } from 'src/app/core/services/autocomplete-addreses.service';
@@ -9,6 +9,7 @@ import { longlatPresence } from 'src/app/core/validators/longlat-presence';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertComponent } from 'src/app/core/components/alert/alert.component';
 import { UserLocationService } from 'src/app/core/services/user-location.service';
+import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 
 @Component({
   selector: 'app-search-addreses-form',
@@ -16,6 +17,8 @@ import { UserLocationService } from 'src/app/core/services/user-location.service
   styleUrls: ['./search-addreses-form.component.scss'],
 })
 export class SearchAddresesFormComponent implements OnInit {
+  @Input() userOrigin: GeoPosition;
+  @Input() userDestination: GeoPosition;
   searchGroupForm: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -44,6 +47,8 @@ export class SearchAddresesFormComponent implements OnInit {
         queryParams: {
           destination_latitude: destinationParams.latitude,
           destination_longitude: destinationParams.longitude,
+          destination_address: destinationParams.address,
+          origin_address: originParams.address,
           origin_latitude: originParams.latitude,
           origin_longitude: originParams.longitude,
         },
@@ -61,8 +66,8 @@ export class SearchAddresesFormComponent implements OnInit {
   }
   createSearchGroupForm(): FormGroup {
     return this.fb.group({
-      originInput: ['', [longlatPresence()]],
-      destinationInput: ['', [longlatPresence()]],
+      originInput: [this.userDestination, [longlatPresence()]],
+      destinationInput: [this.userOrigin, [longlatPresence()]],
     });
   }
 
