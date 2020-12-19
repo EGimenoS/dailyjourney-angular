@@ -28,11 +28,15 @@
       <div class="end"></div>
     </div>
     <mat-icon class="car-icon">directions_car</mat-icon>
-    <div *ngIf="userOrigin" class="origin-distance">
+    <div *ngIf="userOrigin" class="origin-distance" matTooltip="Distancia desde tu lugar de origen">
       {{ calculateDistance(userOrigin, travel.origin) / 1000 }} km
     </div>
     <div class="origin-address"><span></span>{{ travel.origin.address }}</div>
-    <div *ngIf="userDestination" class="destination-distance">
+    <div
+      *ngIf="userDestination"
+      class="destination-distance"
+      matTooltip="Distancia desde tu lugar de destino"
+    >
       {{ calculateDistance(userDestination, travel.destination) / 1000 }} km
     </div>
     <div class="destination-address"><span></span>{{ travel.destination.address }}</div>
