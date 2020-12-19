@@ -29,8 +29,12 @@
         <span>{{ user.name }}</span>
       </button>
       <mat-menu #menu="matMenu">
-        <button (click)="onClickLogout()" mat-menu-item>Salir</button>
-        <button mat-menu-item>Ver Perfil</button>
+        <button class="menu-item" (click)="onClickLogout()" mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon> <span>Salir</span>
+        </button>
+        <button class="menu-item" mat-menu-item>
+          <mat-icon>account_box</mat-icon> <span>Ver perfil</span>
+        </button>
         <mat-divider></mat-divider>
         <a
           [routerLink]="['/travel-detail', travel.id]"
