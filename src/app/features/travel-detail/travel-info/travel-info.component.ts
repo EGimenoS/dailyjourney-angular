@@ -7,6 +7,7 @@ import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 import { UserSession } from 'src/app/core/interfaces/user-session';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ParticipantsService } from 'src/app/core/services/participants.service';
+import { TravelsService } from 'src/app/core/services/travels.service';
 import { UserLocationService } from 'src/app/core/services/user-location.service';
 import { calculateDistance } from 'src/app/shared/utilities/calculate-distance';
 
@@ -34,7 +35,8 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   constructor(
     private authService: AuthService,
     private participantsService: ParticipantsService,
-    private userLocationService: UserLocationService
+    private userLocationService: UserLocationService,
+    private travelsService: TravelsService
   ) {}
 
   ngOnInit(): void {
@@ -79,5 +81,13 @@ export class TravelInfoComponent implements OnInit, OnChanges {
 
   getApprovedParticipants(participants: Participant[]): number {
     return participants.filter((participant) => participant.status === 'approved').length;
+  }
+
+  handleDeleteTravel(travelID: number): void {
+    this.travelsService.deleteTravel(travelID).subscribe();
+  }
+
+  handleEditTravel(travelID: number): void {
+    this.travelsService.deleteTravel(travelID).subscribe();
   }
 }

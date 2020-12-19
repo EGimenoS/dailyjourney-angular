@@ -59,8 +59,8 @@ button {
   border: none;
 }
 
-.button-regular {
-  background-color: var(--accent);
+.button-regular,
+.button-warning {
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -78,6 +78,14 @@ button {
     background-color: var(--accent-lighter-color);
     cursor: not-allowed;
   }
+}
+
+.button-regular {
+  background-color: var(--accent);
+}
+
+.button-warning {
+  background-color: var(--warn);
 }
 
 // cancel button as cross icon for modals

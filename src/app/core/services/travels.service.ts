@@ -8,8 +8,6 @@ import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { Travel } from '../interfaces/travel';
 import { UiService } from './ui.service';
 import { ErrorsService } from './errors.service';
-import { AuthService } from './auth.service';
-import { UserSession } from '../interfaces/user-session';
 
 @Injectable({
   providedIn: 'root',
@@ -52,9 +50,10 @@ export class TravelsService {
       );
   }
 
-  deleteTravel(travelID): Observable<any> {
+  deleteTravel(travelID): Observable<null> {
     return this.http.delete<any>(`${this.url}/${travelID}`).pipe(
       tap((res) => this.setTravelsForCurrentUser()),
+      tap((res) => this.router.navigateByUrl('home')),
       tap(() => {
         this.uiService.openSnackBar({
           message: 'Viaje eliminado con éxito',

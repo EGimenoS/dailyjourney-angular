@@ -21,6 +21,10 @@
       </div>
     </div>
   </section>
+  <section *ngIf="isOwner(travel.owner.id)" class="owner-actions">
+    <button (click)="handleDeleteTravel(travel.id)" class="button-warn">Eliminar viaje</button>
+    <button (click)="handleEditTravel(travel.id)" class="button-regular">Editar viaje</button>
+  </section>
   <section class="travel-axis">
     <mat-icon class="place-icon">place</mat-icon>
     <div class="arrow">
