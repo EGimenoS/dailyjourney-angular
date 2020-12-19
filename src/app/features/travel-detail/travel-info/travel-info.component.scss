@@ -15,7 +15,6 @@
       order: -1;
       margin: 0 0.5rem 0 0;
       background: white;
-      border-radius: 50%;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       > img {
         vertical-align: middle;
@@ -135,13 +134,12 @@
       justify-content: space-between;
       .avatar {
         background: white;
-        border-radius: 50%;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         margin: 1rem;
         > img {
           vertical-align: middle;
-          width: 100px;
-          height: 100px;
+          width: 70px;
+          height: 70px;
         }
       }
 

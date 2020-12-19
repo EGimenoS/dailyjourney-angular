@@ -59,6 +59,28 @@ a {
   font-size: 2rem;
 }
 
+.non-visible-menu {
+  display: none;
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 1px;
+  }
+}
+.avatar {
+  margin-right: 0.2rem;
+  background: white;
+  border-radius: 50%;
+  > img {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+  }
+}
+
 @media (min-width: 768px) {
   mav {
     padding: 1rem 2rem;
@@ -86,17 +108,5 @@ a {
   .logo {
     font-size: 1.5rem;
     font-weight: 700;
-  }
-}
-
-.non-visible-menu {
-  display: none;
-}
-
-.with-icon {
-  display: flex;
-  align-items: center;
-  span {
-    margin-left: 1px;
   }
 }
