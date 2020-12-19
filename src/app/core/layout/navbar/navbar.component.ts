@@ -3,8 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { LoginComponent } from '../../components/login/login.component';
 import { RegisterComponent } from '../../components/register/register.component';
+import { Travel } from '../../interfaces/travel';
 import { UserSession } from '../../interfaces/user-session';
 import { AuthService } from '../../services/auth.service';
+import { TravelsService } from '../../services/travels.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +14,16 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  userTravels$: Observable<Travel[]>;
   showMenu: boolean;
   width: number;
   toggleButtonIcon = 'menu';
   currentUser: Observable<UserSession>;
-  constructor(public dialog: MatDialog, private authService: AuthService) {}
+  constructor(
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private travelsService: TravelsService
+  ) {}
 
   onResize(): void {
     this.width = window.innerWidth;
@@ -43,6 +50,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser;
+    this.userTravels$ = this.travelsService.getTravelsByUser();
     this.width = window.innerWidth;
     this.showMenu = this.width <= 768 ? false : true;
   }

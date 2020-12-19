@@ -15,6 +15,7 @@ import { ErrorsService } from './errors.service';
 })
 export class TravelsService {
   url = `${endpoint}/travels`;
+  profileUrl = `${endpoint}/profile_travels`;
   headers = new HttpHeaders({
     'Content-type': 'application/json',
   });
@@ -62,6 +63,15 @@ export class TravelsService {
   getTravelDetail(id: string): Observable<Travel[]> | Observable<null> {
     return this.http.get<Travel>(`${this.url}/${id}`).pipe(
       map((result) => [result]),
+      catchError((error: HttpErrorResponse) => {
+        this.errorsService.handleError(error, 'Obteniendo viajes');
+        return of(null);
+      })
+    );
+  }
+
+  getTravelsByUser(): Observable<Travel[]> | Observable<null> {
+    return this.http.get<Travel>(this.profileUrl).pipe(
       catchError((error: HttpErrorResponse) => {
         this.errorsService.handleError(error, 'Obteniendo viajes');
         return of(null);

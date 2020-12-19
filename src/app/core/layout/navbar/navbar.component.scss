@@ -24,6 +24,19 @@ nav {
   }
 }
 
+.user-travel {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  padding: 1rem;
+  span:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+  .avatar {
+    width: 20px;
+    height: 20px;
+  }
+}
 .logo {
   font-size: 1.5rem;
   font-weight: 700;

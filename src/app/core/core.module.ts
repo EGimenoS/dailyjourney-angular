@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
 // component imports
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -63,6 +64,7 @@ export function token(): string {
     MatMenuModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatDividerModule,
 
     JwtModule.forRoot({
       config: {

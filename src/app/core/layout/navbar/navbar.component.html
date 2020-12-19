@@ -28,9 +28,23 @@
         <ng-template #noAvatar><mat-icon>account_circle</mat-icon></ng-template>
         <span>{{ user.name }}</span>
       </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="onClickLogout()" mat-menu-item>Salir</button>
+        <button mat-menu-item>Ver Perfil</button>
+        <mat-divider></mat-divider>
+        <a
+          [routerLink]="['/travel-detail', travel.id]"
+          routerLinkActive="router-link-active"
+          class="user-travel"
+          *ngFor="let travel of userTravels$ | async"
+        >
+          <span
+            ><img class="avatar" [src]="travel.owner.avatar" [alt]="travel.owner.avatar"
+          /></span>
+          <span>{{ travel.departure_time | date: 'shortTime' }}</span>
+          <span>{{ travel.origin.address | slice: 0:25 }}</span>
+        </a>
+      </mat-menu>
     </li>
-    <mat-menu #menu="matMenu">
-      <button (click)="onClickLogout()" mat-menu-item>Salir</button>
-    </mat-menu>
   </ul>
 </nav>
