@@ -45,7 +45,7 @@ export class ParticipantsService {
         tap((res) => this.travelsService.setTravelsForCurrentUser()),
         tap(() => {
           this.uiService.openSnackBar({
-            message: 'Actualizado status del viajero con éxito',
+            message: 'Actualizado status del viajero con éxito 👍',
             class: 'success',
           });
         }),

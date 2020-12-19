@@ -56,7 +56,7 @@ export class TravelsService {
       tap((res) => this.router.navigateByUrl('home')),
       tap(() => {
         this.uiService.openSnackBar({
-          message: 'Viaje eliminado con éxito',
+          message: 'Viaje eliminado con éxito 🗑️',
           class: 'accent',
         });
       }),
