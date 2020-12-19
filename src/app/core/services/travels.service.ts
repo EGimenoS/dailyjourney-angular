@@ -49,6 +49,25 @@ export class TravelsService {
         })
       );
   }
+  updateTravel(id: number, payload: TravelPayload): Observable<Travel> | Observable<null> {
+    return this.http
+      .put<any>(`${this.url}/${id}`, payload, {
+        headers: this.headers,
+      })
+      .pipe(
+        tap((res) => this.router.navigateByUrl(`/travel-detail/${res.id}`)),
+        tap(() => {
+          this.uiService.openSnackBar({
+            message: 'Viaje actualizado con éxito! 🚗',
+            class: 'accent',
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.errorsService.handleError(error, 'Actualización de viaje');
+          return of(null);
+        })
+      );
+  }
 
   deleteTravel(travelID): Observable<null> {
     return this.http.delete<any>(`${this.url}/${travelID}`).pipe(

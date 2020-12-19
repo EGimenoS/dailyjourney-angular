@@ -1,9 +1,12 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Observable } from 'rxjs';
 import { debounceTime, filter, switchMap } from 'rxjs/operators';
 import { AutocompleteAddress } from 'src/app/core/interfaces/autocomplete-address';
+import { Travel } from 'src/app/core/interfaces/travel';
 import { AutocompleteAddresesService } from 'src/app/core/services/autocomplete-addreses.service';
 import { TravelsService } from 'src/app/core/services/travels.service';
 import { longlatPresence } from 'src/app/core/validators/longlat-presence';
@@ -14,6 +17,7 @@ import { longlatPresence } from 'src/app/core/validators/longlat-presence';
   styleUrls: ['./add-travel.component.scss'],
 })
 export class AddTravelComponent implements OnInit {
+  isUpdating = false;
   periodicityOptions = ['Diario', 'Semanal', 'Entre semana', 'Fin de semana'];
   newTravelGroupForm: FormGroup;
   validOriginAddreses: Observable<AutocompleteAddress[]>;
@@ -37,17 +41,21 @@ export class AddTravelComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private validAddreses: AutocompleteAddresesService,
-    private travelsService: TravelsService
+    private travelsService: TravelsService,
+    private route: ActivatedRoute
   ) {}
 
   onSubmit(): void {
-    console.log(this.newTravelGroupForm.value);
-    this.travelsService.createNewTravel(this.newTravelGroupForm.value).subscribe();
+    this.isUpdating
+      ? this.travelsService
+          .updateTravel(this.route.snapshot.params.id, this.newTravelGroupForm.value)
+          .subscribe()
+      : this.travelsService.createNewTravel(this.newTravelGroupForm.value).subscribe();
   }
   createNewTravelGroupForm(): FormGroup {
     return this.fb.group({
       origin_attributes: ['', [longlatPresence()]],
-      destination_attributes: '',
+      destination_attributes: ['', [longlatPresence()]],
       departure_time: ['', Validators.required],
       capacity: ['', Validators.required],
       periodicity: ['', Validators.required],
@@ -56,6 +64,11 @@ export class AddTravelComponent implements OnInit {
   }
   ngOnInit(): void {
     this.newTravelGroupForm = this.createNewTravelGroupForm();
+
+    if (this.route.snapshot.params.id) {
+      this.isUpdating = true;
+      this.fillForm(this.route.snapshot.params.id);
+    }
     this.validOriginAddreses = this.newTravelGroupForm.get('origin_attributes').valueChanges.pipe(
       debounceTime(300),
       filter((value) => value.length > 0),
@@ -73,5 +86,17 @@ export class AddTravelComponent implements OnInit {
     if (address) {
       return address.address;
     }
+  }
+
+  private fillForm(id: string): void {
+    this.travelsService.getTravelDetail(id).subscribe((travel: Travel) => {
+      this.newTravelGroupForm.patchValue({
+        ...travel[0],
+        origin_attributes: travel[0].origin,
+        destination_attributes: travel[0].destination,
+        departure_time: formatDate(travel[0].departure_time, 'hh:mm', 'en'),
+      });
+      console.log(this.newTravelGroupForm.value);
+    });
   }
 }

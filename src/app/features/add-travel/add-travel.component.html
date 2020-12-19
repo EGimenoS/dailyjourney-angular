@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Crea tu propio viaje</h2>
+  <h2>{{ isUpdating ? 'Actualiza tu viaje' : 'Crea tu propio viaje' }}</h2>
   <form [formGroup]="newTravelGroupForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <mat-form-field class="input" appearance="outline">
@@ -84,7 +84,7 @@
     </div>
     <div class="row">
       <button [disabled]="newTravelGroupForm.invalid" class="button-regular" type="submit">
-        Crear Viaje
+        {{ isUpdating ? 'Actualizar viaje' : 'Crear Viaje' }}
       </button>
     </div>
   </form>

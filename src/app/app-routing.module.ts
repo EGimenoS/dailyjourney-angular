@@ -20,6 +20,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'update-travel/:id',
+    loadChildren: () =>
+      import('./features/add-travel/add-travel.module').then((m) => m.AddTravelModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'travel-detail/:id',
     loadChildren: () =>
       import('./features/travel-detail/travel-detail.module').then((m) => m.TravelDetailModule),

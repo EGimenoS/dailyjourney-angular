@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Participant } from 'src/app/core/interfaces/participant';
@@ -36,7 +37,8 @@ export class TravelInfoComponent implements OnInit, OnChanges {
     private authService: AuthService,
     private participantsService: ParticipantsService,
     private userLocationService: UserLocationService,
-    private travelsService: TravelsService
+    private travelsService: TravelsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -88,6 +90,6 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   }
 
   handleEditTravel(travelID: number): void {
-    this.travelsService.deleteTravel(travelID).subscribe();
+    this.router.navigateByUrl(`/update-travel/${travelID}`);
   }
 }
