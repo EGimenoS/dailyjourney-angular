@@ -66,8 +66,8 @@ export class SearchAddresesFormComponent implements OnInit {
   }
   createSearchGroupForm(): FormGroup {
     return this.fb.group({
-      originInput: [this.userDestination, [longlatPresence()]],
-      destinationInput: [this.userOrigin, [longlatPresence()]],
+      originInput: [this.userOrigin, [longlatPresence()]],
+      destinationInput: [this.userDestination, [longlatPresence()]],
     });
   }
 

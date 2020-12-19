@@ -52,6 +52,22 @@ export class TravelsService {
       );
   }
 
+  deleteTravel(travelID): Observable<any> {
+    return this.http.delete<any>(`${this.url}/${travelID}`).pipe(
+      tap((res) => this.setTravelsForCurrentUser()),
+      tap(() => {
+        this.uiService.openSnackBar({
+          message: 'Viaje eliminado con éxito',
+          class: 'accent',
+        });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.errorsService.handleError(error, 'Borrar viaje');
+        return of(null);
+      })
+    );
+  }
+
   getTravelsNearOfDestination(lat, long): Observable<Travel[]> | Observable<null> {
     return this.http
       .get<Travel[]>(this.url, {

@@ -46,7 +46,7 @@
             ><img class="avatar" [src]="travel.owner.avatar" [alt]="travel.owner.avatar"
           /></span>
           <span>{{ travel.departure_time | date: 'shortTime' }}</span>
-          <span>{{ travel.origin.address | slice: 0:25 }}</span>
+          <span>{{ travel.destination.address | slice: 0:25 }}...</span>
         </a>
       </mat-menu>
     </li>
