@@ -28,22 +28,14 @@
       <div class="end"></div>
     </div>
     <mat-icon class="car-icon">directions_car</mat-icon>
-    <div *ngIf="userOrigin; else originAddress" class="origin-distance">
+    <div *ngIf="userOrigin" class="origin-distance">
       {{ calculateDistance(userOrigin, travel.origin) / 1000 }} km
     </div>
-
-    <ng-template #originAddress>
-      <div class="origin-address"><span></span>{{ travel.origin.address }}</div></ng-template
-    >
-    <div *ngIf="userDestination; else destinationAddress" class="destination-distance">
+    <div class="origin-address"><span></span>{{ travel.origin.address }}</div>
+    <div *ngIf="userDestination" class="destination-distance">
       {{ calculateDistance(userDestination, travel.destination) / 1000 }} km
     </div>
-
-    <ng-template #destinationAddress>
-      <div class="destination-address">
-        <span></span>{{ travel.destination.address }}
-      </div></ng-template
-    >
+    <div class="destination-address"><span></span>{{ travel.destination.address }}</div>
   </section>
   <section class="owner-comment">
     <h3>Comentario del conductor</h3>

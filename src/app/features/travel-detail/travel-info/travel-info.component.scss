@@ -52,8 +52,9 @@
   .travel-axis {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     position: relative;
+    margin-top: 35px;
     .arrow {
       display: flex;
       flex-basis: 100%;
@@ -88,21 +89,27 @@
     .destination-distance {
       max-width: 40%;
       position: absolute;
-      top: 35px;
-      background: white;
-      border-radius: 3px;
+      top: -35px;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 50px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       padding: 0.5rem;
       text-align: left;
     }
 
-    .origin-address,
-    .origin-distance {
+    .origin-address {
       left: 10px;
     }
-    .destination-address,
-    .destination-distance {
+    .destination-address {
       right: 10px;
+    }
+    .origin-distance {
+      left: 0px;
+    }
+
+    .destination-distance {
+      right: 0px;
     }
     .mat-icon {
       color: var(--accent);
@@ -171,6 +178,7 @@
       }
     }
     .travel-axis {
+      margin-top: 40px;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -212,21 +220,10 @@
       .destination-distance {
         max-width: 40%;
         position: absolute;
-        top: 35px;
-        background: white;
-        border-radius: 3px;
+        top: -35px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         padding: 0.5rem;
         text-align: left;
-      }
-
-      .origin-address,
-      .origin-distance {
-        left: 10px;
-      }
-      .destination-address,
-      .destination-distance {
-        right: 10px;
       }
       .mat-icon {
         color: var(--accent);
