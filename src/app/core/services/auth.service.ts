@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { UserSession } from '../interfaces/user-session';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { authEndpoint } from 'config';
 import { catchError, tap } from 'rxjs/operators';
 import { ApiResponse } from '../interfaces/api-response';

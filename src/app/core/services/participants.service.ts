@@ -4,6 +4,7 @@ import { endpoint } from 'config';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ErrorsService } from './errors.service';
+import { TravelsService } from './travels.service';
 import { UiService } from './ui.service';
 
 @Injectable({
@@ -17,11 +18,13 @@ export class ParticipantsService {
   constructor(
     private http: HttpClient,
     private uiService: UiService,
-    private errorsService: ErrorsService
+    private errorsService: ErrorsService,
+    private travelsService: TravelsService
   ) {}
 
   createNewParticipant(travelID: number): Observable<any> {
     return this.http.post<any>(this.url, { travel_id: travelID }, { headers: this.headers }).pipe(
+      tap((res) => this.travelsService.setTravelsForCurrentUser()),
       tap(() => {
         this.uiService.openSnackBar({
           message: 'Apuntado, esperando a confrmación del conductor',
@@ -39,6 +42,7 @@ export class ParticipantsService {
     return this.http
       .put<any>(`${this.url}/${participantID}`, { status }, { headers: this.headers })
       .pipe(
+        tap((res) => this.travelsService.setTravelsForCurrentUser()),
         tap(() => {
           this.uiService.openSnackBar({
             message: 'Actualizado status del viajero con éxito',
@@ -54,6 +58,7 @@ export class ParticipantsService {
 
   deleteParticipant(participantID): Observable<any> {
     return this.http.delete<any>(`${this.url}/${participantID}`).pipe(
+      tap((res) => this.travelsService.setTravelsForCurrentUser()),
       tap(() => {
         this.uiService.openSnackBar({
           message: 'Desapuntado del viaje con éxito',

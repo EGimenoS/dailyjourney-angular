@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser;
-    this.userTravels$ = this.travelsService.getTravelsByUser();
+    this.userTravels$ = this.travelsService.currentUserTravels;
     this.width = window.innerWidth;
     this.showMenu = this.width <= 768 ? false : true;
   }

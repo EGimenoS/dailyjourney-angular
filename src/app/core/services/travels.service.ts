@@ -1,14 +1,15 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { endpoint } from '../../../../config';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TravelPayload } from '../interfaces/travel-payload';
-import { ApiResponse } from '../interfaces/api-response';
 import { Router } from '@angular/router';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { Travel } from '../interfaces/travel';
 import { UiService } from './ui.service';
 import { ErrorsService } from './errors.service';
+import { AuthService } from './auth.service';
+import { UserSession } from '../interfaces/user-session';
 
 @Injectable({
   providedIn: 'root',
@@ -19,12 +20,16 @@ export class TravelsService {
   headers = new HttpHeaders({
     'Content-type': 'application/json',
   });
+  currentUserTravels: BehaviorSubject<Travel[]>;
   constructor(
     private http: HttpClient,
     private router: Router,
     private uiService: UiService,
     private errorsService: ErrorsService
-  ) {}
+  ) {
+    this.currentUserTravels = new BehaviorSubject<Travel[]>(null);
+    this.setTravelsForCurrentUser();
+  }
 
   createNewTravel(payload: TravelPayload): Observable<Travel> | Observable<null> {
     return this.http
@@ -32,6 +37,7 @@ export class TravelsService {
         headers: this.headers,
       })
       .pipe(
+        tap((res) => this.setTravelsForCurrentUser()),
         tap((res) => this.router.navigateByUrl(`/travel-detail/${res.id}`)),
         tap(() => {
           this.uiService.openSnackBar({
@@ -70,7 +76,11 @@ export class TravelsService {
     );
   }
 
-  getTravelsByUser(): Observable<Travel[]> | Observable<null> {
+  setTravelsForCurrentUser(): void {
+    this.getTravelsByUser().subscribe((travels) => this.currentUserTravels.next(travels));
+  }
+
+  private getTravelsByUser(): Observable<Travel[]> | Observable<null> {
     return this.http.get<Travel>(this.profileUrl).pipe(
       catchError((error: HttpErrorResponse) => {
         this.errorsService.handleError(error, 'Obteniendo viajes');
