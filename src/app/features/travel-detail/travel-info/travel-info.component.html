@@ -1,20 +1,24 @@
 <div class="container" *ngIf="travel$ | async as travel">
   <section class="main-info">
-    <p class="name">{{ travel.owner.name }}</p>
-    <div *ngIf="travel.owner.avatar" class="avatar">
-      <img [src]="travel.owner.avatar" [alt]="travel.owner.avatar" />
+    <div class="user-info">
+      <p class="name">{{ travel.owner.name }}</p>
+      <div *ngIf="travel.owner.avatar" class="avatar">
+        <img [src]="travel.owner.avatar" [alt]="travel.owner.avatar" />
+      </div>
     </div>
-    <div class="departure-time">
-      <mat-icon>schedule</mat-icon>{{ travel.departure_time | date: 'shortTime' }}
-    </div>
-    <div class="periodicity">
-      {{ travel.periodicity }}
-    </div>
-    <div class="capacity-info">
-      <span
-        ><mat-icon>supervisor_account</mat-icon
-        >{{ getApprovedParticipants(travel.participants) }}/{{ travel.capacity }}</span
-      >
+    <div class="travel-info">
+      <div class="departure-time">
+        <mat-icon>schedule</mat-icon>{{ travel.departure_time | date: 'shortTime' }}
+      </div>
+      <div class="periodicity">
+        {{ travel.periodicity }}
+      </div>
+      <div class="capacity-info">
+        <span
+          ><mat-icon>supervisor_account</mat-icon
+          >{{ getApprovedParticipants(travel.participants) }}/{{ travel.capacity }}</span
+        >
+      </div>
     </div>
   </section>
   <section class="travel-axis">

@@ -8,33 +8,44 @@
     font-size: 0.7rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    .name {
-      text-align: left;
-    }
-    .avatar {
-      order: -1;
-      margin: 0 0.5rem 0 0;
-      background: white;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      > img {
-        vertical-align: middle;
-        width: 50px;
-        height: 50px;
-      }
-    }
-  }
-  .departure-time {
-    display: flex;
-    align-items: center;
-  }
-  .capacity-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--accent);
-    span {
+    .user-info {
       display: flex;
       align-items: center;
+      .name {
+        text-align: left;
+      }
+      .avatar {
+        order: -1;
+        margin: 0 0.5rem 0 0;
+        background: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        > img {
+          vertical-align: middle;
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+    .travel-info {
+      display: flex;
+      align-items: center;
+      *:not(:last-child) {
+        margin-right: 1rem;
+      }
+      .departure-time {
+        display: flex;
+        align-items: center;
+      }
+      .capacity-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--accent);
+        span {
+          display: flex;
+          align-items: center;
+        }
+      }
     }
   }
 
@@ -132,27 +143,30 @@
       font-size: 1.4rem;
       font-weight: bolder;
       justify-content: space-between;
-      .avatar {
-        background: white;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        margin: 1rem;
-        > img {
-          vertical-align: middle;
-          width: 70px;
-          height: 70px;
+      .user-info {
+        .avatar {
+          background: white;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          margin: 1rem;
+          > img {
+            vertical-align: middle;
+            width: 70px;
+            height: 70px;
+          }
         }
       }
-
-      .capacity-info {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 1rem;
-
-        color: var(--accent);
-        span {
+      .travel-info {
+        .capacity-info {
           display: flex;
+          justify-content: center;
           align-items: center;
+          margin: 1rem;
+
+          color: var(--accent);
+          span {
+            display: flex;
+            align-items: center;
+          }
         }
       }
     }
