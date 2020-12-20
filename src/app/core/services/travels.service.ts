@@ -117,7 +117,6 @@ export class TravelsService {
   private getTravelsByUser(): Observable<Travel[]> | Observable<null> {
     return this.http.get<Travel>(this.profileUrl).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.errorsService.handleError(error, 'Obteniendo viajes');
         return of(null);
       })
     );

@@ -7,10 +7,6 @@ import { TravelsService } from './travels.service';
 })
 export class ProfileService {
   constructor(private authService: AuthService, private travelsService: TravelsService) {
-    this.authService.currentUser.subscribe((user) => {
-      if (user) {
-        this.travelsService.setTravelsForCurrentUser();
-      }
-    });
+    this.travelsService.setTravelsForCurrentUser();
   }
 }
