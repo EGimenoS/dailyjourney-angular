@@ -34,6 +34,7 @@ const routes: Routes = [
     path: 'user-profile/:id',
     loadChildren: () =>
       import('./features/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+    canActivate: [AuthGuard],
   },
 
   { path: '**', redirectTo: 'home' },
