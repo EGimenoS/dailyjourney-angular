@@ -30,6 +30,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/travel-detail/travel-detail.module').then((m) => m.TravelDetailModule),
   },
+  {
+    path: 'user-profile/:id',
+    loadChildren: () =>
+      import('./features/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+  },
+
   { path: '**', redirectTo: 'home' },
 ];
 

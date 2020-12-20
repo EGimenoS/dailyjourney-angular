@@ -18,7 +18,7 @@ import { longlatPresence } from 'src/app/core/validators/longlat-presence';
 })
 export class AddTravelComponent implements OnInit {
   isUpdating = false;
-  periodicityOptions = ['Diario', 'Semanal', 'Entre semana', 'Fin de semana'];
+  periodicityOptions = ['Diario L-D', 'Semanal', 'Entre semana L-V', 'Fin de semana S-D'];
   newTravelGroupForm: FormGroup;
   validOriginAddreses: Observable<AutocompleteAddress[]>;
   validDestinationAddreses: Observable<AutocompleteAddress[]>;

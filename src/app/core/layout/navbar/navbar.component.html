@@ -32,13 +32,12 @@
         <button class="menu-item" (click)="onClickLogout()" mat-menu-item>
           <mat-icon>exit_to_app</mat-icon> <span>Salir</span>
         </button>
-        <button class="menu-item" mat-menu-item>
+        <button [routerLink]="['/user-profile', user.id]" class="menu-item" mat-menu-item>
           <mat-icon>account_box</mat-icon> <span>Ver perfil</span>
         </button>
         <mat-divider></mat-divider>
         <a
           [routerLink]="['/travel-detail', travel.id]"
-          routerLinkActive="router-link-active"
           class="user-travel"
           *ngFor="let travel of userTravels$ | async"
         >
