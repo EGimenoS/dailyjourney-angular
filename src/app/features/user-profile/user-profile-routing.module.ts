@@ -5,9 +5,15 @@ import { PasswordComponent } from './password/password.component';
 import { UserProfileComponent } from './user-profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'user-profile/general', pathMatch: 'full' },
-  { path: '', component: GeneralComponent },
-  { path: '', component: PasswordComponent },
+  { path: '', redirectTo: 'general', pathMatch: 'full' },
+  {
+    path: '',
+    component: UserProfileComponent,
+    children: [
+      { path: 'general', component: GeneralComponent },
+      { path: 'password', component: PasswordComponent },
+    ],
+  },
 ];
 
 @NgModule({
