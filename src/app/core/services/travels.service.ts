@@ -26,7 +26,7 @@ export class TravelsService {
     private errorsService: ErrorsService
   ) {
     this.currentUserTravels = new BehaviorSubject<Travel[]>(null);
-    this.setTravelsForCurrentUser();
+    // this.setTravelsForCurrentUser();
   }
 
   createNewTravel(payload: TravelPayload): Observable<Travel> | Observable<null> {
