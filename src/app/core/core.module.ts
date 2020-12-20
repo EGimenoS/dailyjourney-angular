@@ -30,6 +30,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { MatButtonModule } from '@angular/material/button';
+import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
 
 export function token(): string {
   if (localStorage.getItem('currentUser')) {
@@ -77,6 +78,9 @@ export function token(): string {
     }),
   ],
   exports: [MainLayoutComponent],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true },
+  ],
 })
 export class CoreModule {}
