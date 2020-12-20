@@ -17,6 +17,10 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
   constructor(private router: Router, private dialog: MatDialog) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (request.url.includes('profile_travels')) {
+      console.log('aqui');
+      return next.handle(request);
+    }
     return next.handle(request).pipe(
       tap(
         () => {},
@@ -25,6 +29,7 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
             if (err.status !== 401) {
               return;
             }
+
             this.dialog.open(LoginComponent, { minWidth: '30%' });
           }
         }
