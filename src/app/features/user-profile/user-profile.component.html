@@ -1,2 +1,19 @@
-<div class="container">Hola soy el sidenav</div>
-<router-outlet></router-outlet>
+<div class="container">
+  <h2>Editar mis datos de perfil</h2>
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      class="hover:text-accent"
+      [disabled]="link.disabled"
+    >
+      {{ link.label }} <mat-icon class="tab-icon">{{ link.icon }}</mat-icon>
+    </a>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
