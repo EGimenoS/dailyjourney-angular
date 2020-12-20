@@ -1,1 +1,31 @@
-<p>general works!</p>
+<div class="container">
+  <section class="description">
+    <h3>Perfil</h3>
+    <p>Actualiza tu nombre y avatar</p>
+  </section>
+  <mat-divider class="divider"></mat-divider>
+  <form (ngSubmit)="onSubmit()" [formGroup]="editUserForm">
+    <mat-form-field class="input" appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input class="input" type="string" matInput formControlName="name" />
+      <mat-error *ngIf="editUserForm.controls['name'].hasError('required')">
+        Nombre de usuario requerido
+      </mat-error>
+      <mat-error *ngIf="editUserForm.controls['name'].hasError('minlength')">
+        El nombre de usuario es demasiado corto
+      </mat-error>
+    </mat-form-field>
+    <div class="avatar">
+      <img [src]="currentUser.avatar" [alt]="currentUser.avatar" />
+      <a mat-button href="https://gravatar.com/" target="_blank">Actualizalo en Gravatar</a>
+    </div>
+    <div>
+      <button type="submit" [disabled]="editUserForm.invalid" class="button-regular">
+        Actualizar
+      </button>
+      <button mat-dialog-close class="cross-cancel-button" type="button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

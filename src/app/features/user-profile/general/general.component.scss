@@ -1,0 +1,39 @@
+.container {
+  position: relative;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  .description {
+    margin-bottom: 1rem;
+  }
+  form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .input {
+      width: 90%;
+    }
+
+    .avatar {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+
+      > a {
+        margin-left: 1rem;
+        border: 1px solid var(--primary-lighter-color);
+        color: var(--primary-color);
+      }
+    }
+  }
+}

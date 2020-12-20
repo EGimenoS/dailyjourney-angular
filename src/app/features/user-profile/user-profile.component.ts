@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -30,7 +31,7 @@ export class UserProfileComponent implements OnInit {
         index: 0,
       },
       {
-        label: 'Data',
+        label: 'Password',
         path: './password',
         icon: 'vpn_key',
         disabled: false,

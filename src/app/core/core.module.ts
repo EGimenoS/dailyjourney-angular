@@ -29,6 +29,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { MatButtonModule } from '@angular/material/button';
 
 export function token(): string {
   if (localStorage.getItem('currentUser')) {
@@ -65,6 +66,7 @@ export function token(): string {
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatButtonModule,
 
     JwtModule.forRoot({
       config: {

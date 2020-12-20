@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { getFormValidationErrors } from 'src/app/shared/utilities/get-form-validation-errors';
 import { UsersService } from '../../services/users.service';
 import { mustMatch } from '../../validators/must-match';
 

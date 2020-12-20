@@ -10,6 +10,7 @@ import { UserCredentials } from '../interfaces/user-credentials';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorsService } from './errors.service';
 import { UiService } from './ui.service';
+import { TravelsService } from './travels.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,8 @@ export class AuthService {
     public jwtHelper: JwtHelperService,
     private dialog: MatDialog,
     private errorsService: ErrorsService,
-    private uiService: UiService
+    private uiService: UiService,
+    private travelsService: TravelsService
   ) {
     this.currentUserSubject = new BehaviorSubject<UserSession>(this.initializeUser());
     this.currentUser = this.currentUserSubject.asObservable();
@@ -55,6 +57,7 @@ export class AuthService {
           this.setUser(token);
           this.dialog.closeAll();
         }),
+        tap(() => this.travelsService.setTravelsForCurrentUser()),
         tap(() => {
           this.uiService.openSnackBar({
             message: 'Bienvenido de nuevo! 😀',
@@ -76,6 +79,7 @@ export class AuthService {
       message: 'Hasta pronto! 👋',
       class: 'success',
     });
+    this.travelsService.setTravelsForCurrentUser();
   }
 
   public setUser(token): void {
