@@ -62,10 +62,10 @@ export class UsersService {
         observe: 'response' as const,
       })
       .pipe(
-        // tap((response) => {
-        //   const token = response.headers.get('Access-Token');
-        //   this.authService.setUser(token);
-        // }),
+        tap((response) => {
+          const token = response.headers.get('Access-Token');
+          this.authService.setUser(token);
+        }),
         tap(() =>
           this.uiService.openSnackBar({
             message: `${payload.name} actualizado con éxito 😃`,

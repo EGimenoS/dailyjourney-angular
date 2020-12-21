@@ -15,9 +15,7 @@ export class LoadingInterceptor implements HttpInterceptor {
   constructor(private uiService: UiService) {}
   excludedEndpoints = ['search_address', 'chat_messages', 'profile_travels'];
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('url:', request.url);
     if (this.excludedEndpoints.some((url) => request.url.includes(url))) {
-      console.log('excluded');
       return next.handle(request);
     }
     console.log('included');
