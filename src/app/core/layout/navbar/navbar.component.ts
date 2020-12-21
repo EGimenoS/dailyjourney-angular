@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { concatMap, first, mergeMap, tap } from 'rxjs/operators';
 import { LoginComponent } from '../../components/login/login.component';
 import { RegisterComponent } from '../../components/register/register.component';
 import { Travel } from '../../interfaces/travel';
@@ -15,10 +16,12 @@ import { TravelsService } from '../../services/travels.service';
 })
 export class NavbarComponent implements OnInit {
   userTravels$: Observable<Travel[]>;
+  userTravels: Travel[];
   showMenu: boolean;
   width: number;
   toggleButtonIcon = 'menu';
-  currentUser: Observable<UserSession>;
+  currentUser$: Observable<UserSession>;
+  currentUser: UserSession;
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
@@ -49,8 +52,25 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.currentUser;
-    this.userTravels$ = this.travelsService.currentUserTravels;
+    this.currentUser$ = this.authService.currentUser;
+    // this.currentUser$.subscribe((user) => {
+    //   this.currentUser = user;
+    //   this.travelsService.currentUserTravels.subscribe((travels) => (this.userTravels = travels));
+    // });
+    this.currentUser$
+      .pipe(
+        tap((user) => (this.currentUser = user)),
+        concatMap((user) => {
+          if (user) {
+            this.travelsService.setTravelsForCurrentUser();
+            return this.travelsService.currentUserTravels;
+          } else {
+            return of(null);
+          }
+        })
+      )
+      .subscribe((travels) => (this.userTravels = travels));
+
     this.width = window.innerWidth;
     this.showMenu = this.width <= 768 ? false : true;
   }

@@ -18,7 +18,6 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.url.includes('profile_travels')) {
-      console.log('aqui');
       return next.handle(request);
     }
     return next.handle(request).pipe(

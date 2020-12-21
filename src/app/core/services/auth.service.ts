@@ -79,7 +79,6 @@ export class AuthService {
       message: 'Hasta pronto! 👋',
       class: 'success',
     });
-    // this.travelsService.setTravelsForCurrentUser();
   }
 
   public setUser(token): void {

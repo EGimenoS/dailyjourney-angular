@@ -4,10 +4,10 @@
     <mat-icon class="bg-icon">{{ toggleButtonIcon }}</mat-icon>
   </span>
   <ul [ngStyle]="{ display: showMenu ? 'flex' : 'none' }" class="menu">
-    <li *ngIf="!(currentUser | async)" class="item">
+    <li *ngIf="!currentUser" class="item">
       <a (click)="openRegisterDialog()">Registrarse</a>
     </li>
-    <li *ngIf="!(currentUser | async)" class="item">
+    <li *ngIf="!currentUser" class="item">
       <a (click)="openLoginDialog()">Acceder</a>
     </li>
     <li class="item">
@@ -20,7 +20,7 @@
         ><mat-icon>add_circle_outline</mat-icon> <span>Nuevo Viaje</span></a
       >
     </li>
-    <li class="item" *ngIf="currentUser | async as user">
+    <li class="item" *ngIf="currentUser as user">
       <button [matMenuTriggerFor]="menu" class="with-icon">
         <div class="avatar" *ngIf="user.avatar; else noAvatar">
           <img class="avatar" [src]="user.avatar" [alt]="user.avatar" />
@@ -39,7 +39,7 @@
         <a
           [routerLink]="['/travel-detail', travel.id]"
           class="user-travel"
-          *ngFor="let travel of userTravels$ | async"
+          *ngFor="let travel of userTravels"
         >
           <span
             ><img class="avatar" [src]="travel.owner.avatar" [alt]="travel.owner.avatar"
