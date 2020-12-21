@@ -12,6 +12,7 @@ import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 })
 export class SearchResultsComponent implements OnInit {
   travels$: Observable<Travel[]>;
+  travels: Travel[];
   userOrigin: GeoPosition;
   userDestination: GeoPosition;
   travelToAnimate: number;
@@ -29,10 +30,9 @@ export class SearchResultsComponent implements OnInit {
         latitude: params.destination_latitude,
         longitude: params.destination_longitude,
       };
-      this.travels$ = this.travelsService.getTravelsNearOfDestination(
-        params.destination_latitude,
-        params.destination_longitude
-      );
+      this.travelsService
+        .getTravelsNearOfDestination(params.destination_latitude, params.destination_longitude)
+        .subscribe((travels) => (this.travels = travels));
     });
   }
   handleClickedMarker(id): void {

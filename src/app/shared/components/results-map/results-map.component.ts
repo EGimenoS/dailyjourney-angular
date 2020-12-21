@@ -10,7 +10,6 @@ import {
   featureGroup,
 } from 'leaflet';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Travel } from 'src/app/core/interfaces/travel';
 import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 
@@ -21,6 +20,7 @@ import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 })
 export class ResultsMapComponent implements OnInit, OnChanges {
   @Input() travels$: Observable<Travel[]>;
+  @Input() travels: Travel[];
   @Input() userOrigin: GeoPosition;
   @Input() userDestination: GeoPosition;
   originMarkers$: Observable<Marker[]>;
@@ -37,25 +37,17 @@ export class ResultsMapComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.travels$
-      .pipe(
-        map((travels) => {
-          return travels.map((travel) =>
-            this.addDestinationMarker(
-              travel.destination.latitude,
-              travel.destination.longitude,
-              travel.origin.address,
-              travel.id
-            )
-          );
-        })
-      )
-      .subscribe((markers) => {
-        this.markers = markers;
-        if (markers.length > 0) {
-          this.mapFitToBounds = featureGroup(this.markers).getBounds();
-        }
-      });
+    this.markers = this.travels.map((travel) => {
+      return this.addDestinationMarker(
+        travel.destination.latitude,
+        travel.destination.longitude,
+        travel.origin.address,
+        travel.id
+      );
+    });
+    if (this.markers.length > 0) {
+      this.mapFitToBounds = featureGroup(this.markers).getBounds();
+    }
   }
 
   addDestinationMarker(lat, long, address, id): Marker {

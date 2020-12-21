@@ -8,15 +8,15 @@
       [userOrigin]="userOrigin"
       [userDestination]="userDestination"
       [travelToAnimate]="travelToAnimate"
-      [travels$]="travels$"
+      [travels]="travels"
     ></app-results-list>
   </div>
-  <div class="right-side">
+  <div *ngIf="travels?.length > 0" class="right-side">
     <app-results-map
       (propagateTravelId)="handleClickedMarker($event)"
       [userOrigin]="userOrigin"
       [userDestination]="userDestination"
-      [travels$]="travels$"
+      [travels]="travels"
     ></app-results-map>
   </div>
 </div>

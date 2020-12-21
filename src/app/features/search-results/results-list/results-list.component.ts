@@ -13,6 +13,7 @@ export class ResultsListComponent implements OnInit, OnChanges {
   @Input() travelToAnimate: number;
   @Input() userOrigin: GeoPosition;
   @Input() userDestination: GeoPosition;
+  @Input() travels: Travel[];
   constructor() {}
 
   ngOnInit(): void {}

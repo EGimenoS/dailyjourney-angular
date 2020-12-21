@@ -1,4 +1,4 @@
-<div *ngIf="travels$ | async as travels" class="container">
+<div *ngIf="travels" class="container">
   <h2 *ngIf="travels.length; else notTravels">Viajes cerca de tu destino</h2>
   <ng-template #notTravels> <h2>No hay viajes cerca de tu destino</h2> </ng-template>
   <div

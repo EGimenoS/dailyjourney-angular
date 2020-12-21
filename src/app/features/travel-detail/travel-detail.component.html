@@ -6,6 +6,6 @@
     ></app-travel-info>
   </div>
   <div class="right-side">
-    <app-results-map [travels$]="travel$"></app-results-map>
+    <app-results-map *ngIf="travel" [travels]="travel"></app-results-map>
   </div>
 </div>

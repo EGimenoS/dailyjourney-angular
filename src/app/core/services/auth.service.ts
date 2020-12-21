@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorsService } from './errors.service';
 import { UiService } from './ui.service';
 import { TravelsService } from './travels.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,8 @@ export class AuthService {
     private dialog: MatDialog,
     private errorsService: ErrorsService,
     private uiService: UiService,
-    private travelsService: TravelsService
+    private travelsService: TravelsService,
+    private router: Router
   ) {
     this.currentUserSubject = new BehaviorSubject<UserSession>(this.initializeUser());
     this.currentUser = this.currentUserSubject.asObservable();
@@ -79,6 +81,7 @@ export class AuthService {
       message: 'Hasta pronto! 👋',
       class: 'success',
     });
+    this.router.navigateByUrl('/home');
   }
 
   public setUser(token): void {

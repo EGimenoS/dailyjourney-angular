@@ -12,6 +12,7 @@ import { TravelsService } from 'src/app/core/services/travels.service';
 })
 export class TravelDetailComponent implements OnInit {
   travel$: Observable<Travel[]>;
+  travel: Travel[];
   travelID: string;
   toggle = false;
   constructor(private travelsService: TravelsService, private route: ActivatedRoute) {}
@@ -19,9 +20,14 @@ export class TravelDetailComponent implements OnInit {
   ngOnInit(): void {
     this.travelID = this.route.snapshot.paramMap.get('id');
     this.travel$ = this.travelsService.getTravelDetail(this.travelID);
+    this.travelsService
+      .getTravelDetail(this.travelID)
+      .subscribe((travel) => (this.travel = travel));
   }
 
   fetchDataFromServer(): void {
-    this.travel$ = this.travelsService.getTravelDetail(this.travelID);
+    this.travelsService
+      .getTravelDetail(this.travelID)
+      .subscribe((travel) => (this.travel = travel));
   }
 }
