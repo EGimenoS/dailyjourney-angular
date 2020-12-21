@@ -13,11 +13,14 @@ import { UiService } from '../services/ui.service';
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
   constructor(private uiService: UiService) {}
-
+  excludedEndpoints = ['search_address', 'chat_messages', 'profile_travels'];
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (request.url.includes('search_address')) {
+    console.log('url:', request.url);
+    if (this.excludedEndpoints.some((url) => request.url.includes(url))) {
+      console.log('excluded');
       return next.handle(request);
     }
+    console.log('included');
     this.uiService.setLoading(true, request.url);
     return next.handle(request).pipe(
       tap((evt: HttpEvent<any>) => {
