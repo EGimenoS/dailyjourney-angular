@@ -11,7 +11,10 @@ export class UserLocationService {
   private userDestinationSubject: BehaviorSubject<GeoPosition>;
   public userDestination: Observable<GeoPosition>;
 
+  public deviceLocation: Observable<any>;
+
   constructor() {
+    this.checkDeviceLocation();
     this.userOriginSubject = new BehaviorSubject<GeoPosition>(null);
     this.userOrigin = this.userOriginSubject.asObservable();
     this.userDestinationSubject = new BehaviorSubject<GeoPosition>(null);
@@ -24,5 +27,25 @@ export class UserLocationService {
 
   public setUserDestination(position: GeoPosition): void {
     this.userDestinationSubject.next(position);
+  }
+
+  private checkDeviceLocation(): void {
+    if ('geolocation' in navigator) {
+      this.deviceLocation = this.getPosition();
+    } else {
+      this.deviceLocation = null;
+    }
+  }
+
+  private getPosition(): Observable<any> {
+    return new Observable((observer) => {
+      window.navigator.geolocation.getCurrentPosition(
+        (position) => {
+          observer.next(position);
+          observer.complete();
+        },
+        (error) => observer.error(error)
+      );
+    });
   }
 }

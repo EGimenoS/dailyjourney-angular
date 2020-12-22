@@ -5,6 +5,7 @@ import { AutocompleteAddress } from '../interfaces/autocomplete-address';
 import { endpoint } from '../../../../config';
 import { catchError } from 'rxjs/operators';
 import { ErrorsService } from './errors.service';
+import { UserLocationService } from './user-location.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,20 @@ import { ErrorsService } from './errors.service';
 export class AutocompleteAddresesService {
   url = `${endpoint}/search_addresses`;
   defaultAt = '39.48728,-0.36593';
-  constructor(private http: HttpClient, private errorsService: ErrorsService) {}
+  position: any = null;
+  constructor(
+    private http: HttpClient,
+    private errorsService: ErrorsService,
+    private userLocationService: UserLocationService
+  ) {
+    this.userLocationService.deviceLocation.subscribe(
+      (location) => (this.position = `${location.coords.latitude},${location.coords.longitude}`)
+    );
+  }
 
-  getValidAddreses(query: string, at: string = this.defaultAt): Observable<AutocompleteAddress[]> {
+  getValidAddreses(query: string): Observable<AutocompleteAddress[]> {
+    const at = this.position || this.defaultAt;
+    console.log(at);
     return this.http
       .get<AutocompleteAddress[]>(this.url, { params: { q: query, at } })
       .pipe(
