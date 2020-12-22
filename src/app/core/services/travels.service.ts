@@ -8,6 +8,7 @@ import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { Travel } from '../interfaces/travel';
 import { UiService } from './ui.service';
 import { ErrorsService } from './errors.service';
+import { UserLocationService } from './user-location.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,6 @@ export class TravelsService {
     private errorsService: ErrorsService
   ) {
     this.currentUserTravels = new BehaviorSubject<Travel[]>(null);
-    // this.setTravelsForCurrentUser();
   }
 
   createNewTravel(payload: TravelPayload): Observable<Travel> | Observable<null> {
