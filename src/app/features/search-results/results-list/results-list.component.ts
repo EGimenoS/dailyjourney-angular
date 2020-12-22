@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Participant } from 'src/app/core/interfaces/participant';
 import { Travel } from 'src/app/core/interfaces/travel';
 import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 
@@ -21,5 +22,9 @@ export class ResultsListComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     console.log('change detected: ', this.travelToAnimate);
+  }
+
+  getNumberOfApprovedParticipants(participants: Participant[]): number {
+    return participants.filter((participant) => participant.status === 'approved').length;
   }
 }

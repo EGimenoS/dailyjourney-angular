@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { concatMap, first, mergeMap, tap } from 'rxjs/operators';
+import { uniqify } from 'src/app/shared/utilities/uniqify';
 import { LoginComponent } from '../../components/login/login.component';
 import { RegisterComponent } from '../../components/register/register.component';
 import { Travel } from '../../interfaces/travel';
@@ -53,23 +54,19 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser$ = this.authService.currentUser;
-    // this.currentUser$.subscribe((user) => {
-    //   this.currentUser = user;
-    //   this.travelsService.currentUserTravels.subscribe((travels) => (this.userTravels = travels));
-    // });
     this.currentUser$
       .pipe(
-        tap((user) => (this.currentUser = user)),
+        tap((user: UserSession) => (this.currentUser = user)),
         concatMap((user) => {
           if (user) {
             this.travelsService.setTravelsForCurrentUser();
             return this.travelsService.currentUserTravels;
           } else {
-            return of(null);
+            return of([]);
           }
         })
       )
-      .subscribe((travels) => (this.userTravels = travels));
+      .subscribe((travels: Travel[]) => (this.userTravels = uniqify(travels, 'id')));
 
     this.width = window.innerWidth;
     this.showMenu = this.width <= 768 ? false : true;

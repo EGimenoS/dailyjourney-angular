@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { mergeMap, tap } from 'rxjs/operators';
 import { Travel } from 'src/app/core/interfaces/travel';
 import { TravelsService } from 'src/app/core/services/travels.service';
 
@@ -15,9 +16,11 @@ export class TravelDetailComponent implements OnInit {
   constructor(private travelsService: TravelsService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.travelID = this.route.snapshot.paramMap.get('id');
-    this.travelsService
-      .getTravelDetail(this.travelID)
+    this.route.params
+      .pipe(
+        tap((params) => (this.travelID = params.id)),
+        mergeMap((params) => this.travelsService.getTravelDetail(this.travelID))
+      )
       .subscribe((travel) => (this.travel = travel));
   }
 
