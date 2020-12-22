@@ -18,7 +18,6 @@ export class LoadingInterceptor implements HttpInterceptor {
     if (this.excludedEndpoints.some((url) => request.url.includes(url))) {
       return next.handle(request);
     }
-    console.log('included');
     this.uiService.setLoading(true, request.url);
     return next.handle(request).pipe(
       tap((evt: HttpEvent<any>) => {

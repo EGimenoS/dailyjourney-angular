@@ -9,11 +9,12 @@ import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
   styleUrls: ['./results-list.component.scss'],
 })
 export class ResultsListComponent implements OnInit, OnChanges {
-  @Input() travels$: Observable<Travel[]>;
   @Input() travelToAnimate: number;
   @Input() userOrigin: GeoPosition;
   @Input() userDestination: GeoPosition;
   @Input() travels: Travel[];
+  @Input() isSearching: boolean;
+
   constructor() {}
 
   ngOnInit(): void {}

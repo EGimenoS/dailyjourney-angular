@@ -16,10 +16,12 @@ export class SearchResultsComponent implements OnInit {
   userOrigin: GeoPosition;
   userDestination: GeoPosition;
   travelToAnimate: number;
+  isSearching: boolean;
   constructor(private travelsService: TravelsService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
+      this.isSearching = Object.keys(params).length === 0 ? false : true;
       this.userOrigin = {
         address: params.origin_address,
         latitude: params.origin_latitude,
