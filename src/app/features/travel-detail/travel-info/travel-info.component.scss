@@ -137,6 +137,10 @@
   .chat {
     flex: 1;
   }
+
+  .participants {
+    margin-top: 1rem;
+  }
   .participant {
     display: flex;
     flex-direction: column;
@@ -256,6 +260,7 @@
     }
 
     .participants {
+      margin-top: 1rem;
       flex-basis: 40%;
     }
 

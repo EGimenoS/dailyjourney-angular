@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="left-side">
+  <div *ngIf="travel" class="left-side">
     <app-travel-info
-      [travels$]="travel$"
+      [travel]="travel[0]"
       (fetchDataFromServer)="fetchDataFromServer()"
     ></app-travel-info>
   </div>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Travel } from 'src/app/core/interfaces/travel';
-import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 import { TravelsService } from 'src/app/core/services/travels.service';
 
 @Component({
@@ -11,7 +9,6 @@ import { TravelsService } from 'src/app/core/services/travels.service';
   styleUrls: ['./travel-detail.component.scss'],
 })
 export class TravelDetailComponent implements OnInit {
-  travel$: Observable<Travel[]>;
   travel: Travel[];
   travelID: string;
   toggle = false;
@@ -19,7 +16,6 @@ export class TravelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.travelID = this.route.snapshot.paramMap.get('id');
-    this.travel$ = this.travelsService.getTravelDetail(this.travelID);
     this.travelsService
       .getTravelDetail(this.travelID)
       .subscribe((travel) => (this.travel = travel));

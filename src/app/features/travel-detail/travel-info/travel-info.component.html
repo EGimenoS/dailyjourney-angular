@@ -1,4 +1,4 @@
-<div class="container" *ngIf="travel$ | async as travel">
+<div class="container" *ngIf="travel">
   <section class="main-info">
     <div class="user-info">
       <p class="name">{{ travel.owner.name }}</p>
@@ -16,7 +16,7 @@
       <div class="capacity-info">
         <span
           ><mat-icon>supervisor_account</mat-icon
-          >{{ getApprovedParticipants(travel.participants) }}/{{ travel.capacity }}</span
+          >{{ getNumberOfApprovedParticipants(travel.participants) }}/{{ travel.capacity }}</span
         >
       </div>
     </div>
@@ -50,7 +50,7 @@
     <p>{{ travel.owner_comment }}</p>
   </section>
   <div class="row">
-    <section class="chat">
+    <section *ngIf="showChat()" class="chat">
       <app-chat [travelID]="travel.id"></app-chat>
     </section>
     <section class="participants">

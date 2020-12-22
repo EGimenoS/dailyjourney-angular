@@ -21,7 +21,7 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   currentUser: UserSession;
   userOrigin: GeoPosition;
   userDestination: GeoPosition;
-  @Input() travels$: Observable<Travel[]>;
+  @Input() travel: Travel;
   @Output() fetchDataFromServer = new EventEmitter();
 
   statusTranslations = {
@@ -32,7 +32,6 @@ export class TravelInfoComponent implements OnInit, OnChanges {
 
   change: boolean;
 
-  travel$: Observable<Travel>;
   constructor(
     private authService: AuthService,
     private participantsService: ParticipantsService,
@@ -47,12 +46,9 @@ export class TravelInfoComponent implements OnInit, OnChanges {
     this.userLocationService.userDestination.subscribe(
       (location) => (this.userDestination = location)
     );
-    this.travel$ = this.travels$.pipe(map((travel) => travel[0]));
   }
 
-  ngOnChanges(): void {
-    this.travel$ = this.travels$.pipe(map((travel) => travel[0]));
-  }
+  ngOnChanges(): void {}
 
   onRegisterToTravelClick(travelId: number): void {
     this.participantsService
@@ -77,11 +73,18 @@ export class TravelInfoComponent implements OnInit, OnChanges {
     return this.currentUser?.id === ownerID ? true : false;
   }
 
+  showChat(): boolean {
+    return (
+      this.isOwner(this.travel.owner.id) ||
+      this.userTravelStatus(this.travel.participants) === 'approved'
+    );
+  }
+
   calculateDistance(userPoint, travelPoint): number {
     return calculateDistance(userPoint, travelPoint);
   }
 
-  getApprovedParticipants(participants: Participant[]): number {
+  getNumberOfApprovedParticipants(participants: Participant[]): number {
     return participants.filter((participant) => participant.status === 'approved').length;
   }
 
