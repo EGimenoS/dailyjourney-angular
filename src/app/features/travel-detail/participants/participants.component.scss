@@ -5,7 +5,6 @@ table {
   box-shadow: var(--box-shadow);
   width: 100%;
   text-indent: 0;
-  border-color: inherit;
   background-color: white;
   thead {
     background-color: rgba(243, 244, 246, 1);
@@ -29,68 +28,76 @@ table {
     background-color: rgba(255, 255, 255, 1);
     vertical-align: middle;
     td {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
+      padding-left: 0.3rem;
+      padding-right: 0.3rem;
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       font-size: 0.7rem;
       border-bottom: 1px solid rgba(229, 231, 235, 1);
     }
-  }
-}
-
-.status-approved,
-.status-pending,
-.status-rejected {
-  padding: 0.2rem 0.4rem;
-  display: inline-block;
-  line-height: 1.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 9999px;
-}
-
-.status-pending {
-  color: rgb(60, 73, 12);
-  background-color: rgb(217, 224, 147, 1);
-}
-
-.status-approved {
-  background-color: rgba(209, 250, 229, 1);
-  color: rgba(6, 95, 70, 1);
-}
-
-.status-rejected {
-  background-color: rgb(218, 127, 115);
-  color: rgb(92, 36, 11);
-}
-
-.actions {
-  span:first-child {
-    margin-right: 1rem;
-  }
-  .button-approve,
-  .button-reject {
-    font-size: 0.4rem;
-    color: white;
-    border-radius: 50%;
-    padding: 0.3rem;
-    margin-bottom: 0.3rem;
-    transition: all 0.5s;
-    margin-right: 0.7rem;
-  }
-
-  .button-approve {
-    background-color: var(--success);
-    &:hover {
-      background-color: var(--success-lighter-color);
+    .user {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      > .avatar {
+        display: none;
+      }
     }
   }
 
-  .button-reject {
-    background-color: var(--warn);
-    &:hover {
-      background-color: var(--warn-lighter-color);
+  .status-approved,
+  .status-pending,
+  .status-rejected {
+    padding: 0.2rem 0.4rem;
+    display: inline-block;
+    line-height: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+  }
+
+  .status-pending {
+    color: rgb(60, 73, 12);
+    background-color: rgb(217, 224, 147, 1);
+  }
+
+  .status-approved {
+    background-color: rgba(209, 250, 229, 1);
+    color: rgba(6, 95, 70, 1);
+  }
+
+  .status-rejected {
+    background-color: rgb(218, 127, 115);
+    color: rgb(92, 36, 11);
+  }
+
+  .actions {
+    span:first-child {
+      margin-right: 1rem;
+    }
+    .button-approve,
+    .button-reject {
+      font-size: 0.4rem;
+      color: white;
+      border-radius: 50%;
+      padding: 0.3rem;
+      margin-bottom: 0.3rem;
+      transition: all 0.5s;
+      margin-right: 0.7rem;
+    }
+
+    .button-approve {
+      background-color: var(--success);
+      &:hover {
+        background-color: var(--success-lighter-color);
+      }
+    }
+
+    .button-reject {
+      background-color: var(--warn);
+      &:hover {
+        background-color: var(--warn-lighter-color);
+      }
     }
   }
 }
@@ -115,6 +122,22 @@ table {
         padding-top: 1rem;
         padding-bottom: 1rem;
         font-size: 1rem;
+      }
+      .user {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        > .avatar {
+          display: block;
+          margin-right: 0.4rem;
+          background: white;
+          border-radius: 50%;
+          > img {
+            vertical-align: middle;
+            width: 40px;
+            height: 45px;
+          }
+        }
       }
     }
   }

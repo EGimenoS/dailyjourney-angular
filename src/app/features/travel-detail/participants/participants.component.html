@@ -36,7 +36,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let participant of participants">
-        <td>{{ participant.user_name }}</td>
+        <td>
+          <div class="user">
+            <div class="avatar"><img [src]="participant.avatar" alt="" /></div>
+            <div>
+              {{ participant.user_name }}
+            </div>
+          </div>
+        </td>
         <td>
           <span [ngClass]="participantStatusTranslation[participant.status].class">{{
             participantStatusTranslation[participant.status].label
