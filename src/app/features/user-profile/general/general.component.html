@@ -23,7 +23,7 @@
       <button type="submit" [disabled]="editUserForm.invalid" class="button-regular">
         Actualizar
       </button>
-      <button mat-dialog-close class="cross-cancel-button" type="button">
+      <button (click)="handleCloseMenuClick()" class="cross-cancel-button" type="button">
         <mat-icon>close</mat-icon>
       </button>
     </div>

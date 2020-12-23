@@ -3,6 +3,7 @@ import { UserSession } from 'src/app/core/interfaces/user-session';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/core/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-general',
@@ -15,7 +16,8 @@ export class GeneralComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router
   ) {}
 
   onSubmit(): void {
@@ -32,5 +34,9 @@ export class GeneralComponent implements OnInit {
       name: [this.currentUser.name, [Validators.required, Validators.minLength(10)]],
       avatar: [this.currentUser.avatar || ''],
     });
+  }
+
+  handleCloseMenuClick(): void {
+    this.router.navigateByUrl('home');
   }
 }
