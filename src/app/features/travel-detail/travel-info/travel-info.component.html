@@ -21,10 +21,7 @@
       </div>
     </div>
   </section>
-  <section *ngIf="isOwner(travel.owner.id)" class="owner-actions">
-    <button (click)="handleDeleteTravel(travel.id)" class="button-warning">Eliminar viaje</button>
-    <button (click)="handleEditTravel(travel.id)" class="button-regular">Editar viaje</button>
-  </section>
+
   <section class="travel-axis">
     <mat-icon class="place-icon">place</mat-icon>
     <div class="arrow">
@@ -49,36 +46,43 @@
     <h3>Comentario del conductor</h3>
     <p>{{ travel.owner_comment }}</p>
   </section>
-  <div class="row">
-    <section *ngIf="showChat()" class="chat">
-      <app-chat [travelID]="travel.id"></app-chat>
-    </section>
-    <section class="participants">
-      <div *ngIf="isOwner(travel.owner.id); else regularUser" class="owner">
-        <app-participants
-          (fetchDataFromServer)="fetchDataFromServer.emit()"
-          [participants]="travel.participants"
-        ></app-participants>
+
+  <section *ngIf="showChat()" class="chat">
+    <app-chat [travelID]="travel.id"></app-chat>
+  </section>
+  <section class="participants">
+    <div *ngIf="isOwner(travel.owner.id); else regularUser" class="owner">
+      <section class="owner-actions">
+        <button (click)="handleDeleteTravel(travel.id)" class="button-flat-warning button-flat">
+          Eliminar viaje
+        </button>
+        <button (click)="handleEditTravel(travel.id)" class="button-flat-regular button-flat">
+          Editar viaje
+        </button>
+      </section>
+      <app-participants
+        (fetchDataFromServer)="fetchDataFromServer.emit()"
+        [participants]="travel.participants"
+      ></app-participants>
+    </div>
+    <ng-template #regularUser>
+      <div class="participant">
+        <button
+          *ngIf="!userTravelStatus(travel.participants); else userAlreadyRegisteredToTravel"
+          (click)="onRegisterToTravelClick(travel.id)"
+          class="button-regular"
+        >
+          Apúntame al viaje
+        </button>
+        <ng-template #userAlreadyRegisteredToTravel
+          ><div class="status">
+            {{ statusTranslations[userTravelStatus(travel.participants)] }}
+          </div>
+          <button (click)="onDeleteRegisterFromTravelClick(travel)" class="button-regular">
+            Cancelar registro
+          </button></ng-template
+        >
       </div>
-      <ng-template #regularUser>
-        <div class="participant">
-          <button
-            *ngIf="!userTravelStatus(travel.participants); else userAlreadyRegisteredToTravel"
-            (click)="onRegisterToTravelClick(travel.id)"
-            class="button-regular"
-          >
-            Apúntame al viaje
-          </button>
-          <ng-template #userAlreadyRegisteredToTravel
-            ><div class="status">
-              {{ statusTranslations[userTravelStatus(travel.participants)] }}
-            </div>
-            <button (click)="onDeleteRegisterFromTravelClick(travel)" class="button-regular">
-              Cancelar registro
-            </button></ng-template
-          >
-        </div>
-      </ng-template>
-    </section>
-  </div>
+    </ng-template>
+  </section>
 </div>
