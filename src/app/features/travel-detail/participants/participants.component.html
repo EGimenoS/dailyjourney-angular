@@ -1,4 +1,4 @@
-<div *ngIf="participants.length; else noParticipantsYet" class="container">
+<!-- <div *ngIf="participants.length; else noParticipantsYet" class="container">
   <h3>Pasajeros</h3>
   <section *ngIf="participantsToApprove.length">
     <h6>Pendientes de tu aprobación</h6>
@@ -22,5 +22,40 @@
       </button>
     </div>
   </section>
+</div>
+<ng-template #noParticipantsYet><h3 class="no-participants">Sin viajeros</h3></ng-template> -->
+
+<div *ngIf="participants.length; else noParticipantsYet" class="container">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">USUARIO</th>
+        <th scope="col">ESTADO</th>
+        <th scope="col">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let participant of participants">
+        <td>{{ participant.user_name }}</td>
+        <td>
+          <span [ngClass]="participantStatusTranslation[participant.status].class">{{
+            participantStatusTranslation[participant.status].label
+          }}</span>
+        </td>
+        <td class="actions">
+          <span>
+            <button (click)="approveParticipant(participant.id)" class="button-approve">
+              <mat-icon>thumb_up_alt</mat-icon>
+            </button></span
+          >
+          <span
+            ><button (click)="rejectParticipant(participant.id)" class="button-reject">
+              <mat-icon>thumb_down_alt</mat-icon>
+            </button></span
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <ng-template #noParticipantsYet><h3 class="no-participants">Sin viajeros</h3></ng-template>
