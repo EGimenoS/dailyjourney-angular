@@ -12,6 +12,12 @@ export class ParticipantsComponent implements OnInit, OnChanges {
   participantsToApprove: Participant[];
   participantsRejected: Participant[];
   participantsApproved: Participant[];
+
+  participantStatusTranslation = {
+    approved: { label: 'aprobado', class: 'status-approved' },
+    pending_approval: { label: 'pendiente', class: 'status-pending' },
+    rejected: { label: 'rechazado', class: 'status-rejected' },
+  };
   @Output() fetchDataFromServer = new EventEmitter();
   constructor(private participantsService: ParticipantsService) {}
 

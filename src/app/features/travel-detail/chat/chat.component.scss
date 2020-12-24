@@ -5,13 +5,14 @@
   .messages {
     overflow-y: auto;
     padding: 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
     background-color: white;
     height: 30vh;
 
     .message {
       padding: 1rem;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin-bottom: 0.5rem;
+      box-shadow: var(--box-shadow);
       background-color: whitesmoke;
       .message-info {
         margin-bottom: 1rem;

@@ -3,6 +3,7 @@
   flex-direction: column;
   .owner-actions {
     display: flex;
+    margin-bottom: 1rem;
     justify-content: flex-start;
     :first-child {
       margin-right: 1rem;
@@ -25,7 +26,7 @@
         order: -1;
         margin: 0 0.5rem 0 0;
         background: white;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: var(--box-shadow);
         > img {
           vertical-align: middle;
           width: 50px;
@@ -87,7 +88,7 @@
       top: 35px;
       background: white;
       border-radius: 3px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: var(--box-shadow);
       padding: 0.5rem;
       text-align: left;
     }
@@ -100,7 +101,7 @@
       background-color: var(--accent);
       color: white;
       border-radius: 50px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: var(--box-shadow);
       padding: 0.5rem;
       text-align: left;
     }
@@ -126,7 +127,7 @@
 
   .owner-comment {
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
     margin-top: 8rem;
     padding: 1rem;
     p {
@@ -140,6 +141,7 @@
 
   .participants {
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
   .participant {
     display: flex;
@@ -164,7 +166,7 @@
       .user-info {
         .avatar {
           background: white;
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: var(--box-shadow);
           margin: 1rem;
           > img {
             vertical-align: middle;
@@ -222,7 +224,7 @@
         top: 35px;
         background: white;
         border-radius: 3px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: var(--box-shadow);
         padding: 0.5rem;
         text-align: left;
       }
@@ -232,7 +234,7 @@
         max-width: 40%;
         position: absolute;
         top: -35px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: var(--box-shadow);
         padding: 0.5rem;
         text-align: left;
       }
@@ -244,7 +246,7 @@
 
     .owner-comment {
       background-color: white;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: var(--box-shadow);
       margin-top: 6rem;
       padding: 1rem;
       p {

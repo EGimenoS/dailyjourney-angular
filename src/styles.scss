@@ -11,6 +11,8 @@
   --success: #6bc56b;
   --success-lighter-color: #a2dfa2;
   --grey-background: #f5f7fd;
+  --grey-nackground-darker: #c2c6d1;
+  --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Reset */
@@ -84,8 +86,46 @@ button {
   background-color: var(--accent);
 }
 
-.button-warning {
+.button-danger {
   background-color: var(--warn);
+}
+
+.button-flat {
+  display: inline-block;
+  height: 40px;
+  padding: 0 10px;
+  width: auto;
+  background: none;
+  overflow: visible;
+  appearance: none;
+  transition: all 0.1s ease-out;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  line-height: 40px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  &:hover {
+    opacity: 0.85;
+    transform: scale(1.025);
+  }
+  &-warning {
+    background-color: var(--warn);
+    &:hover {
+      background-color: var(--warn-lighter-color);
+    }
+  }
+  &-regular {
+    background-color: var(--primary);
+    &:hover {
+      background-color: var(--primary-lighter-color);
+    }
+  }
 }
 
 // cancel button as cross icon for modals
