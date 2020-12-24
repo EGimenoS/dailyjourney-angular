@@ -21,10 +21,20 @@ export class ResultsListComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(): void {
-    console.log('change detected: ', this.travelToAnimate);
+    this.handleClickOnMarker();
   }
 
   getNumberOfApprovedParticipants(participants: Participant[]): number {
     return participants.filter((participant) => participant.status === 'approved').length;
+  }
+
+  private handleClickOnMarker(): void {
+    const cards = Array.prototype.slice.call(document.querySelectorAll('.card-container'));
+    cards.forEach((card) => {
+      card.classList.remove('animated-travel');
+    });
+    const element = document.getElementById(`${this.travelToAnimate}`); // id of the scroll to element
+    element?.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    element?.classList.add('animated-travel');
   }
 }

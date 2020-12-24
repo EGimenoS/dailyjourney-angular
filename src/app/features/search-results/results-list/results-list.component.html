@@ -5,9 +5,9 @@
   <ng-template #notSearching><h2>Busca viajes cerca de tu destino</h2></ng-template>
   <div
     [routerLink]="['/travel-detail', travel.id]"
-    routerLinkActive="router-link-active"
     *ngFor="let travel of travels"
     class="card-container"
+    [id]="travel.id"
   >
     <div class="owner-info">
       <div *ngIf="travel.owner.avatar">
