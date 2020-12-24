@@ -42,14 +42,12 @@
     </div>
     <div class="destination-address"><span></span>{{ travel.destination.address }}</div>
   </section>
+
   <section class="owner-comment">
     <h3>Comentario del conductor</h3>
     <p>{{ travel.owner_comment }}</p>
   </section>
 
-  <section *ngIf="showChat()" class="chat">
-    <app-chat [travelID]="travel.id"></app-chat>
-  </section>
   <section class="participants">
     <div *ngIf="isOwner(travel.owner.id); else regularUser" class="owner">
       <section class="owner-actions">
@@ -84,5 +82,9 @@
         >
       </div>
     </ng-template>
+  </section>
+
+  <section *ngIf="showChat()" class="chat">
+    <app-chat [travelID]="travel.id"></app-chat>
   </section>
 </div>

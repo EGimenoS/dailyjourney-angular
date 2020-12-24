@@ -1,23 +1,25 @@
 table {
+  overflow: hidden;
   border-bottom: 1px solid #e5e7eb;
-  border-radius: 2rem;
   border-collapse: collapse;
   box-shadow: var(--box-shadow);
   width: 100%;
   text-indent: 0;
   background-color: white;
   thead {
-    background-color: rgba(243, 244, 246, 1);
+    background-color: whitesmoke;
     color: var(--primary);
     vertical-align: middle;
+
     th {
+      border: 1px solid rgba(229, 231, 235, 1);
       letter-spacing: 0.05em;
       color: rgba(107, 114, 128, 1);
       text-align: left;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
       font-size: 0.6rem;
       line-height: 0.7rem;
       font-weight: 400;
@@ -133,6 +135,7 @@ table {
           background: white;
           border-radius: 50%;
           > img {
+            border-radius: 50%;
             vertical-align: middle;
             width: 40px;
             height: 45px;

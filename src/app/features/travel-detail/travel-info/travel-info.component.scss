@@ -3,6 +3,7 @@
   flex-direction: column;
   .owner-actions {
     display: flex;
+    margin-bottom: 1rem;
     justify-content: flex-start;
     :first-child {
       margin-right: 1rem;
@@ -140,6 +141,7 @@
 
   .participants {
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
   .participant {
     display: flex;
