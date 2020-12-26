@@ -1,5 +1,11 @@
 <nav (window:resize)="onResize()">
-  <a routerLink="home" class="logo">DailyJourney</a>
+  <a routerLink="home"
+    ><picture class="logo">
+      <source media="(min-width: 768px)" srcset="../../../../assets/images/logo.png" />
+      <source media="(max-width: 768px)" srcset="../../../../assets/images/logo-mobile.png" />
+      <img src="../../../../assets/images/logo.png" alt="dailyjourney logo" class="logo" />
+    </picture>
+  </a>
   <span (click)="toggleMenuVisibility()" #toggleMenuButton class="toggle">
     <mat-icon class="bg-icon">{{ toggleButtonIcon }}</mat-icon>
   </span>
