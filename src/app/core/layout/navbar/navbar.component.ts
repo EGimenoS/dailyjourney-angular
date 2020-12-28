@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
-import { concatMap, first, mergeMap, tap } from 'rxjs/operators';
+import { concatMap, tap } from 'rxjs/operators';
 import { uniqify } from 'src/app/shared/utilities/uniqify';
 import { LoginComponent } from '../../components/login/login.component';
 import { RegisterComponent } from '../../components/register/register.component';

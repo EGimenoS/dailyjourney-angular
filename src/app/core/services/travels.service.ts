@@ -4,11 +4,10 @@ import { endpoint } from '../../../../config';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TravelPayload } from '../interfaces/travel-payload';
 import { Router } from '@angular/router';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Travel } from '../interfaces/travel';
 import { UiService } from './ui.service';
 import { ErrorsService } from './errors.service';
-import { UserLocationService } from './user-location.service';
 
 @Injectable({
   providedIn: 'root',

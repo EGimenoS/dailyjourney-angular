@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { SnackbarComponent } from '../components/snackbar/snackbar.component';
-import { SnackBarData } from '../interface/snackbar-data';
+import { SnackBarData } from '../interfaces/snackbar-data';
 
 // contains some user interfaces elements that are used across the whole app
 

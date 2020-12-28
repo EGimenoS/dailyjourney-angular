@@ -26,7 +26,6 @@ export class AutocompleteAddresesService {
 
   getValidAddreses(query: string): Observable<AutocompleteAddress[]> {
     const at = this.position || this.defaultAt;
-    console.log(at);
     return this.http
       .get<AutocompleteAddress[]>(this.url, { params: { q: query, at } })
       .pipe(

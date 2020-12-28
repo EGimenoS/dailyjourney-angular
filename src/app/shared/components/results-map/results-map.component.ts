@@ -1,14 +1,5 @@
 import { Component, EventEmitter, Input, NgZone, OnChanges, OnInit, Output } from '@angular/core';
-import {
-  latLng,
-  MapOptions,
-  tileLayer,
-  Map,
-  Marker,
-  icon,
-  LatLngBounds,
-  featureGroup,
-} from 'leaflet';
+import { MapOptions, tileLayer, Map, Marker, icon, LatLngBounds, featureGroup } from 'leaflet';
 import { Observable } from 'rxjs';
 import { Travel } from 'src/app/core/interfaces/travel';
 import { GeoPosition } from 'src/app/core/interfaces/travel-payload';

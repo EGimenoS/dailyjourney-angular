@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
@@ -42,7 +43,8 @@ export class AddTravelComponent implements OnInit {
     private fb: FormBuilder,
     private validAddreses: AutocompleteAddresesService,
     private travelsService: TravelsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   onSubmit(): void {
@@ -88,6 +90,10 @@ export class AddTravelComponent implements OnInit {
     }
   }
 
+  onCancelFormClick(): void {
+    this.location.back();
+  }
+
   private fillForm(id: string): void {
     this.travelsService.getTravelDetail(id).subscribe((travel: Travel) => {
       this.newTravelGroupForm.patchValue({
@@ -96,7 +102,6 @@ export class AddTravelComponent implements OnInit {
         destination_attributes: travel[0].destination,
         departure_time: formatDate(travel[0].departure_time, 'hh:mm', 'en'),
       });
-      console.log(this.newTravelGroupForm.value);
     });
   }
 }
