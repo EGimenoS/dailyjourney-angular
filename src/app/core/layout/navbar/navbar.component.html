@@ -29,7 +29,7 @@
     <li class="item" *ngIf="currentUser as user">
       <button [matMenuTriggerFor]="menu" class="with-icon">
         <div class="avatar" *ngIf="user.avatar; else noAvatar">
-          <img class="avatar" [src]="user.avatar" [alt]="user.avatar" />
+          <img class="avatar" [src]="user.avatar" alt="avatar" />
         </div>
         <ng-template #noAvatar><mat-icon>account_circle</mat-icon></ng-template>
         <span>{{ user.name }}</span>
@@ -47,9 +47,7 @@
           class="user-travel"
           *ngFor="let travel of userTravels"
         >
-          <span
-            ><img class="avatar" [src]="travel.owner.avatar" [alt]="travel.owner.avatar"
-          /></span>
+          <span><img class="avatar" [src]="travel.owner.avatar" alt="avatar" /></span>
           <span>{{ travel.departure_time | date: 'shortTime' }}</span>
           <span>{{ travel.destination.address | slice: 0:25 }}...</span>
         </a>
