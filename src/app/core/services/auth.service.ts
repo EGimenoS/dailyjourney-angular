@@ -76,12 +76,11 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    // this.router.navigate(['/home']);
     this.uiService.openSnackBar({
       message: 'Hasta pronto! 👋',
       class: 'success',
     });
-    this.router.navigateByUrl('/home');
+    // this.router.navigateByUrl('/home');
   }
 
   public setUser(token): void {
