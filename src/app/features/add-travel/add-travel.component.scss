@@ -19,6 +19,9 @@
       flex-wrap: wrap;
       flex-direction: column;
       justify-content: center;
+      button:first-child {
+        margin-bottom: 1rem;
+      }
     }
     .input-icon {
       color: var(--accent);
@@ -46,11 +49,15 @@ input.mat-input-element {
       .row {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         .input {
           flex: 1;
           &:not(:last-child) {
             margin-right: 1rem;
           }
+        }
+        button:first-child {
+          margin-bottom: 0rem;
         }
       }
     }
