@@ -51,7 +51,10 @@
   <section class="participants">
     <div *ngIf="isOwner(travel.owner.id); else regularUser" class="owner">
       <section class="owner-actions">
-        <button (click)="handleDeleteTravel(travel.id)" class="button-flat-warning button-flat">
+        <button
+          (click)="openConfirmDeleteDialog(travel.id)"
+          class="button-flat-warning button-flat"
+        >
           Eliminar viaje
         </button>
         <button (click)="handleEditTravel(travel.id)" class="button-flat-regular button-flat">

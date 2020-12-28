@@ -31,6 +31,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { MatButtonModule } from '@angular/material/button';
 import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 export function token(): string {
   if (localStorage.getItem('currentUser')) {
@@ -51,6 +52,7 @@ export function token(): string {
     AlertComponent,
     SnackbarComponent,
     LoadingSpinnerComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,

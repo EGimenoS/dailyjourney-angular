@@ -1,0 +1,13 @@
+<div class="confirmation-title">
+  <span>Confirmar acción </span>
+  <mat-icon>error</mat-icon>
+</div>
+<div class="confirmation-content">
+  <p>{{ message }}</p>
+</div>
+<div class="confirmation-actions">
+  <button class="button-flat button-flat-regular" (click)="onNoClick()">No, llévame atras</button>
+  <button class="button-flat button-flat-warning" [mat-dialog-close]="true" cdkFocusInitial>
+    Sí, borrar
+  </button>
+</div>

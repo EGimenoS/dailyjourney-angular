@@ -1,0 +1,26 @@
+.confirmation-title {
+  background-color: var(--accent-lighter-color);
+  color: var(--primary);
+  font-size: 1.1rem;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.confirmation-content {
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+}

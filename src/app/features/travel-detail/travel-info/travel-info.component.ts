@@ -1,7 +1,10 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ConfirmationComponent } from 'src/app/core/components/confirmation/confirmation.component';
 import { Participant } from 'src/app/core/interfaces/participant';
 import { Travel } from 'src/app/core/interfaces/travel';
 import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
@@ -37,8 +40,21 @@ export class TravelInfoComponent implements OnInit, OnChanges {
     private participantsService: ParticipantsService,
     private userLocationService: UserLocationService,
     private travelsService: TravelsService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
+
+  openConfirmDeleteDialog(id: number): void {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      width: '350px',
+      data: '¿Estás seguro de que quieres borrar este registro?',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.handleDeleteTravel(id);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe((user) => (this.currentUser = user));
