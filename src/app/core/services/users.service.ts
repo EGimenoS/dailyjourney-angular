@@ -11,6 +11,7 @@ import { UserCredentials } from '../interfaces/user-credentials';
 import { UserSession } from '../interfaces/user-session';
 import { AuthService } from './auth.service';
 import { ErrorsService } from './errors.service';
+import { TravelsService } from './travels.service';
 import { UiService } from './ui.service';
 
 @Injectable({
@@ -24,7 +25,8 @@ export class UsersService {
     private authService: AuthService,
     private errorsService: ErrorsService,
     private uiService: UiService,
-    private router: Router
+    private router: Router,
+    private travelsService: TravelsService
   ) {}
   headers = new HttpHeaders({
     'Content-type': 'application/json',
@@ -41,6 +43,7 @@ export class UsersService {
           const token = response.headers.get('Access-Token');
           this.authService.setUser(token);
         }),
+        tap(() => this.travelsService.setTravelsForCurrentUser()),
         tap(() => this.dialog.closeAll()),
         tap(() =>
           this.uiService.openSnackBar({

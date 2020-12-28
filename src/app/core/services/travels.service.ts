@@ -39,7 +39,7 @@ export class TravelsService {
         tap(() => {
           this.uiService.openSnackBar({
             message: 'Viaje creado con éxito! 🚗',
-            class: 'accent',
+            class: 'success',
           });
         }),
         catchError((error: HttpErrorResponse) => {
@@ -75,7 +75,7 @@ export class TravelsService {
       tap(() => {
         this.uiService.openSnackBar({
           message: 'Viaje eliminado con éxito 🗑️',
-          class: 'accent',
+          class: 'warn',
         });
       }),
       catchError((error: HttpErrorResponse) => {

@@ -27,7 +27,7 @@ export class ParticipantsService {
       tap((res) => this.travelsService.setTravelsForCurrentUser()),
       tap(() => {
         this.uiService.openSnackBar({
-          message: 'Apuntado, esperando a confrmación del conductor',
+          message: 'Apuntado, esperando a confrmación del conductor ✨',
           class: 'success',
         });
       }),
