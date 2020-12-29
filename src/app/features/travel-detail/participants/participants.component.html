@@ -4,7 +4,7 @@
       <tr>
         <th scope="col">USUARIO</th>
         <th scope="col">ESTADO</th>
-        <th scope="col">ACCIONES</th>
+        <th scope="col">¿APROBAR?</th>
       </tr>
     </thead>
     <tbody>
@@ -23,12 +23,12 @@
           }}</span>
         </td>
         <td class="actions">
-          <span>
+          <span matTooltip="Aprobar viajero">
             <button (click)="approveParticipant(participant.id)" class="button-approve">
               <mat-icon>thumb_up_alt</mat-icon>
             </button></span
           >
-          <span
+          <span matTooltip="Rechazar Viajero"
             ><button (click)="rejectParticipant(participant.id)" class="button-reject">
               <mat-icon>thumb_down_alt</mat-icon>
             </button></span
