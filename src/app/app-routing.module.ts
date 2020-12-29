@@ -31,7 +31,7 @@ const routes: Routes = [
       import('./features/travel-detail/travel-detail.module').then((m) => m.TravelDetailModule),
   },
   {
-    path: 'user-profile/:id',
+    path: 'user-profile',
     loadChildren: () =>
       import('./features/user-profile/user-profile.module').then((m) => m.UserProfileModule),
     canActivate: [AuthGuard],

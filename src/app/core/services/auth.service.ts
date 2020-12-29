@@ -80,7 +80,6 @@ export class AuthService {
       message: 'Hasta pronto! 👋',
       class: 'success',
     });
-    // this.router.navigateByUrl('/home');
   }
 
   public setUser(token): void {
