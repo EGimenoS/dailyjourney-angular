@@ -22,22 +22,29 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.isSearching = Object.keys(params).length === 0 ? false : true;
-      this.userOrigin = {
-        address: params.origin_address,
-        latitude: params.origin_latitude,
-        longitude: params.origin_longitude,
-      };
-      this.userDestination = {
-        address: params.destination_address,
-        latitude: params.destination_latitude,
-        longitude: params.destination_longitude,
-      };
-      this.travelsService
-        .getTravelsNearOfDestination(params.destination_latitude, params.destination_longitude)
-        .subscribe((travels) => (this.travels = travels));
+      if (this.isSearching) {
+        this.assignParams(params);
+        this.travelsService
+          .getTravelsNearOfDestination(params.destination_latitude, params.destination_longitude)
+          .subscribe((travels) => (this.travels = travels));
+      }
     });
   }
+
   handleClickedMarker(id): void {
     this.travelToAnimate = id;
+  }
+
+  private assignParams(params): void {
+    this.userOrigin = {
+      address: params.origin_address,
+      latitude: params.origin_latitude,
+      longitude: params.origin_longitude,
+    };
+    this.userDestination = {
+      address: params.destination_address,
+      latitude: params.destination_latitude,
+      longitude: params.destination_longitude,
+    };
   }
 }

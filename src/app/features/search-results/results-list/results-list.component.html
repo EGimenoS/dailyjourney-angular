@@ -1,6 +1,6 @@
-<div *ngIf="travels" class="container">
+<div class="container">
   <h2 *ngIf="isSearching; else notSearching">
-    {{ travels.length > 0 ? 'Viajes cerca de tu destino' : 'No hay viajes cerca de tu destino' }}
+    {{ travels?.length > 0 ? 'Viajes cerca de tu destino' : 'No hay viajes cerca de tu destino' }}
   </h2>
   <ng-template #notSearching><h2>Busca viajes cerca de tu destino</h2></ng-template>
   <div
