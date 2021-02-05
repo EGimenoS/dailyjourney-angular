@@ -28,8 +28,7 @@ export class AuthService {
     private dialog: MatDialog,
     private errorsService: ErrorsService,
     private uiService: UiService,
-    private travelsService: TravelsService,
-    private router: Router
+    private travelsService: TravelsService
   ) {
     this.currentUserSubject = new BehaviorSubject<UserSession>(this.initializeUser());
     this.currentUser = this.currentUserSubject.asObservable();
