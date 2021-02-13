@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { endpoint } from 'config';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ApiResponse } from '../interfaces/api-response';
 import { ChatMessage } from '../interfaces/chat-message';
 import { ErrorsService } from './errors.service';
 
@@ -30,9 +29,9 @@ export class ChatMessagesService {
       );
   }
 
-  public createNewChatMessage(travelID: string, message: string): Observable<ApiResponse> {
+  public createNewChatMessage(travelID: string, message: string): Observable<ChatMessage> {
     return this.http
-      .post<ApiResponse>(
+      .post<ChatMessage>(
         this.url,
         { travel_id: travelID, message },
         {

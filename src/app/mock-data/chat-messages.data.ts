@@ -22,3 +22,15 @@ export const chatMessages = [
     },
   },
 ];
+
+export const chatMessageCreateResponse = {
+  id: 25,
+  message: 'hola',
+  created_at: '2021-02-13T19:57:51.980Z',
+  user: {
+    id: 200,
+    name: 'Víctor Gimeno',
+    avatar:
+      'https://secure.gravatar.com/avatar/1e899d21cb72710b518e844a244e410a?s=32\u0026d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/Víctor Gimeno/128',
+  },
+};
