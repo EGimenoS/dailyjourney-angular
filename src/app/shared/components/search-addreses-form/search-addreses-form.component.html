@@ -14,6 +14,14 @@
     <input matInput [matAutocomplete]="destination" formControlName="destinationInput" />
     <mat-icon class="input-icon" matPrefix>directions_car</mat-icon>
   </mat-form-field>
+  <mat-form-field *ngIf="showRadiusInput" class="input-distance" appearance="outline">
+    <mat-label>Radio de búsqueda (km)</mat-label>
+    <input matInput type="number" formControlName="distanceInput" />
+    <mat-icon class="input-icon" matPrefix>near_me</mat-icon>
+    <mat-error *ngIf="searchGroupForm.controls['distanceInput'].hasError('maxLength')">
+      Radio de búsqueda en km requerido
+    </mat-error>
+  </mat-form-field>
   <mat-autocomplete #destination="matAutocomplete" [displayWith]="displayFn">
     <mat-option *ngFor="let address of validDestinationAddreses | async" [value]="address">
       <span>{{ address.address }}</span>

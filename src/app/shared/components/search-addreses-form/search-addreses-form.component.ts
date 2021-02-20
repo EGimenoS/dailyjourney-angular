@@ -19,6 +19,7 @@ import { GeoPosition } from 'src/app/core/interfaces/travel-payload';
 export class SearchAddresesFormComponent implements OnInit {
   @Input() userOrigin: GeoPosition;
   @Input() userDestination: GeoPosition;
+  @Input() showRadiusInput: boolean;
   searchGroupForm: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -54,7 +55,6 @@ export class SearchAddresesFormComponent implements OnInit {
         },
       });
     } else {
-      console.log('valid');
       this.dialog.open(AlertComponent, {
         minWidth: '30%',
         data: {
@@ -68,6 +68,7 @@ export class SearchAddresesFormComponent implements OnInit {
     return this.fb.group({
       originInput: [this.userOrigin, [longlatPresence()]],
       destinationInput: [this.userDestination, [longlatPresence()]],
+      distanceInput: [3, [Validators.maxLength(50)]],
     });
   }
 
