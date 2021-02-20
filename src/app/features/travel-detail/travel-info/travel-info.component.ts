@@ -20,7 +20,7 @@ import { calculateDistance } from 'src/app/shared/utilities/calculate-distance';
   templateUrl: './travel-info.component.html',
   styleUrls: ['./travel-info.component.scss'],
 })
-export class TravelInfoComponent implements OnInit {
+export class TravelInfoComponent implements OnChanges {
   currentUser: UserSession;
   userOrigin: GeoPosition;
   userDestination: GeoPosition;
@@ -57,7 +57,7 @@ export class TravelInfoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
       this.isCurrentUserOwner = this.isOwner(this.travel.owner.id);
