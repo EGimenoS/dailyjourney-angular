@@ -20,10 +20,11 @@ import { calculateDistance } from 'src/app/shared/utilities/calculate-distance';
   templateUrl: './travel-info.component.html',
   styleUrls: ['./travel-info.component.scss'],
 })
-export class TravelInfoComponent implements OnInit, OnChanges {
+export class TravelInfoComponent implements OnInit {
   currentUser: UserSession;
   userOrigin: GeoPosition;
   userDestination: GeoPosition;
+  isCurrentUserOwner: boolean;
   @Input() travel: Travel;
   @Output() fetchDataFromServer = new EventEmitter();
 
@@ -57,14 +58,15 @@ export class TravelInfoComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.authService.currentUser.subscribe((user) => (this.currentUser = user));
+    this.authService.currentUser.subscribe((user) => {
+      this.currentUser = user;
+      this.isCurrentUserOwner = this.isOwner(this.travel.owner.id);
+    });
     this.userLocationService.userOrigin.subscribe((location) => (this.userOrigin = location));
     this.userLocationService.userDestination.subscribe(
       (location) => (this.userDestination = location)
     );
   }
-
-  ngOnChanges(): void {}
 
   onRegisterToTravelClick(travelId: number): void {
     this.participantsService
@@ -91,8 +93,7 @@ export class TravelInfoComponent implements OnInit, OnChanges {
 
   showChat(): boolean {
     return (
-      this.isOwner(this.travel.owner.id) ||
-      this.userTravelStatus(this.travel.participants) === 'approved'
+      this.isCurrentUserOwner || this.userTravelStatus(this.travel.participants) === 'approved'
     );
   }
 

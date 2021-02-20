@@ -88,7 +88,7 @@ export class TravelsService {
   getTravelsNearOfDestination(
     lat: string,
     long: string,
-    distance: string
+    distance = '3'
   ): Observable<Travel[]> | Observable<null> {
     return this.http
       .get<Travel[]>(this.url, {

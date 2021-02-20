@@ -18,7 +18,10 @@
     <mat-label>Radio de búsqueda (km)</mat-label>
     <input matInput type="number" formControlName="distanceInput" />
     <mat-icon class="input-icon" matPrefix>near_me</mat-icon>
-    <mat-error *ngIf="searchGroupForm.controls['distanceInput'].hasError('max')">
+    <mat-error
+      class="error-message"
+      *ngIf="searchGroupForm.controls['distanceInput'].hasError('max')"
+    >
       Radio máximo 3km
     </mat-error>
   </mat-form-field>

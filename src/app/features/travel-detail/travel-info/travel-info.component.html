@@ -34,7 +34,7 @@
     </div>
     <div class="origin-address"><span></span>{{ travel.origin.address }}</div>
     <div
-      *ngIf="userDestination"
+      *ngIf="userDestination && !isCurrentUserOwner"
       class="destination-distance"
       matTooltip="Distancia desde tu lugar de destino"
     >
@@ -49,7 +49,7 @@
   </section>
 
   <section class="participants">
-    <div *ngIf="isOwner(travel.owner.id); else regularUser" class="owner">
+    <div *ngIf="isCurrentUserOwner; else regularUser" class="owner">
       <section class="owner-actions">
         <button
           (click)="openConfirmDeleteDialog(travel.id)"
