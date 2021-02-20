@@ -21,14 +21,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('dailyjourney');
   });
-
-  it('should render title', () => {
-    pending();
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain(
-      'dailyjourney app is running!'
-    );
-  });
 });
