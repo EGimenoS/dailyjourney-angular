@@ -25,7 +25,11 @@ export class SearchResultsComponent implements OnInit {
       if (this.isSearching) {
         this.assignParams(params);
         this.travelsService
-          .getTravelsNearOfDestination(params.destination_latitude, params.destination_longitude)
+          .getTravelsNearOfDestination(
+            params.destination_latitude,
+            params.destination_longitude,
+            params.distance
+          )
           .subscribe((travels) => (this.travels = travels));
       }
     });

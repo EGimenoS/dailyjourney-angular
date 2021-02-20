@@ -34,6 +34,7 @@ export class SearchAddresesFormComponent implements OnInit {
     if (this.searchGroupForm.valid) {
       const destinationParams = this.searchGroupForm.controls.destinationInput.value;
       const originParams = this.searchGroupForm.controls.originInput.value;
+      const distance = this.searchGroupForm.controls.distanceInput.value;
       this.userLocationService.setUserOrigin({
         latitude: originParams.latitude,
         longitude: originParams.longitude,
@@ -52,6 +53,7 @@ export class SearchAddresesFormComponent implements OnInit {
           origin_address: originParams.address,
           origin_latitude: originParams.latitude,
           origin_longitude: originParams.longitude,
+          distance,
         },
       });
     } else {
@@ -59,7 +61,7 @@ export class SearchAddresesFormComponent implements OnInit {
         minWidth: '30%',
         data: {
           title: 'Direcciones inválidas',
-          message: 'Por favor, seleccione una dirección válidas',
+          message: 'Por favor, seleccione una dirección válida',
         },
       });
     }
@@ -68,7 +70,7 @@ export class SearchAddresesFormComponent implements OnInit {
     return this.fb.group({
       originInput: [this.userOrigin, [longlatPresence()]],
       destinationInput: [this.userDestination, [longlatPresence()]],
-      distanceInput: [3, [Validators.maxLength(50)]],
+      distanceInput: [3, [Validators.max(3)]],
     });
   }
 

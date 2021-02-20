@@ -85,10 +85,14 @@ export class TravelsService {
     );
   }
 
-  getTravelsNearOfDestination(lat, long): Observable<Travel[]> | Observable<null> {
+  getTravelsNearOfDestination(
+    lat: string,
+    long: string,
+    distance: string
+  ): Observable<Travel[]> | Observable<null> {
     return this.http
       .get<Travel[]>(this.url, {
-        params: { destination_latitude: lat, destination_longitude: long },
+        params: { destination_latitude: lat, destination_longitude: long, distance },
       })
       .pipe(
         catchError((error: HttpErrorResponse) => {
