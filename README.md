@@ -1,8 +1,14 @@
 # DailyJourney 🚗
-
+- [Links](#Links)
 - [Introduction](#Introduction)
 - [Setup](#Setup-and-installation)
 - [Main features](#Main-features)
+
+## Links
+
+Demo of the application: <https://dailyjourney.netlify.app>
+
+Repository of the API backend: <https://github.com/EGimenoS/dailyjourneyapi>
 
 ## Introduction
 
