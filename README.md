@@ -6,7 +6,7 @@
 
 ## Links
 
-Demo of the application: <https://dailyjourney.netlify.app>
+Demo of the application: <https://dailyjourney.netlify.app> (bear in mind that most of the fake trips to try the app are around Valencia, ES!)
 
 Repository of the API backend: <https://github.com/EGimenoS/dailyjourneyapi>
 
