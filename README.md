@@ -46,3 +46,15 @@ And then run the development server with `ng serve` or build to deploy with `ng 
 - A user can see their registered and owned travels from their profile.
 - A user can change their name and password
 - A user can write messages in a travel chat if registered or owner.
+
+## Some screenshots
+
+![img](https://i.imgur.com/NuC9dnJ.jpg)
+
+![img](https://i.imgur.com/kJq5mXYh.jpg)
+
+![img](https://i.imgur.com/q5S7urSh.jpg)
+
+![img](https://i.imgur.com/q5S7urSh.jpg)
+
+![img](https://i.imgur.com/k0Ugq8qh.jpg)
