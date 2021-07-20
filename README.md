@@ -55,6 +55,4 @@ And then run the development server with `ng serve` or build to deploy with `ng 
 
 ![img](https://i.imgur.com/q5S7urSh.jpg)
 
-![img](https://i.imgur.com/q5S7urSh.jpg)
-
 ![img](https://i.imgur.com/k0Ugq8qh.jpg)
